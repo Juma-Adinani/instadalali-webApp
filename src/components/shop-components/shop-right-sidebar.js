@@ -17,11 +17,12 @@ function ShopGridV1(props){
       console.log("profile 35", res);
       setLoading(false)
       }catch(error){
-        console.warn("Error happened ", JSON.stringify(error, null, 3))
+        console.log("Error happened ", error)
       }
     }
+    console.log("I AM HERE");
     fetchProfile();
-  }, [props])
+  }, [])
 
     return (
       <div>
@@ -33,7 +34,7 @@ function ShopGridV1(props){
                   <ul className="justify-content-start">
                     <li className="d-none">
                       <div className="showing-product-number text-right">
-                        <span>Showing 1–12 of 18 results</span>
+                        <span>Showing 1–12 of 20,99 results</span>
                       </div>
                     </li>
                     <li>
