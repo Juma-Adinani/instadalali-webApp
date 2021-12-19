@@ -28,7 +28,9 @@ export default function ListItem(props) {
               </span>
             </div>
           </div>
-          <div className="go-top">{utils.truncate({text:item?.post?.caption, size:100})}</div>
+          <div className="go-top">
+            {utils.truncate({ text: item?.post?.caption, size: 100 })}
+          </div>
           <div className="product-img-location go-top">
             <ul>
               <li>
@@ -76,7 +78,7 @@ export default function ListItem(props) {
                   title="Quick View"
                   data-bs-toggle="modal"
                   data-bs-target="#quick_view_modal"
-                  onClick={()=>onExpand(item)}
+                  onClick={() => onExpand(item)}
                 >
                   <i className="flaticon-expand" />
                 </a>

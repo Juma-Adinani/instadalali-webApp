@@ -4,20 +4,23 @@ import Map from "../section-components/map";
 import { url, requests } from "helpers";
 
 export default function ExpandItem(props) {
-  const {item:selectedItem} = props;
+  const { item: selectedItem } = props;
   // create a new variable for the item here so as to fetch an item with more details
   const [item, setItem] = useState(selectedItem);
 
   useEffect(() => {
-    const link = url.getURL("dalali.listing", {type:"detail", item:selectedItem});
+    const link = url.getURL("dalali.listing", {
+      type: "detail",
+      item: selectedItem,
+    });
     getItem(link);
   }, [selectedItem]);
 
   async function getItem(link) {
     try {
       const res = await requests.get(link);
-      if(res.id){
-        setItem(res)
+      if (res.id) {
+        setItem(res);
       }
     } catch (error) {
       console.log(error);
@@ -26,8 +29,8 @@ export default function ExpandItem(props) {
 
   return (
     <div className="ltn__modal-area ltn__quick-view-modal-area">
-        <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
-          <div className="modal-dialog modal-lg" role="document">
+      <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
+        <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <button
@@ -48,7 +51,8 @@ export default function ExpandItem(props) {
                     {/* ltn__blog-item-3-normal */}
                     <div className="row  ltn__blog-slider-one-active slick-arrow-1 ">
                       {/* Blog Item */}
-                      {item && item.post.photos.map((photo, index) => (
+                      {item &&
+                        item.post.photos.map((photo, index) => (
                           <div className="col-lg-12" key={index}>
                             <div className="ltn__blog-item ltn__blog-item-3">
                               <div className="ltn__blog-img">
@@ -57,8 +61,8 @@ export default function ExpandItem(props) {
                                 </Link>
                               </div>
                             </div>
-                          </div>)
-                        )}
+                          </div>
+                        ))}
                     </div>
                   </div>
                   <div className="modal-product-meta ltn__product-details-menu-1">
@@ -92,9 +96,8 @@ export default function ExpandItem(props) {
               </div>
             </div>
           </div>
-          </div>
         </div>
       </div>
-   
+    </div>
   );
 }
