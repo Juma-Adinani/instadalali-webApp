@@ -4,45 +4,42 @@ import { Link } from "react-router-dom";
 import Sidebar from "./shop-sidebar";
 import ListItem from "./ListItem";
 // import Map from "../section-components/map";
-import { url, requests } from "helpers";
+import { url, requests, utils } from "helpers";
 import ExpandItem from "./ExpandItem";
+import Pagination from "./Pagination";
 
-function ShopGridV1() {
+function ShopGridV1(props) {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [results, setResults] = useState([]);
-  let publicUrl = process.env.PUBLIC_URL + "/";
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [meta, setMeta] = useState({});
+  const [pageSize, setPageSize] = useState(15);
+  const [queryParams, setQueryParams] = useState({});
 
+  let publicUrl = process.env.PUBLIC_URL + "/";
   async function fetchData(link) {
     try {
       const res = await requests.get(link);
-      // console.log("res", JSON.stringify(res, null, 2))
-      console.log(res);
       setResults(res.results);
+      setLoading(false);
+      setMeta(res); //TOdo: remove results from res to make this var lighter
     } catch (e) {
       console.log(e);
     }
   }
 
   useEffect(() => {
-    const link = url.dalali.listing;
+    const link = utils.stringify(queryParams, {
+      baseURL:url.dalali.listing
+    });
     fetchData(link);
-  }, []);
+  }, [props, queryParams]);
 
-  useEffect(() => {
-    // const fetchProfile=async()=>{
-    //   try{
-    //   const res=await requests.get(url.listing);
-    //   console.log("profile 35", res);
-    //   setLoading(false)
-    //   }catch(error){
-    //     console.log("Error happened ", error)
-    //   }
-    // }
-    // console.log("I AM HERE");
-    //fetchProfile();
-  }, []);
-
+  const onExpand=(item)=>{
+    setSelectedItem(item)
+  }
+  const {page=1, count=0}=meta;
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter">
@@ -51,38 +48,40 @@ function ShopGridV1() {
             <div className="col-lg-8  mb-100">
               <div className="ltn__shop-options">
                 <ul className="justify-content-start">
-                  <li className="d-none">
+                  <li className="d-nones">
                     <div className="showing-product-number text-right">
-                      <span>Showing 1–12 of 20,99 results</span>
+                      <span>Showing {(page-1)*pageSize} – {page*pageSize} of {utils.formatNumber(count||0)} results</span>
                     </div>
                   </li>
                   <li>
                     <div className="short-by text-center">
                       <select className="nice-select">
-                        <option>Default Sorting</option>
-
+                        <option>Sort By Featured</option>
                         <option>Sort by popularity</option>
                         <option>Sort by new arrivals</option>
-                        <option>Sort by price: low to high</option>
-                        <option>Sort by price: high to low</option>
+                        <option>Sort by price low to high</option>
+                        <option>Sort by price high to low</option>
                       </select>
                     </div>
                   </li>
+
                   <li>
                     <div className="short-by text-center">
                       <select className="nice-select">
-                        <option>Per Page: 3</option>
-                        <option>Per Page: 5</option>
-                        <option>Per Page: 7</option>
+                        <option>Per Page: 15</option>
+                        <option>Per Page: 50</option>
+                        <option>Per Page: 100</option>
                       </select>
                     </div>
                   </li>
+
+
                 </ul>
               </div>
               <div className="tab-content">
                 {/* **************************************
-					House for rent and for sale (House details)
-				************************************** */}
+                    House for rent and for sale (House details)
+                  ************************************** */}
                 {/* <div className="tab-pane fade" id="liton_product_list"> */}
                 <div
                   className="tab-pane fade active show"
@@ -107,47 +106,17 @@ function ShopGridV1() {
                       </div>
                       {/* ltn__product-item  in horizontal view (House details at large)*/}
                       {results.map((item, index) => (
-                        <ListItem key={index} item={item} />
+                        <ListItem key={index} item={item} onExpand={onExpand} />
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
               {/* **************************************
-					House for rent and for sale
-				************************************** */}
-
-              <div className="ltn__pagination-area text-center">
-                <div className="ltn__pagination">
-                  <ul>
-                    <li>
-                      <Link to="#">
-                        <i className="fas fa-angle-double-left" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">1</Link>
-                    </li>
-                    <li className="active">
-                      <Link to="#">2</Link>
-                    </li>
-                    <li>
-                      <Link to="#">3</Link>
-                    </li>
-                    <li>
-                      <Link to="#">...</Link>
-                    </li>
-                    <li>
-                      <Link to="#">10</Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <i className="fas fa-angle-double-right" />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+					       House for rent and for sale
+				      ************************************** */
+              }
+              <Pagination {...meta} onClickPage={(page)=>setQueryParams({...queryParams, page:page+1})} />
             </div>
             <Sidebar />
           </div>
@@ -232,18 +201,10 @@ function ShopGridV1() {
       {/* *****************************
 				start expand emoji
 		******************************* */}
-      <div className="ltn__modal-area ltn__quick-view-modal-area">
-        <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
-          <div className="modal-dialog modal-lg" role="document">
-            <ExpandItem />
-          </div>
-        </div>
-      </div>
-
+        <ExpandItem item={selectedItem} />
       {/* *****************************
 				end expand emoji
 		******************************* */}
-
       {/* *****************************
 				start add to cart
 		******************************* */}

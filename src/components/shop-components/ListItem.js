@@ -4,15 +4,14 @@ import { utils } from "helpers";
 
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
-  const { item } = props;
+  const { item, onExpand } = props;
 
   return (
     <div className="col-lg-12">
       <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 houseDetails">
         <div className="product-img go-top">
-          {/* <Link to="/product-details"> */}
-          <Link to="/shop">
-            <img src={item.post.url} alt="#" />
+          <Link to="/product-details">
+            <img src={item.post.url} alt={item.post.caption} />
           </Link>
         </div>
         <div className="product-info">
@@ -25,12 +24,11 @@ export default function ListItem(props) {
             <div className="product-price">
               <span>
                 {item.price_currency}&nbsp;{utils.formatNumber(item.price)}
-                <label>/Month</label>
+                {/* <label>/Month</label> */}
               </span>
             </div>
           </div>
-          <h2 className="product-title go-top">New Apartment Nice View</h2>
-          {/* <h2 className="product-title go-top">{item.post.caption}</h2> */}
+          <div className="go-top">{utils.truncate({text:item?.post?.caption, size:100})}</div>
           <div className="product-img-location go-top">
             <ul>
               <li>
@@ -74,17 +72,18 @@ export default function ListItem(props) {
             <ul>
               <li>
                 <a
-                  href="#"
+                  href=".#"
                   title="Quick View"
                   data-bs-toggle="modal"
                   data-bs-target="#quick_view_modal"
+                  onClick={()=>onExpand(item)}
                 >
                   <i className="flaticon-expand" />
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href=".#"
                   title="Wishlist"
                   data-bs-toggle="modal"
                   data-bs-target="#liton_wishlist_modal"
@@ -104,9 +103,7 @@ export default function ListItem(props) {
           <ul>
             <li className="ltn__blog-date">
               <i className="far fa-calendar-alt" />
-              posted: {/*May 19, 2021 */}
-              {utils.formatDate(item.post.post_date)}
-              
+              Posted: {utils.formatDate(item.post.post_date)}
             </li>
           </ul>
         </div>

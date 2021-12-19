@@ -30,7 +30,7 @@ import ComingSoon from "./components/coming-soon";
 import Error from "./components/404";
 import Location from "./components/location";
 
-import Shop from "./components/shop";
+import Shop from "./components/shop-right-sidebar";
 import ShopGrid from "./components/shop-grid";
 import ProdductDetails from "./components/product-details";
 import ShopLeftSidebar from "./components/shop-left-sidebar";
@@ -119,4 +119,4 @@ class Root extends Component {
 
 export default Root;
 
-ReactDOM.render(<Root />, document.getElementById("quarter"));
+ReactDOM.render(<Root />, document.getElementById("root"));
