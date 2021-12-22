@@ -1,8 +1,32 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import {utils, requests, url } from "helpers";
 
-function Wishlist() {
+function Wishlist(props) {
   let publicUrl = process.env.PUBLIC_URL + "/";
+  const loggedUser = utils.getUser()
+  const {item} = props;
+
+  useEffect(() => {
+    if(item){
+      // add to wishlist
+      async function addWishlist(){
+        const res = await requests.post(url.dalali.wishlist, {
+          "user":loggedUser?.pk,
+          "listing":item.id
+      })
+      }
+      if(loggedUser){
+        addWishlist()
+      }else{
+        alert("You must login to add to wishlist")
+      }
+      
+    }
+  }, [item])
+
+  if(!loggedUser) return null;
+
   return (
     <div className="ltn__modal-area ltn__add-to-cart-modal-area">
       <div className="modal fade" id="liton_wishlist_modal" tabIndex={-1}>
@@ -25,14 +49,14 @@ function Wishlist() {
                     <div className="col-12">
                       <div className="modal-product-img">
                         <img
-                          src={publicUrl + "assets/img/houses/house1.jpg"}
+                          src={item?.post?.url}
                           alt="#"
                         />
                       </div>
                       <div className="modal-product-info go-top">
                         <h5>
                           <Link to="/product-details">
-                            Brake Conversion Kit
+                            {utils.truncate({text:item?.post?.caption, size:160})}
                           </Link>
                         </h5>
                         <p className="added-cart">

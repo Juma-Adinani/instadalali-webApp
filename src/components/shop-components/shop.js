@@ -7,7 +7,7 @@ import ListItem from "./ListItem";
 import { url, requests, utils } from "helpers";
 import ExpandItem from "./ExpandItem";
 import Pagination from "./Pagination";
-import Wishlist from "./add-wishlist";
+import Wishlist from "./AddWishlist";
 import Cart from "./add-cart";
 
 function ShopGridV1(props) {
@@ -41,7 +41,12 @@ function ShopGridV1(props) {
   const onExpand = (item) => {
     setSelectedItem(item);
   };
+
+  const onAddWishlist=(item)=>{
+    setSelectedItem(item);
+  }
   const { page = 1, count = 0 } = meta;
+  
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter">
@@ -109,7 +114,7 @@ function ShopGridV1(props) {
                       </div>
                       {/* ltn__product-item  in horizontal view (House details at large)*/}
                       {results.map((item, index) => (
-                        <ListItem key={index} item={item} onExpand={onExpand} />
+                        <ListItem key={index} item={item} onExpand={onExpand}  onAddWishlist={onAddWishlist} />
                       ))}
                     </div>
                   </div>
@@ -129,7 +134,7 @@ function ShopGridV1(props) {
           </div>
         </div>
       </div>
-      <Wishlist /> {/* that's love icon */}
+      <Wishlist item={selectedItem} /> {/* that's love icon */}
       <ExpandItem item={selectedItem} /> {/* that's expand icon */}
       <Cart /> {/*after expand it, then onclick*/}
     </div>

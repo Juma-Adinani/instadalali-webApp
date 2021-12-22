@@ -1,10 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
+import { requests, setAuthorization, url, utils } from "helpers";
 import parse from "html-react-parser";
 
-class Login extends Component {
-  render() {
+export default function Login(props){
     let publicUrl = process.env.PUBLIC_URL + "/";
+
+    const [data, setData] = useState({})
+    const handleInput = event => {
+      setData({...data, [event.target.name]:event.target.value});
+    };
+
+    async function onSubmit(e) {
+      e.preventDefault();
+      try{
+        const res = await requests.post(url.login, data)
+        // alert(JSON.stringify(res))
+        setAuthorization(res.key)
+        // fetch user profile
+        const u =await requests.get(url.user)
+        utils.setUser({...u, token:res.key});
+        window.location="/#/shop/";
+      }catch(e){
+        alert(JSON.stringify(e.data))
+      }
+
+  }
 
     return (
       <div className="ltn__login-area mt-30 mb-20">
@@ -16,19 +37,19 @@ class Login extends Component {
                   Sign In <br />
                   To Your Account
                 </h1>
-                
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
               <div className="account-login-inner">
-                <form method="GET" className="ltn__form-box contact-form-box">
-                  <input type="text" name="email" placeholder="Email*"/>
+                <form method="POST" onSubmit={onSubmit} className="ltn__form-box contact-form-box">
+                  <input onChange={handleInput} type="text" name="username" placeholder="Username*"/>
                   <input
                     type="password"
                     name="password"
                     placeholder="Password*"
+                    onChange={handleInput}
                   />
                   <div className="btn-wrapper mt-0">
                     <button className="theme-btn-1 btn btn-block" type="submit">
@@ -58,6 +79,4 @@ class Login extends Component {
       </div>
     );
   }
-}
 
-export default Login;

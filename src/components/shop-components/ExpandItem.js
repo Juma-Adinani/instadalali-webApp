@@ -13,6 +13,7 @@ export default function ExpandItem(props) {
       type: "detail",
       item: selectedItem,
     });
+    // dalali/api/v1/listing/id/
     getItem(link);
   }, [selectedItem]);
 

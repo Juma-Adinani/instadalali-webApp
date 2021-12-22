@@ -4,7 +4,7 @@ import { utils } from "helpers";
 
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
-  const { item, onExpand } = props;
+  const { item, onExpand, onAddWishlist } = props;
 
   return (
     <div className="col-lg-12">
@@ -89,6 +89,7 @@ export default function ListItem(props) {
                   title="Wishlist"
                   data-bs-toggle="modal"
                   data-bs-target="#liton_wishlist_modal"
+                  onClick={() => onAddWishlist(item)}
                 >
                   <i className="flaticon-heart-1" />
                 </a>

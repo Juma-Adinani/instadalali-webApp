@@ -71,7 +71,7 @@ export const url={
     room:      '/chats/api/v1/room/',
     message:     '/chats/api/v1/message/',
   },
-  getURL:(path, {item, type='detail'}={})=>{
+  getURL:(path, {item={id:0}, type='detail'}={})=>{
     const base=utils.getObject(url, path);
     let link=base;
     if(['detail', 'delete', 'edit', 'view'].includes(type)){

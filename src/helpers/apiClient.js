@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config } from "./config";
+import {storage} from "./storage";
 // default
 axios.defaults.baseURL = config.API_URL;
 
@@ -57,6 +58,11 @@ export class APIClient {
   /**
    * Fetches data from given url
    */
+  constructor(props){
+    const token = storage.getUser()?.token;
+    setAuthorization(token)
+  }
+  
   get = (url, params) => {
     return axios.get(url, params);
   };
