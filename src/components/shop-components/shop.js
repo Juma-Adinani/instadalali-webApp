@@ -19,7 +19,7 @@ function ShopGridV1(props) {
   const [pageSize, setPageSize] = useState(15);
   const [queryParams, setQueryParams] = useState({});
 
-  let publicUrl = process.env.PUBLIC_URL + "/";
+  // let publicUrl = process.env.PUBLIC_URL + "/";
   async function fetchData(link) {
     try {
       const res = await requests.get(link);
@@ -42,11 +42,11 @@ function ShopGridV1(props) {
     setSelectedItem(item);
   };
 
-  const onAddWishlist=(item)=>{
+  const onAddWishlist = (item) => {
     setSelectedItem(item);
-  }
+  };
   const { page = 1, count = 0 } = meta;
-  
+
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter">
@@ -114,7 +114,12 @@ function ShopGridV1(props) {
                       </div>
                       {/* ltn__product-item  in horizontal view (House details at large)*/}
                       {results.map((item, index) => (
-                        <ListItem key={index} item={item} onExpand={onExpand}  onAddWishlist={onAddWishlist} />
+                        <ListItem
+                          key={index}
+                          item={item}
+                          onExpand={onExpand}
+                          onAddWishlist={onAddWishlist}
+                        />
                       ))}
                     </div>
                   </div>

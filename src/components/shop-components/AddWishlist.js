@@ -1,31 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {utils, requests, url } from "helpers";
+import { utils, requests, url } from "helpers";
 
 function Wishlist(props) {
-  let publicUrl = process.env.PUBLIC_URL + "/";
-  const loggedUser = utils.getUser()
-  const {item} = props;
+  // let publicUrl = process.env.PUBLIC_URL + "/";
+  const loggedUser = utils.getUser();
+  const { item } = props;
 
   useEffect(() => {
-    if(item){
+    if (item) {
       // add to wishlist
-      async function addWishlist(){
-        const res = await requests.post(url.dalali.wishlist, {
-          "user":loggedUser?.pk,
-          "listing":item.id
-      })
+      async function addWishlist() {
+        await requests.post(url.dalali.wishlist, {
+          user: loggedUser?.pk,
+          listing: item.id,
+        });
       }
-      if(loggedUser){
-        addWishlist()
-      }else{
-        alert("You must login to add to wishlist")
+      if (loggedUser) {
+        addWishlist();
+      } else {
+        alert("You must login to add to wishlist");
       }
-      
     }
-  }, [item])
+  }, [item]);
 
-  if(!loggedUser) return null;
+  if (!loggedUser) return null;
 
   return (
     <div className="ltn__modal-area ltn__add-to-cart-modal-area">
@@ -48,15 +47,15 @@ function Wishlist(props) {
                   <div className="row">
                     <div className="col-12">
                       <div className="modal-product-img">
-                        <img
-                          src={item?.post?.url}
-                          alt="#"
-                        />
+                        <img src={item?.post?.url} alt="#" />
                       </div>
                       <div className="modal-product-info go-top">
                         <h5>
                           <Link to="/product-details">
-                            {utils.truncate({text:item?.post?.caption, size:160})}
+                            {utils.truncate({
+                              text: item?.post?.caption,
+                              size: 160,
+                            })}
                           </Link>
                         </h5>
                         <p className="added-cart">
@@ -70,19 +69,6 @@ function Wishlist(props) {
                           >
                             View Wishlist
                           </Link>
-                        </div>
-                      </div>
-                      {/* additional-info */}
-                      <div className="additional-info d-none">
-                        <p>
-                          We want to give you <b>10% discount</b> for your first
-                          order, <br /> Use discount code at checkout
-                        </p>
-                        <div className="payment-method">
-                          <img
-                            src={publicUrl + "assets/img/icons/payment.png"}
-                            alt="#"
-                          />
                         </div>
                       </div>
                     </div>
