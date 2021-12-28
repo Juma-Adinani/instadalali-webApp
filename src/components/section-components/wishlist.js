@@ -1,73 +1,76 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import parse from 'html-react-parser';
+import { requests, url, utils } from "helpers";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-class WishList extends Component {
+function WishList() {
+//let publicUrl = process.env.PUBLIC_URL + "/";
+  const [data, setData] = useState([]);
 
-    render() {
+  async function getData(link) {
+    try {
+      const res = await requests.get(link);
+      console.log("Hello", res.results);
+      setData(res.results);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-        let publicUrl = process.env.PUBLIC_URL+'/'
+  useEffect(() => {
+    const link = url.dalali.wishlist;
+    getData(link);
+  }, []);
 
-    return <div className="liton__wishlist-area mb-105">
-				<div className="container">
-				<div className="row">
-					<div className="col-lg-12">
-					<div className="shoping-cart-inner">
-						<div className="shoping-cart-table table-responsive">
-						<table className="table">
-							<tbody>
-							<tr>
-								<td className="cart-product-remove">x</td>
-								<td className="cart-product-image">
-								<Link to="/product-details/"><img src={publicUrl+"assets/img/product/1.png"} alt="#" /></Link>
-								</td>
-								<td className="cart-product-info">
-								<h4 className="go-top"><Link to="/product-details/">Brake Conversion Kit</Link></h4>
-								</td>
-								<td className="cart-product-price">$85.00</td>
-								<td className="cart-product-stock">In Stock</td>
-								<td className="cart-product-add-cart">
-								<Link className="submit-button-1" to="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">Add to Cart</Link>
-								</td>
-							</tr>
-							<tr>
-								<td className="cart-product-remove">x</td>
-								<td className="cart-product-image">
-								<Link to="/product-details/"><img src={publicUrl+"assets/img/product/2.png"} alt="#" /></Link>
-								</td>
-								<td className="cart-product-info">
-								<h4 className="go-top"><Link to="/product-details/">Shock Mount Insulator</Link></h4>
-								</td>
-								<td className="cart-product-price">$89.00</td>
-								<td className="cart-product-stock">In Stock</td>
-								<td className="cart-product-add-cart">
-								<Link className="submit-button-1" to="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">Add to Cart</Link>
-								</td>
-							</tr>
-							<tr>
-								<td className="cart-product-remove">x</td>
-								<td className="cart-product-image">
-								<Link to="/product-details/"><img src={publicUrl+"assets/img/product/4.png"} alt="#" /></Link>
-								</td>
-								<td className="cart-product-info">
-								<h4 className="go-top"><Link to="/product-details/">Tail Light Lens</Link></h4>
-								</td>
-								<td className="cart-product-price">$149.00</td>
-								<td className="cart-product-stock">In Stock</td>
-								<td className="cart-product-add-cart">
-								<Link className="submit-button-1" to="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">Add to Cart</Link>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						</div>
-					</div>
-					</div>
-				</div>
-				</div>
-			</div>
-
-        }
+  return (
+    <div className="liton__wishlist-area mb-105">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="shoping-cart-inner">
+              <div className="shoping-cart-table table-responsive">
+                <table className="table">
+                  <tbody>
+                    {data.map((item) => (
+                      <tr>
+                        <td className="cart-product-remove">x</td>
+                        <td className="cart-product-image">
+                          <Link to="/product-details/">
+                            <img
+                              //   src={publicUrl + "assets/img/product/1.png"}
+                              src={item.listing.post.url}
+                              alt={item.listing.post.caption}
+                            />
+                          </Link>
+                        </td>
+                        <td className="cart-product-info">
+                          <h4 className="go-top">
+                            <Link to="/product-details/">
+                              {/* Brake Conversion Kit */}
+                              {utils.truncate({
+                                text: item.listing.post.caption,
+                                size: 80,
+                              })}
+                            </Link>
+                          </h4>
+                        </td>
+                        <td className="cart-product-price">
+                          {item.listing.price_currency}&nbsp;
+                          {utils.formatNumber(item.listing.price)}
+                        </td>
+                        <td className="cart-product-stock">
+                          {item.listing.offer_type}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default WishList
+export default WishList;
