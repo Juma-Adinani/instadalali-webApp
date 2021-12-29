@@ -5,7 +5,7 @@ import { utils } from "helpers";
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
   const { item, onExpand, onAddWishlist } = props;
-
+ 
   return (
     <div className="col-lg-12">
       <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 houseDetails">

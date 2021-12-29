@@ -1,4 +1,5 @@
-import React from "react";
+import { requests, url, utils } from "helpers";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import Social from "../section-components/social";
 import { useHistory } from "react-router-dom";
@@ -6,15 +7,30 @@ import CartMenu from "./CartMenu";
 
 function Navbar() {
   let publicUrl = process.env.PUBLIC_URL + "/";
-
+  const loggedUser = utils.getUser();
   let history = useHistory();
 
   function handleLogOut() {
-    sessionStorage.setItem("Token", "");
-    sessionStorage.clear();
-
+    // sessionStorage.setItem("Token", "");
+    // sessionStorage.clear();
+    utils.logout();
     history.push("/");
   }
+
+  const [count, setCount] = useState([]);
+  async function getCount() {
+    try {
+      const response = await requests.get(url.dalali.wishlist);
+      console.log(response.status);
+      setCount(response.results);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    getCount();
+  }, [count]);
 
   return (
     <div>
@@ -89,18 +105,24 @@ function Navbar() {
                       <Link to="#">
                         <i className="icon-user" />
                       </Link>
-
-                      <ul className="go-top">
-                        <li>
-                          <Link to="/login">Login</Link>
-                        </li>
-                        <li>
-                          <Link to="/">My Account</Link>
-                        </li>
-                        <li>
-                          <button onClick={handleLogOut}>Logout</button>
-                        </li>
-                      </ul>
+                      {loggedUser ? (
+                        <ul className="go-top">
+                          <li>
+                            <Link to="/">My Account</Link>
+                          </li>
+                          <li>
+                            <a href="#" onClick={handleLogOut}>
+                              Logout
+                            </a>
+                          </li>
+                        </ul>
+                      ) : (
+                        <ul className="go-top">
+                          <li>
+                            <Link to="/login">Login</Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                   </ul>
                 </div>
@@ -111,7 +133,8 @@ function Navbar() {
                     className="ltn__utilize-toggle"
                   >
                     <i className="icon-shopping-cart"></i>
-                    <sup>2</sup>
+
+                    <sup>{count.length}</sup>
                   </a>
                 </div>
                 {/* mini-cart */}
@@ -194,20 +217,12 @@ function Navbar() {
                 <Link to="/wishlist" title="Wishlist">
                   <span className="utilize-btn-icon">
                     <i className="far fa-heart" />
-                    <sup>3</sup>
+
+                    <sup>{count.length}</sup>
                   </span>
                   Wishlist
                 </Link>
               </li>
-              {/* <li>
-                <Link to="/cart" title="Shoping Cart">
-                  <span className="utilize-btn-icon">
-                    <i className="fas fa-shopping-cart" />
-                    <sup>5</sup>
-                  </span>
-                  Shoping Cart
-                </Link>
-              </li> */}
             </ul>
           </div>
           <div className="ltn__social-media-2">
