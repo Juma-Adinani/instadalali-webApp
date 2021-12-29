@@ -10,7 +10,11 @@ import Pagination from "./Pagination";
 import Wishlist from "./AddWishlist";
 import Cart from "./add-cart";
 
+import { useRecoilState, useRecoilValue } from "recoil";
+import { filtersState, filtersSelector } from "atoms";
+
 function ShopGridV1(props) {
+  const [filters, setFilters] = useRecoilState(filtersState);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [results, setResults] = useState([]);
@@ -19,7 +23,6 @@ function ShopGridV1(props) {
   const [pageSize, setPageSize] = useState(15);
   const [queryParams, setQueryParams] = useState({});
 
-  // let publicUrl = process.env.PUBLIC_URL + "/";
   async function fetchData(link) {
     try {
       const res = await requests.get(link);
@@ -32,11 +35,11 @@ function ShopGridV1(props) {
   }
 
   useEffect(() => {
-    const link = utils.stringify(queryParams, {
+    const link = utils.stringify({...queryParams, ...filters}, {
       baseURL: url.dalali.listing,
     });
     fetchData(link);
-  }, [props, queryParams]);
+  }, [props, queryParams, filters]);
 
   const onExpand = (item) => {
     setSelectedItem(item);
@@ -45,6 +48,15 @@ function ShopGridV1(props) {
   const onAddWishlist = (item) => {
     setSelectedItem(item);
   };
+
+
+  function handleInputChange(e) {
+    console.log("[e.target.name]101", e.target)
+    setQueryParams({
+        [e.target.name]: e.target.value
+    });
+}
+
   const { page = 1, count = 0 } = meta;
 
   return (
@@ -77,10 +89,10 @@ function ShopGridV1(props) {
 
                   <li>
                     <div className="short-by text-center">
-                      <select className="nice-select">
-                        <option>Per Page: 15</option>
-                        <option>Per Page: 50</option>
-                        <option>Per Page: 100</option>
+                      <select className="nice-select" name="size" onChange={handleInputChange}>
+                        <option value={"12"}>Size: 12</option>
+                        <option  value={"50"}>Size: 50</option>
+                        <option  value={"100"}>Size: 100</option>
                       </select>
                     </div>
                   </li>
@@ -105,6 +117,7 @@ function ShopGridV1(props) {
                               type="text"
                               name="search"
                               placeholder="Search your keyword..."
+                              onChange={handleInputChange}
                             />
                             <button type="submit">
                               <i className="fas fa-search" />

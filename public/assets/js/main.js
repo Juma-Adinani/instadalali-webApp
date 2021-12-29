@@ -1786,17 +1786,22 @@
           /* ---------------------------------------------------------
               32. Price Slider
           --------------------------------------------------------- */
+
+          const currency =""
           $( ".slider-range" ).slider({
               range: true,
               min: 50,
               max: 5000,
               values: [ 50, 1500 ],
               slide: function( event, ui ) {
-                  $( ".amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                const v=currency + ui.values[ 0 ] + ` - ${currency}` + ui.values[ 1 ]
+                $( ".amount" ).val( v );
+                $( ".amount" ).trigger("focus")
               }
           });
-          $( ".amount" ).val( "$" + $( ".slider-range" ).slider( "values", 0 ) +
-          " - $" + $( ".slider-range" ).slider( "values", 1 ) ); 
+          
+          $( ".amount" ).val( currency + $( ".slider-range" ).slider( "values", 0 ) +
+          ` - ${currency}`+ $( ".slider-range" ).slider( "values", 1 ) ); 
   
   
           /* --------------------------------------------------------

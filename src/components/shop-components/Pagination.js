@@ -19,8 +19,8 @@ export default function Pagination(props) {
             </Link>
           </li>
 
-          {firstPages.map((_page) => (
-            <li onClick={() => onClickPage(_page + page)}>
+          {firstPages.map((_page, i) => (
+            <li key={i} onClick={() => onClickPage(_page + page)}>
               <Link to="#">{_page + page}</Link>
             </li>
           ))}
@@ -31,8 +31,8 @@ export default function Pagination(props) {
             </li>
           )}
 
-          {lastPages.map((page) => (
-            <li>
+          {lastPages.map((page, j) => (
+            <li key={j}>
               <Link to="#">{page}</Link>
             </li>
           ))}

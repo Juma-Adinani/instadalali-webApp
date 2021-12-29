@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { RecoilRoot } from "recoil";
 import {
   BrowserRouter as Router,
   HashRouter,
@@ -59,7 +60,7 @@ class Root extends Component {
   render() {
     return (
       <HashRouter basename="/">
-        <div>
+        <RecoilRoot>
           <Switch>
             <Route exact path="/" component={HomeV2} />
             <Route path="/home-v1" component={HomeV1} />
@@ -111,7 +112,7 @@ class Root extends Component {
             <Route path="/privacy" component={PrivacyV1} />
             <Route path="/*" component={Error} />
           </Switch>
-        </div>
+        </RecoilRoot>
       </HashRouter>
     );
   }

@@ -1,5 +1,6 @@
 import { atom, selector } from "recoil";
 import _ from "lodash";
+
 export const listingState = atom({
   key: "listingState", // unique ID (with respect to other atoms/selectors)
   default: {
@@ -41,7 +42,6 @@ export const listingSelector = selector({
     return get(listingState);
   },
 });
-
 /*
             "has_fence": true,
             "has_fan": true,

@@ -5,7 +5,7 @@ const schema={
       id,price,price_currency,min_payment_months_count,
       bedrooms_count,master_bedrooms_count,
       post{
-        id,url,post_date,
+        id,url,post_date,caption,
         owner_profile{
           id,
           username

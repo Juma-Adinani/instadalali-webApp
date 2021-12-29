@@ -88,7 +88,6 @@ export const filtersSelector = selector({
     };
   },
 });
-
 /*
             "has_fence": true,
             "has_fan": true,

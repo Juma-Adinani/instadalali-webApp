@@ -12,7 +12,7 @@ export default function ListItem(props) {
         <div className="product-img go-top">
           {/* <Link to="/product-details"> */}
           <Link to="/Shop">
-            <img src={item.post.url} alt={item.post.caption} />
+            <img src={item.post?.url} alt={""} />
           </Link>
         </div>
         <div className="product-info">
@@ -44,17 +44,17 @@ export default function ListItem(props) {
           </div>
           <ul className="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
             <li>
-              <span>3 </span>
-              Bed
-              {}
+              <span>{item.bedrooms_count||1} </span>
+              {} Bedrooms
             </li>
             <li>
-              <span>2 </span>
-              Bath
+              <span>{item.master_bedrooms_count||0}</span>
+              {} Master bedrooms
             </li>
+  
             <li>
-              <span>3450 </span>
-              Square Ft
+              <span>{item.min_payment_months_count} </span>
+              Rental Months
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@ export default function ListItem(props) {
                 <li className="ltn__blog-author go-top">
                   <p>
                     <i className="far fa-user" />
-                    {item.post.owner_profile?.full_name}
+                    {item.post?.owner_profile?.full_name}
                   </p>
                 </li>
               </ul>
@@ -107,7 +107,7 @@ export default function ListItem(props) {
           <ul>
             <li className="ltn__blog-date">
               <i className="far fa-calendar-alt" />
-              Posted: {utils.formatDate(item.post.post_date)}
+              Posted: {utils.formatDate(item.post?.post_date)}
             </li>
           </ul>
         </div>
