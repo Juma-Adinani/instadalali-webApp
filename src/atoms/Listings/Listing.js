@@ -1,49 +1,44 @@
-import {
-  atom,
-  selector,
-} from 'recoil';
+import { atom, selector } from "recoil";
 import _ from "lodash";
 export const listingState = atom({
-  key: 'listingState', // unique ID (with respect to other atoms/selectors)
+  key: "listingState", // unique ID (with respect to other atoms/selectors)
   default: {
-            "has_fence": false,
-            "has_fan": false,
-            "is_standalone": false,
-           
-            "is_furnished": false,
-            "has_sitting_room": false,
-            "has_dinning_room": false,
-            "has_security": false,
-            // "has_heating": false,
-            "has_air_conditioning": false,
-            
-            
-            // "kitchens_count": null,
-            // "has_own_electricity_billing": false,
-            // "has_agent_rental_fee": false,
+    has_fence: false,
+    has_fan: false,
+    is_standalone: false,
 
-            "min_payment_months_count": null,
-            "bedrooms_count": 1,
-            "bathrooms_count": 0,
-            "master_bedrooms_count": null,
+    is_furnished: false,
+    has_sitting_room: false,
+    has_dinning_room: false,
+    has_security: false,
+    // "has_heating": false,
+    has_air_conditioning: false,
 
-            "price": null,
-            "price_currency": "TZS",
+    // "kitchens_count": null,
+    // "has_own_electricity_billing": false,
+    // "has_agent_rental_fee": false,
 
-            // "agent_visiting_fee": 20000.0,
-            // "agent_visiting_fee_currency": "TZS",
+    min_payment_months_count: null,
+    bedrooms_count: 1,
+    bathrooms_count: 0,
+    master_bedrooms_count: null,
 
-            "offer_type": "rental",
-            "is_available": true,
-            
+    price: null,
+    price_currency: "TZS",
+
+    // "agent_visiting_fee": 20000.0,
+    // "agent_visiting_fee_currency": "TZS",
+
+    offer_type: "rental",
+    is_available: true,
   }, // default value (aka initial value)
   // effects_UNSTABLE: [persistAtom("listingState")],
 });
 
 export const listingSelector = selector({
-  key: 'listingSelector',
-  get: ({get}) => {
-     return get(listingState);
+  key: "listingSelector",
+  get: ({ get }) => {
+    return get(listingState);
   },
 });
 

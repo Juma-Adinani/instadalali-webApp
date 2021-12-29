@@ -602,7 +602,7 @@ class NavbarV2 extends Component {
             <div className="ltn__utilize-buttons ltn__utilize-buttons-2">
               <ul>
                 <li>
-                  <Link to="/my-account" title="My Account">
+                  <Link to="/" title="My Account">
                     <span className="utilize-btn-icon">
                       <i className="far fa-user" />
                     </span>
@@ -618,7 +618,7 @@ class NavbarV2 extends Component {
                     Wishlist
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/" title="Shoping Cart">
                     <span className="utilize-btn-icon">
                       <i className="fas fa-shopping-cart" />
@@ -626,7 +626,7 @@ class NavbarV2 extends Component {
                     </span>
                     Shoping Cart
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="ltn__social-media-2">

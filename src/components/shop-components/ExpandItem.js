@@ -57,7 +57,7 @@ export default function ExpandItem(props) {
                           <div className="col-lg-12" key={index}>
                             <div className="ltn__blog-item ltn__blog-item-3">
                               <div className="ltn__blog-img">
-                                <Link to="/blog-details">
+                                <Link to="/Shop">
                                   <img src={photo.uri} alt="#" />
                                 </Link>
                               </div>
@@ -67,14 +67,17 @@ export default function ExpandItem(props) {
                     </div>
                   </div>
                   <div className="modal-product-meta ltn__product-details-menu-1">
-                    <ul className="d-flex justify-content-between align-items-center">
+                    <ul className="d-flex justify-content-between align-items-start flex-column">
                       <li className="row">
-                        <strong>Amenities:</strong>
+                        {/* <strong>Amenities:</strong> */}
+                        <h3 style={{ color: `#171b2a` }}>Description</h3>
                         <span className="go-top d-flex flex-direction-row justify-content-around amentiesLinks">
-                          <p>Security</p>
+                          {/* <p>Security</p>
                           <p>Hospital</p>
                           <p>School</p>
                           <p>Market</p>
+                          <p>Description</p> */}
+                          <p>{item?.post?.caption}</p>
                         </span>
                       </li>
                       <li style={{ listStyle: `none` }}>
@@ -85,13 +88,13 @@ export default function ExpandItem(props) {
                           data-bs-toggle="modal"
                           data-bs-target="#add_to_cart_modal"
                         >
-                          <i className="fas fa-shopping-cart" />
-                          <span>ADD TO CART</span>
+                          <i className="fas fa-heart" />
+                          <span>Add to WishList</span>
                         </a>
                       </li>
                     </ul>
                   </div>
-                  <h3 style={{ color: `#171b2a` }}>Location</h3>
+                  <h3 style={{ color: `#171b2a` }}>Map Location</h3>
                   <Map />
                 </div>
               </div>

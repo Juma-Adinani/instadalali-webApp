@@ -1,10 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 // import Social from "../section-components/social";
+import { useHistory } from "react-router-dom";
 import CartMenu from "./CartMenu";
 
 function Navbar() {
   let publicUrl = process.env.PUBLIC_URL + "/";
+
+  let history = useHistory();
+
+  function handleLogOut() {
+    sessionStorage.setItem("Token", "");
+    sessionStorage.clear();
+
+    history.push("/");
+  }
+
   return (
     <div>
       <header className="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
@@ -78,12 +89,16 @@ function Navbar() {
                       <Link to="#">
                         <i className="icon-user" />
                       </Link>
+
                       <ul className="go-top">
                         <li>
                           <Link to="/login">Login</Link>
                         </li>
                         <li>
-                          <Link to="/my-account">My Account</Link>
+                          <Link to="/">My Account</Link>
+                        </li>
+                        <li>
+                          <button onClick={handleLogOut}>Logout</button>
                         </li>
                       </ul>
                     </li>
@@ -152,7 +167,13 @@ function Navbar() {
           <div className="ltn__utilize-menu">
             <ul>
               <li>
+                <Link to="/Shop">Listings</Link>
+              </li>
+              <li>
                 <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/login">Logout</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
@@ -201,11 +222,6 @@ function Navbar() {
                   <i className="fab fa-twitter" />
                 </a>
               </li>
-              {/* <li>
-                <a href="#" title="Linkedin">
-                  <i className="fab fa-linkedin" />
-                </a>
-              </li> */}
               <li>
                 <a href="https://instagram.com/instadalali" title="Instagram">
                   <i className="fab fa-instagram" />

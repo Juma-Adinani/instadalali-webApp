@@ -5,6 +5,7 @@ import { requests, url } from "helpers";
 
 function Register() {
   const [data, setInput] = useState({});
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -20,7 +21,7 @@ function Register() {
       alert("Successfully Registered");
       window.location("/#/login");
     } catch (error) {
-      alert(JSON.stringify(error.data));
+      alert(JSON.stringify(error));
     }
   }
 

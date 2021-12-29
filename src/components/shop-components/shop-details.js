@@ -107,7 +107,7 @@ class ShopDetails extends Component {
                         </div>
                       </div>
                     </li>
-                    <li>
+                    <li>zz
                       <div className="property-detail-feature-list-item">
                         <i className="flaticon-double-bed" />
                         <div>

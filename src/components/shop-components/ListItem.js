@@ -10,7 +10,8 @@ export default function ListItem(props) {
     <div className="col-lg-12">
       <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 houseDetails">
         <div className="product-img go-top">
-          <Link to="/product-details">
+          {/* <Link to="/product-details"> */}
+          <Link to="/Shop">
             <img src={item.post.url} alt={item.post.caption} />
           </Link>
         </div>
@@ -94,11 +95,11 @@ export default function ListItem(props) {
                   <i className="flaticon-heart-1" />
                 </a>
               </li>
-              <li className="go-top">
+              {/* <li className="go-top">
                 <Link to="/product-details" title="Product Details">
                   <i className="flaticon-add" />
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
