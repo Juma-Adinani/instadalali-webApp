@@ -11,7 +11,7 @@ export default function ListItem(props) {
       <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 houseDetails">
         <div className="product-img go-top">
           {/* <Link to="/product-details"> */}
-          <Link to="/Shop">
+          <Link to="/product-details">
             <img src={item.post?.url} alt={""} />
           </Link>
         </div>
