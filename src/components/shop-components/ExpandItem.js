@@ -48,7 +48,7 @@ export default function ExpandItem(props) {
               <div className="ltn__quick-view-modal-inner">
                 <div className="modal-product-item">
                   <h3 style={{ color: `#171b2a` }}>Property Details</h3>
-                  <div className="row">
+                  <div className="row d-flex justify-content-center w-100">
                     {/* ltn__blog-item-3-normal */}
                     <div className="row  ltn__blog-slider-one-active slick-arrow-1 ">
                       {/* Blog Item */}

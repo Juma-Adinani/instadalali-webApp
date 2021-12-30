@@ -21,7 +21,7 @@ function Navbar() {
   async function getCount() {
     try {
       const response = await requests.get(url.dalali.wishlist);
-      console.log(response.status);
+      console.log(response.results);
       setCount(response.results);
     } catch (e) {
       console.log(e);
@@ -127,16 +127,20 @@ function Navbar() {
                   </ul>
                 </div>
                 {/* mini-cart */}
-                <div className="mini-cart-icon">
-                  <a
-                    href="#ltn__utilize-cart-menu"
-                    className="ltn__utilize-toggle"
-                  >
-                    <i className="icon-shopping-cart"></i>
+                {loggedUser ? (
+                  <div className="mini-cart-icon">
+                    <a
+                      href="#ltn__utilize-cart-menu"
+                      className="ltn__utilize-toggle"
+                    >
+                      <i className="icon-shopping-cart"></i>
 
-                    <sup>{count.length}</sup>
-                  </a>
-                </div>
+                      <sup>{count.length}</sup>
+                    </a>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
                 {/* mini-cart */}
                 {/* Mobile Menu Button */}
                 <div className="mobile-menu-toggle d-xl-none">
@@ -188,42 +192,51 @@ function Navbar() {
             </form>
           </div>
           <div className="ltn__utilize-menu">
-            <ul>
-              <li>
-                <Link to="/Shop">Listings</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/login">Logout</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
-            </ul>
+            {loggedUser ? (
+              <ul>
+                <li>
+                  <Link to="/Shop">Listings</Link>
+                </li>
+                <li>
+                  <Link to="/login">Logout</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </ul>
+            )}
           </div>
           <div className="ltn__utilize-buttons ltn__utilize-buttons-2">
-            <ul>
-              <li>
-                <Link to="/my-account" title="My Account">
-                  <span className="utilize-btn-icon">
-                    <i className="far fa-user" />
-                  </span>
-                  My Account
-                </Link>
-              </li>
-              <li>
-                <Link to="/wishlist" title="Wishlist">
-                  <span className="utilize-btn-icon">
-                    <i className="far fa-heart" />
+            {loggedUser ? (
+              <ul>
+                <li>
+                  <Link to="/my-account" title="My Account">
+                    <span className="utilize-btn-icon">
+                      <i className="far fa-user" />
+                    </span>
+                    My Account
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/wishlist" title="Wishlist">
+                    <span className="utilize-btn-icon">
+                      <i className="far fa-heart" />
 
-                    <sup>{count.length}</sup>
-                  </span>
-                  Wishlist
-                </Link>
-              </li>
-            </ul>
+                      <sup>{count.length}</sup>
+                    </span>
+                    Wishlist
+                  </Link>
+                </li>
+              </ul>
+            ) : (
+              <ul></ul>
+            )}
           </div>
           <div className="ltn__social-media-2">
             <ul>

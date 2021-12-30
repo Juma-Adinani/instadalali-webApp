@@ -5,7 +5,7 @@ import { utils } from "helpers";
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
   const { item, onExpand, onAddWishlist } = props;
- 
+
   return (
     <div className="col-lg-12">
       <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 houseDetails">
@@ -44,14 +44,14 @@ export default function ListItem(props) {
           </div>
           <ul className="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
             <li>
-              <span>{item.bedrooms_count||1} </span>
+              <span>{item.bedrooms_count || 1} </span>
               {} Bedrooms
             </li>
             <li>
-              <span>{item.master_bedrooms_count||0}</span>
+              <span>{item.master_bedrooms_count || 0}</span>
               {} Master bedrooms
             </li>
-  
+
             <li>
               <span>{item.min_payment_months_count} </span>
               Rental Months
@@ -87,7 +87,7 @@ export default function ListItem(props) {
               <li>
                 <a
                   href=".#"
-                  title="Wishlist"
+                  title="wishlist"
                   data-bs-toggle="modal"
                   data-bs-target="#liton_wishlist_modal"
                   onClick={() => onAddWishlist(item)}

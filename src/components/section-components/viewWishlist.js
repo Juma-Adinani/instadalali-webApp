@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function WishList() {
   const [data, setData] = useState([]);
-
+ 
   async function getData(link) {
     try {
       const res = await requests.get(link);
@@ -20,6 +20,13 @@ function WishList() {
     getData(link);
   }, []);
 
+  async function removeItem(item) {
+    await requests.delete(
+      url.getURL("dalali.wishlist", { item: item, type: "delete" })
+    );
+    getData(url.dalali.wishlist);
+  }
+
   return (
     <div className="liton__wishlist-area mb-105">
       <div className="container">
@@ -32,9 +39,23 @@ function WishList() {
                     {data.length > 0 ? (
                       data.map((item) => (
                         <tr>
-                          <td className="cart-product-remove">x</td>
+                          <td
+                            className="cart-product-remove"
+                            onClick={() => {
+                              {
+                                if (
+                                  window.confirm(
+                                    "Are you sure you want to remove from wishlist?"
+                                  )
+                                )
+                                  removeItem(item);
+                              }
+                            }}
+                          >
+                            x
+                          </td>
                           <td className="cart-product-image">
-                            <Link to="/wishlist">
+                            <Link to="/product-details">
                               <img
                                 src={item.listing.post.url}
                                 alt={item.listing.post.caption}
@@ -43,7 +64,7 @@ function WishList() {
                           </td>
                           <td className="cart-product-info">
                             <h4 className="go-top">
-                              <Link to="/wishlist">
+                              <Link to="/product-details">
                                 {utils.truncate({
                                   text: item.listing.post.caption,
                                   size: 80,
@@ -52,7 +73,7 @@ function WishList() {
                             </h4>
                           </td>
                           <td className="cart-product-price">
-                            1 X{item.listing.price_currency}&nbsp;
+                            {item.listing.price_currency}&nbsp;
                             {utils.formatNumber(item.listing.price)}
                           </td>
                           <td className="cart-product-stock">

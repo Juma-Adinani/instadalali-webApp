@@ -105,7 +105,7 @@ class Root extends Component {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/add-listing" component={AddListing} />
-            <Route path="/wishlist" component={Wishlist} />
+            <Route path="/viewWishlist" component={Wishlist} />
             <Route path="/order-tracking" component={OrderTracking} />
             <Route path="/history" component={History} />
             <Route path="/terms" component={TermsV1} />

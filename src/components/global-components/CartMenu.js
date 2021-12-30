@@ -20,6 +20,16 @@ function CartMenu() {
     getData(link);
   }, []);
 
+  async function removeItem(item) {
+    // window.confirm("Are You sure you want to remove from wishlist?..");
+    //alert(item);
+    console.log("xxx", item);
+    await requests.delete(
+      url.getURL("dalali.wishlist", { item: item, type: "delete" })
+    );
+    getData(url.dalali.wishlist);
+  }
+
   return (
     <div
       id="ltn__utilize-cart-menu"
@@ -35,7 +45,7 @@ function CartMenu() {
             data.map((item) => (
               <div className="mini-cart-item clearfix" key={item.id}>
                 <div className="mini-cart-img go-top">
-                  <Link to="/Shop">
+                  <Link to="/product-details">
                     <img
                       // src={publicUrl + "assets/img/product/1.png"}
                       src={item.listing.post.url}
@@ -43,13 +53,23 @@ function CartMenu() {
                     />
                   </Link>
                   <span className="mini-cart-item-delete">
-                    <i className="icon-cancel" />
+                    <i
+                      className="icon-cancel"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to remove from wishlist?"
+                          )
+                        )
+                          removeItem(item);
+                      }}
+                    />
                   </span>
                 </div>
                 <div className="mini-cart-info go-top">
                   <h6>
                     {/* <Link to="/Shop">Wheel Bearing Retainer</Link> */}
-                    <Link to="/Shop">
+                    <Link to="/product-details">
                       {utils.truncate({
                         text: item.listing.post.caption,
                         size: 80,
@@ -70,7 +90,7 @@ function CartMenu() {
         </div>
         <div className="mini-cart-footer">
           <div className="btn-wrapper go-top">
-            <Link to="/wishlist" className="theme-btn-1 btn btn-effect-1">
+            <Link to="/viewWishlist" className="theme-btn-1 btn btn-effect-1">
               View
             </Link>
           </div>

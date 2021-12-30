@@ -64,7 +64,7 @@ function Wishlist(props) {
                         </p>
                         <div className="btn-wrapper">
                           <Link
-                            to="/wishlist"
+                            to="/viewWishlist"
                             className="theme-btn-1 btn btn-effect-1"
                           >
                             View Wishlist
