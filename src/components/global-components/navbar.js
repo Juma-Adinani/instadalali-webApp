@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import CartMenu from "./CartMenu";
 
-function Navbar() {
+function Navbar(props) {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const loggedUser = utils.getUser();
   let history = useHistory();
@@ -14,10 +14,11 @@ function Navbar() {
     history.push("/");
   }
 
-  const [count, setCount] = useState([]);
+  const [count, setCount] = useState(0);
 
   async function getCount() {
     try {
+      if(!loggedUser) return;
       const response = await requests.get(`${url.dalali.wishlist}?query={id}&size=1`);
       setCount(response.count);
     } catch (e) {
@@ -27,7 +28,7 @@ function Navbar() {
 
   useEffect(() => {
     getCount();
-  }, []);
+  });
 
   return (
     <div>

@@ -5,7 +5,7 @@ import {storage} from "./storage";
 axios.defaults.baseURL = config.API_URL;
 
 // content type
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post["Accept"] = "application/json";
 // intercepting to capture errors
 axios.interceptors.response.use(
@@ -50,7 +50,7 @@ export const setAuthorization = (token) => {
   if (token) {
     axios.defaults.headers.common["Authorization"] = "Token " + token;
   } else {
-    axios.defaults.headers.common["Authorization"] = token;
+    delete axios.defaults.headers.common["Authorization"];
   }
 };
 
@@ -60,7 +60,9 @@ export class APIClient {
    */
   constructor(props){
     const token = storage.getUser()?.token;
-    setAuthorization(token)
+    if(token){
+      setAuthorization(token)
+    }
   }
   
   get = (url, params) => {

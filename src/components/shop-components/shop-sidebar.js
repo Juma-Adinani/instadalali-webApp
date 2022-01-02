@@ -38,7 +38,12 @@ function Section(props){
             <li key={`option-${i}-${j}`}>
               <label className="checkbox-item">
                 {option.title}
-                <input type="checkbox" name={option.field} onChange={handleInputChange} />
+                <input 
+                type="checkbox" 
+                name={option.field} 
+                onChange={handleInputChange} 
+                checked={filters[option.field]||false}
+                />
                 <span className="checkmark" />
               </label>
               <span className="categorey-no">{option.count||""}</span>
@@ -47,6 +52,28 @@ function Section(props){
         </ul>
         <hr />
       </>)
+    case 'radio':
+          return (<>
+            <h4 className="ltn__widget-title">{section.title}</h4>
+            <ul>
+              {section.options.map((option, j)=>(
+                <div key={`option-${i}-${j}`}>
+                  <div>
+                    <input onChange={handleInputChange} 
+                      type="radio" 
+                      id={option.value} 
+                      name={section.field} 
+                      value={option.value||""} 
+                      />
+                    <label htmlFor={option.value}>{option.title}</label>
+                  </div>
+                  <span className="categorey-no">{option.count||""}</span>
+                </div>
+              ))}
+            </ul>
+            <hr />
+          </>)
+
     case 'amount-slider':
       return (
       <div className="widget--- ltn__price-filter-widget">
@@ -77,7 +104,7 @@ function Section(props){
                         {option.title}
                         <span className="categorey-no">
                           <input 
-                          defaultValue={1}
+                          value={filters[option.field]||0}
                           style={{
                             width:50, height:25, 
                             borderRadius:8, textAlign:"center"}} className="amount" type="number" name={option.field} onChange={handleInputChange} />
@@ -87,13 +114,12 @@ function Section(props){
                   ))}
                 </ul>
                 <hr />
-                </>)
+        </>)
   }
 }
 
 export default function Sidebar(props){
     const [filters, setFilters] = useRecoilState(filtersState);
-
     function handleInputChange(e){
       let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
       let name = e.target.name
@@ -149,6 +175,7 @@ export default function Sidebar(props){
           {filtersSections.map((section, i)=>(
               <Section key={i} section={section} handleInputChange={handleInputChange}/>
             ))}
+
           </div>
         </aside>
       </div>

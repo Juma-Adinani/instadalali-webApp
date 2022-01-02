@@ -11,15 +11,16 @@ import Loading from "components/Loading"
 
 import { useRecoilState} from "recoil";
 import { filtersState} from "atoms";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Shop(props) {
   const [filters, setFilters] = useRecoilState(filtersState);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
   const [results, setResults] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [meta, setMeta] = useState({});
   const loggedUser = utils.getUser();
+  const history =useHistory()
 
   async function fetchData(link) {
     try {
@@ -33,13 +34,18 @@ export default function Shop(props) {
   }
 
   useEffect(() => {
-    setLoading(true);
-    const link = utils.stringify(filters , {
-      baseURL: url.dalali.listing,
-    });
-    // console.log("url", link)
-    fetchData(link)
-    .finally(()=>setLoading(false))
+    console.log("filters", JSON.stringify(filters, null, 3))
+    if (history.action === "POP"){
+      setLoading(true);
+      const link = utils.stringify(filters , {
+        baseURL: url.dalali.listing,
+      });
+      // console.log("url", link)
+      fetchData(link)
+      .finally(()=>setLoading(false))
+    }else{
+      console.log("Data was not loaded")
+    }
   }, [filters]);
 
   const onExpand = (item) => {

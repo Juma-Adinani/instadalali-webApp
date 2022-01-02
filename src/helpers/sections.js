@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 export const filtersSections=[
         {
           type:"checkbox",
@@ -115,6 +116,33 @@ export const filtersSections=[
           ]
     },
     {
+      type:"radio",
+      field:"post__post_date__gte",
+      title:"Filter by Post Date",
+      options:[
+        {
+          title:"Today",
+          value: dayjs().startOf('day').format(),
+        },
+        {
+          title:"Within 7 Days",
+          value: dayjs().subtract(7, 'day').format(),
+        },
+        {
+          title:"Within 30 day",
+          value:dayjs().subtract(30, 'day').format(),
+        },
+        {
+          title:"Within 2 Month",
+          value:dayjs().subtract(2, 'month').format(),
+        },
+        {
+          title:"Within 3 Month",
+          value:dayjs().subtract(3, 'month').format(),
+        },
+      ]
+},
+    {
             type:"amount-slider",
             title:"Filter by Price",
             options:[
@@ -123,5 +151,6 @@ export const filtersSections=[
                 field: "price",
               },
             ]
-      }
+      },
+
   ]

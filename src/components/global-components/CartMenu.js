@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 
 export default function CartMenu(props) {
   const [data, setData] = useState([]);
+  const loggedUser = utils.getUser();
 
   async function getData(link) {
     try {
       const res = await requests.get(link);
-      setData(res.results);
+      res.results && setData(res.results);
     } catch (e) {
       console.log(e);
     }
@@ -16,8 +17,8 @@ export default function CartMenu(props) {
 
   useEffect(() => {
     const link = url.dalali.wishlist;
-    getData(link);
-  }, []);
+    loggedUser && getData(link);
+  });
 
   async function removeItem(item) {
     await requests.delete(
@@ -37,7 +38,7 @@ export default function CartMenu(props) {
           <button className="ltn__utilize-close">×</button>
         </div>
         <div className="mini-cart-product-area ltn__scrollbar">
-          {data.length > 0 ? (
+          {data?.length > 0 ? (
             data.map((item) => (
               <div className="mini-cart-item clearfix" key={item.id}>
                 <div className="mini-cart-img go-top">

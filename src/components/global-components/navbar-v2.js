@@ -8,8 +8,7 @@ function NavbarV2() {
   async function getCount() {
     try {
       const response = await requests.get(url.dalali.wishlist);
-      console.log(response.status);
-      setCount(response.results);
+      setCount(response.count);
     } catch (e) {
       console.log(e);
     }
@@ -17,7 +16,8 @@ function NavbarV2() {
 
   useEffect(() => {
     getCount();
-  }, [count]);
+  }, []);
+  
   let publicUrl = process.env.PUBLIC_URL + "/";
   // let CustomClass = this.props.CustomClass ? this.props.CustomClass : "";
   const loggedUser = utils.getUser();
@@ -144,7 +144,7 @@ function NavbarV2() {
                     <span className="utilize-btn-icon">
                       <i className="far fa-heart" />
                       {/* <sup>3</sup> */}
-                      {count.length}
+                      {count}
                     </span>
                     Wishlist
                   </Link>
