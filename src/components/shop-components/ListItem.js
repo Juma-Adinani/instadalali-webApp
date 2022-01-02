@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { utils } from "helpers";
+import { utils, url } from "helpers";
 
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
@@ -10,8 +10,7 @@ export default function ListItem(props) {
     <div className="col-lg-12">
       <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 houseDetails">
         <div className="product-img go-top">
-          {/* <Link to="/product-details"> */}
-          <Link to="/product-details">
+          <Link to={url.routes.get("product", item)}>
             <img src={item.post?.url} alt={""} />
           </Link>
         </div>

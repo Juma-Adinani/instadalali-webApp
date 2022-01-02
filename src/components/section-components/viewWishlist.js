@@ -42,29 +42,27 @@ function WishList() {
                           <td
                             className="cart-product-remove"
                             onClick={() => {
-                              {
                                 if (
                                   window.confirm(
                                     "Are you sure you want to remove from wishlist?"
                                   )
                                 )
                                   removeItem(item);
-                              }
                             }}
                           >
                             x
                           </td>
                           <td className="cart-product-image">
-                            <Link to="/product-details">
+                            <Link to={url.routes.get("product", item.listing)}>
                               <img
                                 src={item.listing.post.url}
-                                alt={item.listing.post.caption}
+                                alt={`item-${item?.id}`}
                               />
                             </Link>
                           </td>
                           <td className="cart-product-info">
                             <h4 className="go-top">
-                              <Link to="/product-details">
+                              <Link to={url.routes.get("product", item.listing)}>
                                 {utils.truncate({
                                   text: item.listing.post.caption,
                                   size: 80,
@@ -77,7 +75,7 @@ function WishList() {
                             {utils.formatNumber(item.listing.price)}
                           </td>
                           <td className="cart-product-stock">
-                            {item.listing.offer_type}
+                            {item.listing.offer_type?.toUpperCase()}
                           </td>
                         </tr>
                       ))

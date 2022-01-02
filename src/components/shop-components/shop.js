@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-// import parse from "html-react-parser";
 import Sidebar from "./shop-sidebar";
 import ListItem from "./ListItem";
 // import Map from "../section-components/map";
@@ -9,19 +7,19 @@ import ExpandItem from "./ExpandItem";
 import Pagination from "./Pagination";
 import Wishlist from "./AddWishlist";
 import Cart from "./add-cart";
+import Loading from "components/Loading"
 
-import { useRecoilState, useRecoilValue } from "recoil";
-import { filtersState, filtersSelector } from "atoms";
+import { useRecoilState} from "recoil";
+import { filtersState} from "atoms";
 
-function ShopGridV1(props) {
+export default function Shop(props) {
   const [filters, setFilters] = useRecoilState(filtersState);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [results, setResults] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [meta, setMeta] = useState({});
-  const [pageSize, setPageSize] = useState(15);
-  const [queryParams, setQueryParams] = useState({});
+  const loggedUser = utils.getUser();
 
   async function fetchData(link) {
     try {
@@ -35,30 +33,46 @@ function ShopGridV1(props) {
   }
 
   useEffect(() => {
-    const link = utils.stringify({...queryParams, ...filters}, {
+    setLoading(true);
+    const link = utils.stringify(filters , {
       baseURL: url.dalali.listing,
     });
-    fetchData(link);
-  }, [props, queryParams, filters]);
+    // console.log("url", link)
+    fetchData(link)
+    .finally(()=>setLoading(false))
+  }, [filters]);
 
   const onExpand = (item) => {
     setSelectedItem(item);
   };
 
+    async function addWishlist(item) {
+      return await requests.post(url.dalali.wishlist, {
+        user: loggedUser?.pk,
+        listing: item.id,
+      });
+    }
+
   const onAddWishlist = (item) => {
     setSelectedItem(item);
+    if (loggedUser) {
+      addWishlist(item);
+    } else {
+      alert("You must login to add to wishlist");
+    }
   };
 
 
   function handleInputChange(e) {
-    console.log("[e.target.name]101", e.target)
-    setQueryParams({
+    // console.log("selected ",e.target.name, e.target.value)
+    setFilters({
+        ...filters,
         [e.target.name]: e.target.value
     });
 }
 
   const { page = 1, count = 0 } = meta;
-
+  const pageSize = filters.size || 12;
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter">
@@ -67,29 +81,28 @@ function ShopGridV1(props) {
             <div className="col-lg-8  mb-100">
               <div className="ltn__shop-options">
                 <ul className="justify-content-start">
-                  <li className="d-nones">
+                  {count>0 && <li className="d-nones">
                     <div className="showing-product-number text-right">
                       <span>
                         Showing {(page - 1) * pageSize} – {page * pageSize} of{" "}
                         {utils.formatNumber(count || 0)} results
                       </span>
                     </div>
-                  </li>
+                  </li>}
                   <li>
                     <div className="short-by text-center">
-                      <select className="nice-select">
-                        <option>Sort By Featured</option>
-                        <option>Sort by popularity</option>
-                        <option>Sort by new arrivals</option>
-                        <option>Sort by price low to high</option>
-                        <option>Sort by price high to low</option>
+                      <select className="nice-select" onChange={handleInputChange} value={filters.order_by}  id="order_by"  name="order_by">
+                        <option value={"is_featured"}>Sort By Featured</option>
+                        <option value="-view_count">Sort by popularity</option>
+                        <option value="-post__post_date">Sort by new arrivals</option>
+                        <option value="price" >Sort by price low to high</option>
+                        <option value="-price">Sort by price high to low</option>
                       </select>
                     </div>
                   </li>
-
                   <li>
                     <div className="short-by text-center">
-                      <select className="nice-select" name="size" onChange={handleInputChange}>
+                      <select  value={filters.size} className="nice-select" id="size" name="size" onChange={handleInputChange}>
                         <option value={"12"}>Size: 12</option>
                         <option  value={"50"}>Size: 50</option>
                         <option  value={"100"}>Size: 100</option>
@@ -118,6 +131,7 @@ function ShopGridV1(props) {
                               name="search"
                               placeholder="Search your keyword..."
                               onChange={handleInputChange}
+                              value={filters.search}
                             />
                             <button type="submit">
                               <i className="fas fa-search" />
@@ -126,6 +140,7 @@ function ShopGridV1(props) {
                         </div>
                       </div>
                       {/* ltn__product-item  in horizontal view (House details at large)*/}
+                      {loading && <Loading count={6}/>}
                       {results.map((item, index) => (
                         <ListItem
                           key={index}
@@ -134,6 +149,7 @@ function ShopGridV1(props) {
                           onAddWishlist={onAddWishlist}
                         />
                       ))}
+                      {loading && <Loading count={6}/>}
                     </div>
                   </div>
                 </div>
@@ -144,7 +160,7 @@ function ShopGridV1(props) {
               <Pagination
                 {...meta}
                 onClickPage={(page) =>
-                  setQueryParams({ ...queryParams, page: page + 1 })
+                  setFilters({ ...filters, page: page + 1 })
                 }
               />
             </div>
@@ -153,10 +169,12 @@ function ShopGridV1(props) {
         </div>
       </div>
       <Wishlist item={selectedItem} /> {/* that's love icon */}
-      <ExpandItem item={selectedItem} /> {/* that's expand icon */}
-      <Cart /> {/*after expand it, then onclick*/}
+      <ExpandItem 
+        item={selectedItem}   
+        onExpand={onExpand}
+        onAddWishlist={onAddWishlist} /> {/* that's expand icon */}
+      <Cart  item={selectedItem} /> {/*after expand it, then onclick*/}
     </div>
   );
 }
 
-export default ShopGridV1;

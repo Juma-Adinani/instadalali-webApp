@@ -1,7 +1,6 @@
 import { requests, url, utils } from "helpers";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import Social from "../section-components/social";
 import { useHistory } from "react-router-dom";
 import CartMenu from "./CartMenu";
 
@@ -11,18 +10,16 @@ function Navbar() {
   let history = useHistory();
 
   function handleLogOut() {
-    // sessionStorage.setItem("Token", "");
-    // sessionStorage.clear();
     utils.logout();
     history.push("/");
   }
 
   const [count, setCount] = useState([]);
+
   async function getCount() {
     try {
-      const response = await requests.get(url.dalali.wishlist);
-      console.log(response.results);
-      setCount(response.results);
+      const response = await requests.get(`${url.dalali.wishlist}?query={id}&size=1`);
+      setCount(response.count);
     } catch (e) {
       console.log(e);
     }
@@ -30,7 +27,7 @@ function Navbar() {
 
   useEffect(() => {
     getCount();
-  }, [count]);
+  }, []);
 
   return (
     <div>
@@ -48,7 +45,7 @@ function Navbar() {
                     </li>
                     <li>
                       <a href="locations.html">
-                        <i className="icon-placeholder" /> Mikocheni - Dar Es
+                        <i className="icon-placeholder" /> Msasani - Dar Es
                         Salaaam
                       </a>
                     </li>
@@ -66,7 +63,7 @@ function Navbar() {
                   <div className="site-logo go-top">
                     <Link to="/">
                       <img
-                        src={publicUrl + "assets/img/instadalali-logo-1.jpg"}
+                        src={publicUrl + "assets/img/instadalali-logo-1.png"}
                         alt="Logo"
                       />
                     </Link>
@@ -135,7 +132,7 @@ function Navbar() {
                     >
                       <i className="icon-shopping-cart"></i>
 
-                      <sup>{count.length}</sup>
+                      <sup>{count}</sup>
                     </a>
                   </div>
                 ) : (
@@ -224,11 +221,10 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/wishlist" title="Wishlist">
+                  <Link to={url.routes.wishlist} title="Wishlist">
                     <span className="utilize-btn-icon">
                       <i className="far fa-heart" />
-
-                      <sup>{count.length}</sup>
+                      <sup>{count}</sup>
                     </span>
                     Wishlist
                   </Link>

@@ -5,7 +5,7 @@ import Aboutv1 from './section-components/about-v1';
 import Counter from './section-components/counter-v1';
 import AboutV2 from './section-components/about-v2';
 import Featuresv1 from './section-components/features-v1';
-import ProSlider from './section-components/product-slider-v1';
+import ProSlider from './section-components/product-slider';
 import Apartment from './section-components/apartment-v1';
 import VideoV1 from './section-components/video-v1';
 import Category from './section-components/category-v1';

@@ -4,6 +4,7 @@ import { filtersState } from "atoms";
 import {filtersSections} from "helpers/sections";
 
 function Section(props){
+  const [filters, setFilters] = useRecoilState(filtersState);
   const {section, handleInputChange}=props;
   const i=section.title;
   switch(section.type){
@@ -19,10 +20,11 @@ function Section(props){
                   type="checkbox" 
                   onChange={handleInputChange} 
                   name={`${option.field}[]=${option.value}`}
+                  checked={filters[option.field]?.includes(option.value)}
                 />
                 <span className="checkmark" />
               </label>
-              <span className="categorey-no">{option.count||0}</span>
+              <span className="categorey-no">{option.count||""}</span>
               </li>
             ))}
           </ul>
@@ -39,7 +41,7 @@ function Section(props){
                 <input type="checkbox" name={option.field} onChange={handleInputChange} />
                 <span className="checkmark" />
               </label>
-              <span className="categorey-no">{option.count||0}</span>
+              <span className="categorey-no">{option.count||""}</span>
             </li>
           ))}
         </ul>

@@ -3,7 +3,7 @@ import Navbar from './global-components/navbar-v3';
 import BannerV5 from './section-components/banner-v5';
 import ProductListing from './section-components/product-listing';
 import Featuresv1 from './section-components/features-v1';
-import ProSlider from './section-components/product-slider-v1';
+import ProSlider from './section-components/product-slider';
 import Apartment from './section-components/apartment-v1';
 import VideoV1 from './section-components/video-v1';
 import Category from './section-components/category-v1';

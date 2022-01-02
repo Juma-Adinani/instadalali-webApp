@@ -2,43 +2,48 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import { requests, url } from "helpers";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+const GOOGLE_KEY='AIzaSyCeeHDCOXmUMja1CFg96RbtyKgx381yoBU'
 
-function Map() {
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    const link = url.dalali.listing;
-    getMap(link);
-  }, []);
-
-  async function getMap(link) {
-    try {
-      const response = await requests.get(link);
-      console.log(response.results);
-      setResults(results);
-    } catch (error) {
-      console.log("there is an error: ", error);
-    }
-  }
+function Map(props) {
+  const {item}=props;
+  const location = item?.location;
+  const position =[location?.lat, location?.lng]
   return (
-    <div className="google-map mb-120">
-      {results.length > 0 ? (
+    !!location?
+      <div className="google-map mb-120">
+        {true?<MapContainer 
+          center={position} 
+          zoom={12} 
+          scrollWheelZoom={false}
+          style={{ height: 60, width: "100%" }}
+          dragging={false}
+          doubleClickZoom={false}
+          attributionControl={false}
+          zoomControl={false}
+          >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position}>
+            <Popup>
+             {location?.name} <br /> Exact location will be shared on booking
+            </Popup>
+          </Marker>
+        </MapContainer>:
         <iframe
-          key={results.post.id}
-          //   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd"
-          src={results?.post?.location}
-          width="100%"
-          height="100%"
-          frameBorder={0}
+          width="600"
+          height="450"
+          loading="lazy"
           allowFullScreen
-          aria-hidden="false"
-          tabIndex={0}
-        />
-      ) : (
+          src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}
+            &q=Space+Needle,Seattle+WA`}>
+        </iframe>}
+        </div>:
         <div>
           <h6>Not Available</h6>
         </div>
-      )}
-    </div>
   );
 }
 

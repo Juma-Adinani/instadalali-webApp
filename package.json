@@ -12,10 +12,13 @@
     "google-maps-react": "^2.0.2",
     "html-react-parser": "^0.10.1",
     "human-readable-numbers": "^0.9.5",
+    "leaflet": "^1.7.1",
     "owl.carousel": "^2.3.4",
     "query-string": "^7.0.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.2",
+    "react-loading-skeleton": "^3.0.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "recoil": "^0.5.2",
@@ -31,16 +34,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }

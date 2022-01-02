@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { utils } from "helpers";
 
-function Cart() {
-  let publicUrl = process.env.PUBLIC_URL + "/";
+function Cart(props) {
+  const {item}=props;
   return (
     <div className="ltn__modal-area ltn__add-to-cart-modal-area">
       <div className="modal fade" id="add_to_cart_modal" tabIndex={-1}>
@@ -25,14 +26,14 @@ function Cart() {
                     <div className="col-12">
                       <div className="modal-product-img">
                         <img
-                          src={publicUrl + "assets/img/product/1.png"}
+                          src={item?.post?.uri}
                           alt="#"
                         />
                       </div>
                       <div className="modal-product-info go-top">
                         <h5 className="go-top">
-                          <Link to="/product-details">
-                            Brake Conversion Kit
+                          <Link to={`/product/${item?.id}`}>
+                            {utils.truncate({text:item?.post?.caption, size:32})}
                           </Link>
                         </h5>
                         <p className="added-cart">
@@ -62,7 +63,7 @@ function Cart() {
                         </p>
                         <div className="payment-method">
                           <img
-                            src={publicUrl + "assets/img/icons/payment.png"}
+                            src={ "/assets/img/icons/payment.png"}
                             alt="#"
                           />
                         </div>

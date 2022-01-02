@@ -6,26 +6,8 @@ function Wishlist(props) {
   // let publicUrl = process.env.PUBLIC_URL + "/";
   const loggedUser = utils.getUser();
   const { item } = props;
-
-  useEffect(() => {
-    if (item) {
-      // add to wishlist
-      async function addWishlist() {
-        await requests.post(url.dalali.wishlist, {
-          user: loggedUser?.pk,
-          listing: item.id,
-        });
-      }
-      if (loggedUser) {
-        addWishlist();
-      } else {
-        alert("You must login to add to wishlist");
-      }
-    }
-  }, [item]);
-
   if (!loggedUser) return null;
-
+  
   return (
     <div className="ltn__modal-area ltn__add-to-cart-modal-area">
       <div className="modal fade" id="liton_wishlist_modal" tabIndex={-1}>

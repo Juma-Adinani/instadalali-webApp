@@ -80,4 +80,16 @@ export const url = {
     }
     return utils.replaceVariablesFromString(link, item);
   },
+  routes: {
+     shop:"/shop/",
+     product:"/product/{id}",
+     wishlist:"/wishlist",
+     get:(path, item)=>{
+       /*
+        eg: url.routes.get("product", item:{id:12}) =>"/#/product/12"
+       */
+      const link = utils.getObject(url.routes, path);
+      return utils.replaceVariablesFromString(link, item)
+     }
+  }
 };

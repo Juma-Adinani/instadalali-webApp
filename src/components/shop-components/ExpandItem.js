@@ -4,11 +4,12 @@ import Map from "../section-components/map";
 import { url, requests } from "helpers";
 
 export default function ExpandItem(props) {
-  const { item: selectedItem } = props;
+  const { item: selectedItem,  onExpand, onAddWishlist } = props;
   // create a new variable for the item here so as to fetch an item with more details
   const [item, setItem] = useState(selectedItem);
 
   useEffect(() => {
+    if(!selectedItem) return;
     const link = url.getURL("dalali.listing", {
       type: "detail",
       item: selectedItem,
@@ -81,21 +82,21 @@ export default function ExpandItem(props) {
                         </span>
                       </li>
                       <li style={{ listStyle: `none` }}>
-                        <a
-                          href="#"
+                        <div
                           className="theme-btn-1 btn btn-effect-1"
                           title="Add to Cart"
                           data-bs-toggle="modal"
-                          data-bs-target="#add_to_cart_modal"
+                          // data-bs-target="#add_to_cart_modal"
+                          data-bs-target="#liton_wishlist_modal"
+                          onClick={() => onAddWishlist(item)}
                         >
-                          <i className="fas fa-heart" />
-                          <span>Add to WishList</span>
-                        </a>
+                          <span>Add to WishList </span><i className="fas fa-heart" />
+                        </div>
                       </li>
                     </ul>
                   </div>
                   <h3 style={{ color: `#171b2a` }}>Map Location</h3>
-                  <Map />
+                  <Map  item={item} />
                 </div>
               </div>
             </div>

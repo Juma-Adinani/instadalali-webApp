@@ -13,12 +13,10 @@ export default function Login(props) {
     e.preventDefault();
     try {
       const res = await requests.post(url.login, data);
-      // alert(JSON.stringify(res))
       setAuthorization(res.key);
-      // fetch user profile
       const u = await requests.get(url.user);
       utils.setUser({ ...u, token: res.key });
-      window.location = "/#/shop/";
+      utils.navigate(url.routes.shop);
     } catch (e) {
       alert(JSON.stringify(e.data));
     }

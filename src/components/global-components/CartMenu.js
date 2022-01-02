@@ -2,13 +2,12 @@ import { requests, url, utils } from "helpers";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function CartMenu() {
+export default function CartMenu(props) {
   const [data, setData] = useState([]);
 
   async function getData(link) {
     try {
       const res = await requests.get(link);
-      console.log("Hello", res.results);
       setData(res.results);
     } catch (e) {
       console.log(e);
@@ -21,9 +20,6 @@ function CartMenu() {
   }, []);
 
   async function removeItem(item) {
-    // window.confirm("Are You sure you want to remove from wishlist?..");
-    //alert(item);
-    console.log("xxx", item);
     await requests.delete(
       url.getURL("dalali.wishlist", { item: item, type: "delete" })
     );
@@ -34,7 +30,7 @@ function CartMenu() {
     <div
       id="ltn__utilize-cart-menu"
       className="ltn__utilize ltn__utilize-cart-menu"
-    >
+      >
       <div className="ltn__utilize-menu-inner ltn__scrollbar">
         <div className="ltn__utilize-menu-head">
           <span className="ltn__utilize-menu-title">Wishlist</span>
@@ -45,11 +41,10 @@ function CartMenu() {
             data.map((item) => (
               <div className="mini-cart-item clearfix" key={item.id}>
                 <div className="mini-cart-img go-top">
-                  <Link to="/product-details">
+                  <Link to={url.routes.get("product", item.listing)}>
                     <img
-                      // src={publicUrl + "assets/img/product/1.png"}
                       src={item.listing.post.url}
-                      alt="Image"
+                      alt=""
                     />
                   </Link>
                   <span className="mini-cart-item-delete">
@@ -69,7 +64,7 @@ function CartMenu() {
                 <div className="mini-cart-info go-top">
                   <h6>
                     {/* <Link to="/Shop">Wheel Bearing Retainer</Link> */}
-                    <Link to="/product-details">
+                    <Link to={url.routes.get("product", item.listing)}>
                       {utils.truncate({
                         text: item.listing.post.caption,
                         size: 80,
@@ -90,8 +85,8 @@ function CartMenu() {
         </div>
         <div className="mini-cart-footer">
           <div className="btn-wrapper go-top">
-            <Link to="/viewWishlist" className="theme-btn-1 btn btn-effect-1">
-              View
+            <Link to={url.routes.wishlist} className="theme-btn-1 btn btn-effect-1">
+              View WishList
             </Link>
           </div>
         </div>
@@ -100,4 +95,3 @@ function CartMenu() {
   );
 }
 
-export default CartMenu;

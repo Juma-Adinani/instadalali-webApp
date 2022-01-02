@@ -91,6 +91,7 @@ class Root extends Component {
             <Route path="/shop-right-sidebar" component={ShopRightSidebar} />
 
             <Route path="/product-details" component={ProdductDetails} />
+            <Route path="/product/:id" component={ProdductDetails} />
             {/* blog */}
             <Route path="/blog-grid" component={BlogGrid} />
             <Route path="/blog-left-sidebar" component={BlogLeftSidebar} />
@@ -105,7 +106,7 @@ class Root extends Component {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/add-listing" component={AddListing} />
-            <Route path="/viewWishlist" component={Wishlist} />
+            <Route path="/wishlist" component={Wishlist} />
             <Route path="/order-tracking" component={OrderTracking} />
             <Route path="/history" component={History} />
             <Route path="/terms" component={TermsV1} />
