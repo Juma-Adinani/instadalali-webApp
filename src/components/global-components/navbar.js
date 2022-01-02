@@ -64,7 +64,7 @@ function Navbar(props) {
                   <div className="site-logo go-top">
                     <Link to="/">
                       <img
-                        src={publicUrl + "assets/img/instadalali-logo-1.png"}
+                        src={publicUrl + "assets/img/instadalali-logo-1.jpg"}
                         alt="Logo"
                       />
                     </Link>
