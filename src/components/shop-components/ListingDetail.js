@@ -45,27 +45,32 @@ export default function ListingDetail(props) {
                 <span className="ltn__secondary-color">
                   <i className="flaticon-pin" />
                 </span>
-                {item?.location?.name||"Check Description"}
+                {item?.location?.name || "Check Description"}
               </label>
               <h4 className="title-2">Description</h4>
-              <div>
-                {item?.post?.caption}
-              </div>
+              <div>{item?.post?.caption}</div>
               <h4 className="title-2">Property Detail</h4>
               <div className="property-detail-info-list section-bg-1 clearfix mb-60 d-flex justify-content-center">
-              {itemDetails.map((section, i)=>(
-                <ul className="w-5y0" key={`section-${i}`}>
-                  {section.map((param, j)=>(
-                    <li key={`${i}-{j}`}>
-                      <label>{param.title}:</label><span>{`${utils.getObject(item, param.field, "")}`}</span>
-                    </li>
-                  ))}
-                </ul>
-              ))}
+                {itemDetails.map((section, i) => (
+                  <ul className="w-5y0" key={`section-${i}`}>
+                    {section.map((param, j) => (
+                      <li key={`${i}-{j}`}>
+                        <label>{param.title}:</label>
+                        <span>{`${utils.getObject(
+                          item,
+                          param.field,
+                          ""
+                        )}`}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
               </div>
-              <h4 className="title-2">Location</h4>
-              <div className="property-details-google-map mb-60">
-                <Map item={item} />
+              <div className="mt-20" style={{overflow:`hidden`}} >
+                <h4 className="title-2">Location</h4>
+                <div className="property-details-google-map mb-60">
+                  <Map item={item} />
+                </div>
               </div>
             </div>
           </div>

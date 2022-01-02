@@ -6,7 +6,13 @@ function Wishlist(props) {
   // let publicUrl = process.env.PUBLIC_URL + "/";
   const loggedUser = utils.getUser();
   const { item } = props;
+
+  // function Reload(){
+  //   window.location.reload();
+  // }
+  
   if (!loggedUser) return null;
+
   
   return (
     <div className="ltn__modal-area ltn__add-to-cart-modal-area">
@@ -19,6 +25,7 @@ function Wishlist(props) {
                 className="close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                // onClick={Reload}
               >
                 <span aria-hidden="true">×</span>
               </button>
