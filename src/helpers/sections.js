@@ -125,6 +125,14 @@ export const filtersSections=[
           value: dayjs().startOf('day').format().toString(),
         },
         {
+          title:"Within 3 Days",
+          value: dayjs().startOf('day').subtract(3, 'day').format().toString(),
+        },
+        {
+          title:"Within 5 Days",
+          value: dayjs().startOf('day').subtract(5, 'day').format().toString(),
+        },
+        {
           title:"Within 7 Days",
           value: dayjs().startOf('day').subtract(7, 'day').format().toString(),
         },
