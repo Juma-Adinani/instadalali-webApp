@@ -158,9 +158,9 @@ class NavbarV3 extends Component {
 									<li><Link to="/blog-details">News details</Link></li>
 			                    </ul>
 			                  </li>
-							  <li class="menu-icon"><a href="#">Pages</a>
-								<ul class="mega-menu">
-									<li><a href="#">Inner Pages</a>
+							  <li classname="menu-icon"><a href="#">Pages</a>
+								<ul classname="mega-menu">
+									<li><a href=".#">Inner Pages</a>
 										<ul>
 											<li><Link to="/portfolio">Portfolio</Link></li>
 											<li><Link to="/portfolio-v2">Portfolio - 02</Link></li>
@@ -287,7 +287,7 @@ class NavbarV3 extends Component {
 						</ul>
 						</li>
 						<li><Link to="#">Pages</Link>
-							<ul class="sub-menu">
+							<ul classname="sub-menu">
 								<li><Link to="/about">About</Link></li>
 								<li><Link to="/service">Services</Link></li>
 								<li><Link to="/service-details">Service Details</Link></li>

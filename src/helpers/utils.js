@@ -144,7 +144,8 @@ class Actions {
     if (w) {
       window = w;
     }
-    return window.history.push(path);
+    window.location.href = "#"+path;
+    // return window.history.push(path);
   };
 
   goBack = () => {
@@ -277,15 +278,21 @@ class Actions {
     return link;
   };
 
-  getSearchParams = (str) => {
+  getSearchParams = (str,  params={arrayFormat: 'bracket'}) => {
     let data = {};
     if (!str) return data;
     const index = str.search(/(\?)\w+/i);
     if (index > -1) {
-      data = qs.parse(str.slice(index));
+      data = qs.parse(str.slice(index),  params);
     } else {
-      data = qs.parse(str);
+      data = qs.parse(str,  params);
     }
+    
+    Object.keys(data).map(key=>{
+      if(key.includes("/")){
+        delete data[key]
+      }
+    })
     return data;
   };
 

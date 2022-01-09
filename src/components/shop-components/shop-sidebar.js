@@ -63,7 +63,8 @@ function Section(props){
                       type="radio" 
                       id={option.value} 
                       name={section.field} 
-                      value={option.value||""} 
+                      value={option.value} 
+                      checked={filters[section.field]===option.value}
                       />
                     <label htmlFor={option.value}>{option.title}</label>
                   </div>
@@ -146,7 +147,7 @@ export default function Sidebar(props){
       if(name.includes("-")){//eg price_currency-__gte-__lte
         const nameParts=name.split("-").slice(1,)
         const valueParts=value.split("-")
-        const extraDict={}
+        const extraDict={page:undefined}
         nameParts.map((n, index)=>{
           extraDict[`${name.split("-")[0]}${n}`]=valueParts[index]?.trim()||0
         })
@@ -158,18 +159,21 @@ export default function Sidebar(props){
       }else{
         setFilters({
           ...filters,
-            [name]: value
+          page:undefined,
+          [name]: value,
         });
       }
    }
+
+   const filtersCount = Object.keys(filters).length;
 
     return (
       <div className="col-lg-4  mb-100">
         <aside className="sidebar ltn__shop-sidebar">
           <h3 className="mb-10">Preferences</h3>
-          {/* <label className="mb-30">
-            <small>About 9,620 results (0.62 seconds) </small>
-          </label> */}
+          {filtersCount>1 && <label className="mb-30" onClick={()=>setFilters({order_by:"-id"})}>
+            <small>Reset All {filtersCount} Filters </small>
+          </label>}
           {/* Advance Information widget */}
           <div className="widget ltn__menu-widget">
           {filtersSections.map((section, i)=>(

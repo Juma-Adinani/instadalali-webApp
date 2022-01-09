@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
-import { requests, url } from "helpers";
+import { requests, url, config } from "helpers";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-const GOOGLE_KEY = "AIzaSyCeeHDCOXmUMja1CFg96RbtyKgx381yoBU";
+const GOOGLE_KEY =config.GOOGLE_MAP_KEY ;
 
 function Map(props) {
   const { item } = props;
@@ -11,7 +11,7 @@ function Map(props) {
   const position = [location?.lat, location?.lng];
   return !!location ? (
     <div className="google-map mb-120">
-      {true ? (
+      {false ? (
         <MapContainer
           center={position}
           zoom={12}
@@ -34,12 +34,12 @@ function Map(props) {
         </MapContainer>
       ) : (
         <iframe
-          width="600"
+          width="100%"
           height="450"
           loading="lazy"
           allowFullScreen
           src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}
-            &q=Space+Needle,Seattle+WA`}
+            &q=${position.join(',')}`}
         ></iframe>
       )}
     </div>

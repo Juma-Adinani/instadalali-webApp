@@ -21,7 +21,8 @@ const schema={
           _id:id,name:first_name,
         },
       }
-  `)
+  `),
+  virtualtour:`{file,thumbnail,listing{id}}`
 }
 
 /*

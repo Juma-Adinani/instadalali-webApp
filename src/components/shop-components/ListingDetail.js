@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import Map from "components/section-components/map";
 import { requests, url, utils } from "helpers";
+import Panorama from "./Panorama"
 
 export default function ListingDetail(props) {
   const {item, item:{post}} = props;
@@ -10,7 +11,7 @@ export default function ListingDetail(props) {
     [
       {title:"Bedrooms", field:'bedrooms_count'},
       {title:"Master Bedrooms", field:'master_bedrooms_count'},
-      {title:"Bathrooms", field:'bathrooms_count'},
+      {title:"Bathrooms", field:'bathrooms_count', default:1},
       {title:"Views", field:'hits_count'},
 
   ],
@@ -54,12 +55,12 @@ export default function ListingDetail(props) {
                 {itemDetails.map((section, i) => (
                   <ul className="w-5y0" key={`section-${i}`}>
                     {section.map((param, j) => (
-                      <li key={`${i}-{j}`}>
+                      <li key={`${i}-${j}`}>
                         <label>{param.title}:</label>
                         <span>{`${utils.getObject(
                           item,
                           param.field,
-                          ""
+                          param.default||"",
                         )}`}</span>
                       </li>
                     ))}
@@ -67,10 +68,17 @@ export default function ListingDetail(props) {
                 ))}
               </div>
               <div className="mt-20" style={{overflow:`hidden`}} >
-                <h4 className="title-2">Location</h4>
-                <div className="property-details-google-map mb-60">
-                  <Map item={item} />
-                </div>
+                <>
+                  <h4 className="title-2">Virtual Tours</h4>
+                  {item?.virtual_tour_count>0?<Panorama item={item} />:<div>No virtual tours for this listing yet</div>}
+                </>
+
+                {true && <>
+                  <h4 className="title-2">Location</h4>
+                  <div className="property-details-google-map mb-60">
+                    <Map item={item} />
+                  </div>
+                </>}
               </div>
             </div>
           </div>

@@ -1,10 +1,13 @@
 import { url, utils, requests } from "helpers";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Social from "../section-components/social";
 
-function NavbarV2() {
+export default function NavbarV2(props){
+  
+  const publicUrl = process.env.PUBLIC_URL + "/";
+  const loggedUser = utils.getUser();
   const [count, setCount] = useState([]);
+
   async function getCount() {
     try {
       const response = await requests.get(url.dalali.wishlist);
@@ -18,9 +21,7 @@ function NavbarV2() {
     getCount();
   }, []);
   
-  let publicUrl = process.env.PUBLIC_URL + "/";
-  // let CustomClass = this.props.CustomClass ? this.props.CustomClass : "";
-  const loggedUser = utils.getUser();
+
   return (
     <div>
       <header
@@ -37,7 +38,7 @@ function NavbarV2() {
                   <div className="site-logo go-top">
                     <Link to="/">
                       <img
-                        src={publicUrl + "assets/img/instadalali-logo-1.jpg"}
+                        src={publicUrl + "assets/img/logo-2.png"}
                         alt="Logo"
                       />
                     </Link>
@@ -50,14 +51,20 @@ function NavbarV2() {
                     <div className="ltn__main-menu">
                       <ul>
                         <div style={{ width: `100%` }}></div>
-                        <li>
+                        {!loggedUser && <li>
                           <Link to="/login">Sign In</Link>
-                        </li>
+                        </li>}
+                        {!loggedUser && 
                         <li>
                           <Link to="/register">Sign Up</Link>
-                        </li>
+                        </li>}
+                        {!!loggedUser && 
+                        <li>
+                          <Link to="/">Hi {loggedUser?.first_name}</Link>
+                        </li>}
+
                         <li className="special-link">
-                          <Link to="/shop">Get Started</Link>
+                          <Link to={url.routes.shop}>Get Started</Link>
                         </li>
                       </ul>
                     </div>
@@ -100,14 +107,14 @@ function NavbarV2() {
             <div className="site-logo">
               <Link to="/">
                 <img
-                  src={publicUrl + "assets/img/instadalali-logo-1.jpg"}
+                  src={publicUrl + "assets/img/logo.png"}
                   alt="Logo"
                 />
               </Link>
             </div>
             <button className="ltn__utilize-close">×</button>
           </div>
-          <div className="ltn__utilize-menu-search-form">
+          <div className="ltn__utilize-menu-search-form d-none">
             <form action={"#"}>
               <input type="text" placeholder="Search..." />
               <button>
@@ -184,5 +191,3 @@ function NavbarV2() {
     </div>
   );
 }
-
-export default NavbarV2;

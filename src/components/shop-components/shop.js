@@ -11,7 +11,7 @@ import Loading from "components/Loading"
 
 import { useRecoilState} from "recoil";
 import { filtersState} from "atoms";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 export default function Shop(props) {
   const [filters, setFilters] = useRecoilState(filtersState);
@@ -20,7 +20,7 @@ export default function Shop(props) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [meta, setMeta] = useState({});
   const loggedUser = utils.getUser();
-  const history =useHistory()
+  const history =useHistory();
 
   async function fetchData(link) {
     try {
@@ -29,23 +29,29 @@ export default function Shop(props) {
       setLoading(false);
       setMeta(res); //TOdo: remove results from res to make this var lighter
     } catch (e) {
+      setResults([]);
       console.log(e);
     }
   }
 
+  useEffect(()=>{
+    // get data params and save to state filters
+    const urlData = utils.getSearchParams(window.location.hash)
+    setFilters({
+      // ...filters, 
+      ...urlData,
+    })
+  }, [])
+
   useEffect(() => {
-    console.log("filters", JSON.stringify(filters, null, 3))
-    if (history.action === "POP"){
       setLoading(true);
       const link = utils.stringify(filters , {
         baseURL: url.dalali.listing,
       });
-      // console.log("url", link)
       fetchData(link)
       .finally(()=>setLoading(false))
-    }else{
-      console.log("Data was not loaded")
-    }
+      history.replace({pathname: `${url.routes.shop}?${utils.stringify(filters)}`})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   const onExpand = (item) => {
@@ -65,20 +71,25 @@ export default function Shop(props) {
       addWishlist(item);
     } else {
       alert("You must login to add to wishlist");
+      utils.navigate(url.routes.login);
     }
   };
 
 
   function handleInputChange(e) {
     // console.log("selected ",e.target.name, e.target.value)
+    let dict={
+      [e.target.name]: e.target.value
+    }
     setFilters({
         ...filters,
-        [e.target.name]: e.target.value
+        page:undefined,
+       ...dict
     });
 }
 
   const { page = 1, count = 0 } = meta;
-  const pageSize = filters.size || 12;
+  const pageSize = filters?.size || 12;
   return (
     <div>
       <div className="ltn__product-area ltn__product-gutter">
@@ -99,10 +110,10 @@ export default function Shop(props) {
                     <div className="short-by text-center">
                       <select className="nice-select" onChange={handleInputChange} value={filters.order_by}  id="order_by"  name="order_by">
                         <option value={"is_featured"}>Sort By Featured</option>
-                        <option value="-view_count">Sort by popularity</option>
+                        <option value="-hits_count">Sort by popularity</option>
                         <option value="-post__post_date">Sort by new arrivals</option>
-                        <option value="price" >Sort by price low to high</option>
-                        <option value="-price">Sort by price high to low</option>
+                        <option value="price" >Sort by Most Expensive</option>
+                        <option value="-price">Sort by Cheapest</option>
                       </select>
                     </div>
                   </li>
@@ -155,6 +166,7 @@ export default function Shop(props) {
                           onAddWishlist={onAddWishlist}
                         />
                       ))}
+                      {results.length===0 && !loading && <div>No results found</div>}
                       {loading && <Loading count={6}/>}
                     </div>
                   </div>

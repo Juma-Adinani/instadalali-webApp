@@ -1,23 +1,25 @@
 import { requests, url, utils } from "helpers";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loading from "components/Loading";
 
 function WishList() {
   const [data, setData] = useState([]);
- 
+  const [loading, setLoading] = useState(true);
+  const loggedUser = utils.getUser()
   async function getData(link) {
     try {
       const res = await requests.get(link);
-      console.log("Hello", res.results);
       setData(res.results);
     } catch (e) {
       console.log(e);
     }
+    setLoading(false)
   }
 
   useEffect(() => {
     const link = url.dalali.wishlist;
-    getData(link);
+    loggedUser && getData(link);
   }, []);
 
   async function removeItem(item) {
@@ -32,11 +34,12 @@ function WishList() {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
+            {loading && <Loading count={6} />}
             <div className="shoping-cart-inner">
               <div className="shoping-cart-table table-responsive">
                 <table className="table">
                   <tbody>
-                    {data.length > 0 ? (
+                    {data?.length > 0 ? (
                       data.map((item) => (
                         <tr>
                           <td
@@ -61,14 +64,14 @@ function WishList() {
                             </Link>
                           </td>
                           <td className="cart-product-info">
-                            <h4 className="go-top">
+                            <div className="go-top">
                               <Link to={url.routes.get("product", item.listing)}>
                                 {utils.truncate({
                                   text: item.listing.post.caption,
                                   size: 80,
                                 })}
                               </Link>
-                            </h4>
+                            </div>
                           </td>
                           <td className="cart-product-price">
                             {item.listing.price_currency}&nbsp;
@@ -80,7 +83,7 @@ function WishList() {
                         </tr>
                       ))
                     ) : (
-                      <div>No wishlist yet.!</div>
+                      !loading && <div>No wishlist yet.!</div>
                     )}
                   </tbody>
                 </table>

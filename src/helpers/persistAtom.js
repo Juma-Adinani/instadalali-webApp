@@ -10,10 +10,9 @@ const remoteSync={
 
 export const persistAtom = (key) => ({setSelf, onSet}) => {
   const savedValue=storage.store.getString(key);
- 
-//  setSelf(
-//     savedValue !== undefined ? JSON.parse(savedValue):new DefaultValue() 
-//   );
+ setSelf(
+    savedValue != null ? JSON.parse(savedValue):new DefaultValue() 
+  );
   function saveData(value){
     storage.store.set(key, JSON.stringify(value));
     // TODO: find a way to bulk save these remotely too

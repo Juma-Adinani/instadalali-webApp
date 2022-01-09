@@ -19,8 +19,11 @@
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.2",
     "react-loading-skeleton": "^3.0.2",
+    "react-paginate": "^8.1.0",
+    "react-pannellum": "^0.2.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "read-more-react": "^1.0.10",
     "recoil": "^0.5.2",
     "string-minify": "^1.0.1",
     "wowjs": "^1.1.3"

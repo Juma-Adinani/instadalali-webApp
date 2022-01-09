@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Page_header extends Component {
+export default function PageHeader(props){
 
-    render() {
-
-        let HeaderTitle = this.props.headertitle;
+        let HeaderTitle = props.headertitle;
         let publicUrl = process.env.PUBLIC_URL+'/'
-        let Subheader = this.props.subheader ? this.props.subheader : HeaderTitle
-		let CustomClass = this.props.customclass ? this.props.customclass : ''
-        let Img = this.props.Img ? this.props.Img :'14.jpg'
+        let Subheader = props?.subheader || HeaderTitle
+		let CustomClass = props.customclass || '';
+
+		return null;
 
         return (
-
-		<div className={"ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "+CustomClass} data-bs-bg={publicUrl+"assets/img/bg/14.jpg"}>
+		<div className={"ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "+CustomClass} 
+			data-bs-bg={publicUrl+"assets/img/bg/14.jpg"}>
 			<div className="container">
 				<div className="row">
 				<div className="col-lg-12">
@@ -34,7 +33,3 @@ class Page_header extends Component {
 
         )
     }
-}
-
-
-export default Page_header

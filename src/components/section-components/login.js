@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 
 export default function Login(props) {
   const [data, setData] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
   const handleInput = (event) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
@@ -15,10 +16,12 @@ export default function Login(props) {
       const res = await requests.post(url.login, data);
       setAuthorization(res.key);
       const u = await requests.get(url.user);
+      setErrorMessage(null);
       utils.setUser({ ...u, token: res.key });
       utils.navigate(url.routes.shop);
     } catch (e) {
-      alert(JSON.stringify(e.data));
+      setErrorMessage(JSON.stringify(e.data?.non_field_errors?.join("; ")||e.data||e.message))
+      // alert(JSON.stringify(e.data||e.message));
     }
   }
 
@@ -55,6 +58,9 @@ export default function Login(props) {
                   placeholder="Password*"
                   onChange={handleInput}
                 />
+                {!!errorMessage && <div className="alert alert-warning">
+                      {errorMessage}
+                </div>}
                 <div className="btn-wrapper mt-0">
                   <button className="theme-btn-1 btn btn-block" type="submit">
                     SIGN IN

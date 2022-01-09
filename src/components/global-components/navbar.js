@@ -7,14 +7,15 @@ import CartMenu from "./CartMenu";
 function Navbar(props) {
   let publicUrl = process.env.PUBLIC_URL + "/";
   const loggedUser = utils.getUser();
-  let history = useHistory();
+  const history = useHistory();
+  const [count, setCount] = useState(0);
 
   function handleLogOut() {
     utils.logout();
     history.push("/");
   }
 
-  const [count, setCount] = useState(0);
+  
 
   async function getCount() {
     try {
@@ -28,7 +29,7 @@ function Navbar(props) {
 
   useEffect(() => {
     getCount();
-  });
+  }, []);
 
   return (
     <div>
@@ -64,7 +65,8 @@ function Navbar(props) {
                   <div className="site-logo go-top">
                     <Link to="/">
                       <img
-                        src={publicUrl + "assets/img/instadalali-logo-1.jpg"}
+                        src={publicUrl + "assets/img/logo.png"}
+                        height={60}
                         alt="Logo"
                       />
                     </Link>
@@ -109,7 +111,7 @@ function Navbar(props) {
                             <Link to="/">My Account</Link>
                           </li>
                           <li>
-                            <a href="#" onClick={handleLogOut}>
+                            <a href=".#" onClick={handleLogOut}>
                               Logout
                             </a>
                           </li>
@@ -174,7 +176,7 @@ function Navbar(props) {
             <div className="site-logo">
               <Link to="/">
                 <img
-                  src={publicUrl + "assets/img/instadalali-logo-1.jpg"}
+                  src={publicUrl + "assets/img/logo.png"}
                   alt="Logo"
                 />
               </Link>

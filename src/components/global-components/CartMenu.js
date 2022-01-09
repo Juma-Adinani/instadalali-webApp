@@ -16,15 +16,15 @@ export default function CartMenu(props) {
   }
 
   useEffect(() => {
-    const link = url.dalali.wishlist;
+    const link = url.dalali.wishlist+"?src=cart_menu";
     loggedUser && getData(link);
-  });
+  }, []);
 
   async function removeItem(item) {
     await requests.delete(
       url.getURL("dalali.wishlist", { item: item, type: "delete" })
     );
-    getData(url.dalali.wishlist);
+    getData(url.dalali.wishlist+"?src=remove_item");
   }
 
   return (

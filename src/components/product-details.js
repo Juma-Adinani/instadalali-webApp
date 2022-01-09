@@ -42,7 +42,6 @@ export default function Listing(props) {
       )}
       {loading ? <Loading count={5} /> : <ProductSlider item={item} />}
       {loading ? <Loading count={5} /> : <ListingDetail item={item} />}
-      <CallToActionV1 />
       <Footer />
     </div>
   );

@@ -1,10 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { utils, url } from "helpers";
+import ReadMoreReact from 'read-more-react';
+import { useHistory } from "react-router-dom";
 
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
   const { item, onExpand, onAddWishlist } = props;
+  const history = useHistory();
+  const viewItem=()=>{
+    //url.routes.get("product", item)
+    const pathname = url.routes.get("product", item);
+    // console.log("pathname", pathname);
+    history.replace({pathname})
+  }
 
   return (
     <div className="col-lg-12">
@@ -29,7 +38,14 @@ export default function ListItem(props) {
             </div>
           </div>
           <div className="go-top">
-            {utils.truncate({ text: item?.post?.caption, size: 100 })}
+            <ReadMoreReact text={item?.post?.caption}
+                min={80}
+                ideal={100}
+                max={200}
+                readMoreText="read more"
+                
+                />
+
           </div>
           <div className="product-img-location go-top">
             <ul>

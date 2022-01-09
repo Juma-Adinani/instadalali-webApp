@@ -8668,6 +8668,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   -webkit-transition: all 3.5s ease 0s;
   -o-transition: all 3.5s ease 0s;
   transition: all 3.5s ease 0s;
+  height: 33vh;
+  width: 40vh;
 }
 
 .product-img:before {

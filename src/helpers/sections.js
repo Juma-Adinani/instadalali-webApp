@@ -115,33 +115,49 @@ export const filtersSections=[
             },
           ]
     },
-    {
+    { 
       type:"radio",
       field:"post__post_date__gte",
       title:"Filter by Post Date",
       options:[
         {
           title:"Today",
-          value: dayjs().startOf('day').format(),
+          value: dayjs().startOf('day').format().toString(),
         },
         {
           title:"Within 7 Days",
-          value: dayjs().subtract(7, 'day').format(),
+          value: dayjs().startOf('day').subtract(7, 'day').format().toString(),
         },
         {
           title:"Within 30 day",
-          value:dayjs().subtract(30, 'day').format(),
+          value:dayjs().startOf('day').subtract(30, 'day').format().toString(),
         },
         {
           title:"Within 2 Month",
-          value:dayjs().subtract(2, 'month').format(),
+          value:dayjs().startOf('day').subtract(2, 'month').format().toString(),
         },
         {
           title:"Within 3 Month",
-          value:dayjs().subtract(3, 'month').format(),
+          value:dayjs().startOf('day').subtract(3, 'month').format().toString(),
         },
       ]
-},
+    },
+    { 
+      type:"radio",
+      field:"virtual_tour_count__gte",
+      title:"Has Virtual Tour",
+      options:[
+        {
+          title:"Any",
+          value: undefined,
+        },
+        {
+          title:"At least one",
+          value: "1",
+        },
+      ]
+    },
+
     {
             type:"amount-slider",
             title:"Filter by Price",
