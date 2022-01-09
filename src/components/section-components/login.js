@@ -65,9 +65,9 @@ export default function Login(props) {
                   </button>
                 </div>
                 <div className="go-to-btn mt-20">
-                  <a href="./#/login">
+                  <Link to={url.routes.reset}>
                     <small>FORGOTTEN YOUR PASSWORD?</small>
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>
@@ -76,7 +76,7 @@ export default function Login(props) {
             <div className="account-create text-center pt-50">
               <h4>DON'T HAVE AN ACCOUNT?</h4>
               <div className="btn-wrapper go-top">
-                <Link to="/register" className="theme-btn-1 btn black-btn">
+                <Link to={url.routes.register} className="theme-btn-1 btn black-btn">
                   CREATE ACCOUNT
                 </Link>
               </div>

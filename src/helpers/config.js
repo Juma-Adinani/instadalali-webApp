@@ -96,6 +96,7 @@ export const url = {
      faq:"/faq",
      tnc:"/terms",
      privacy:"/privacy",
+     reset:"/reset",
      get:(path, item)=>{
        /*
         eg: url.routes.get("product", item:{id:12}) =>"/#/product/12"

@@ -5,11 +5,8 @@ import Social from '../section-components/social';
 import Copyright from './copyright';
 
 export default function Footer(props){
-
     useEffect(()=> {
-
         const $ = window.$;
-
         let publicUrl = process.env.PUBLIC_URL+'/'
         const minscript = document.createElement("script");
         minscript.async = true;

@@ -12,6 +12,7 @@ import Loading from "components/Loading"
 import { useRecoilState} from "recoil";
 import { filtersState} from "atoms";
 import { useHistory } from "react-router-dom";
+import _ from "lodash";
 
 export default function Shop(props) {
   const [filters, setFilters] = useRecoilState(filtersState);
@@ -45,12 +46,15 @@ export default function Shop(props) {
 
   useEffect(() => {
       setLoading(true);
+      utils.scrollTop();
       const link = utils.stringify(filters , {
         baseURL: url.dalali.listing,
       });
       fetchData(link)
-      .finally(()=>setLoading(false))
-      history.replace({pathname: `${url.routes.shop}?${utils.stringify(filters)}`})
+      .finally(()=>{
+        setLoading(false);
+      })
+      !_.isEmpty(filters) && history.replace({pathname: `${url.routes.shop}?${utils.stringify(filters)}`})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 

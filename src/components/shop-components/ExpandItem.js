@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Map from "../section-components/map";
 import { url, requests } from "helpers";
+import ProductSlider from "./product-slider";
 
 export default function ExpandItem(props) {
   const { item: selectedItem,  onExpand, onAddWishlist } = props;
@@ -50,33 +51,27 @@ export default function ExpandItem(props) {
                   <h3 style={{ color: `#171b2a` }}>Property Details</h3>
                   <div className="row d-flex justify-content-center w-100">
                     {/* ltn__blog-item-3-normal */}
-                    <div className="row  ltn__blog-slider-one-active slick-arrow-1 ">
-                      {/* Blog Item */}
+                    <ProductSlider item={item}/>
+                    {false && <div className="row  ltn__blog-slider-one-active slick-arrow-1 ">
                       {item &&
                         item.post.photos.map((photo, index) => (
                           <div className="col-lg-12" key={index}>
                             <div className="ltn__blog-item ltn__blog-item-3">
                               <div className="ltn__blog-img">
-                                <Link to="/Shop">
+                                <Link to={url.routes.shop}>
                                   <img src={photo.uri} alt="#" />
                                 </Link>
                               </div>
                             </div>
                           </div>
                         ))}
-                    </div>
+                    </div>}
                   </div>
                   <div className="modal-product-meta ltn__product-details-menu-1">
                     <ul className="d-flex justify-content-between align-items-start flex-column">
                       <li className="row">
-                        {/* <strong>Amenities:</strong> */}
                         <h3 style={{ color: `#171b2a` }}>Description</h3>
                         <span className="go-top d-flex flex-direction-row justify-content-around amentiesLinks">
-                          {/* <p>Security</p>
-                          <p>Hospital</p>
-                          <p>School</p>
-                          <p>Market</p>
-                          <p>Description</p> */}
                           <p>{item?.post?.caption}</p>
                         </span>
                       </li>

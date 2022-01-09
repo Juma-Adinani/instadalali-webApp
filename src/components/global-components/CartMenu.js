@@ -64,7 +64,6 @@ export default function CartMenu(props) {
                 </div>
                 <div className="mini-cart-info go-top">
                   <h6>
-                    {/* <Link to="/Shop">Wheel Bearing Retainer</Link> */}
                     <Link to={url.routes.get("product", item.listing)}>
                       {utils.truncate({
                         text: item.listing.post.caption,
@@ -72,7 +71,7 @@ export default function CartMenu(props) {
                       })}
                     </Link>
                   </h6>
-                  {/* <span className="mini-cart-quantity">1 x $65.00</span> */}
+                  
                   <span className="mini-cart-quantity">
                     {item.listing.price_currency}&nbsp;
                     {utils.formatNumber(item.listing.price)}

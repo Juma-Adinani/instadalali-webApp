@@ -61,7 +61,7 @@ import PrivacyV1 from "./components/privacy";
 class Root extends Component {
   render() {
     return (
-      <HashRouter basename="/">
+      <Router basename="/">
         <RecoilRoot>
           <Switch>
             <Route exact path="/" component={HomeV2} />
@@ -115,7 +115,7 @@ class Root extends Component {
             <Route path="/*" component={Error} />
           </Switch>
         </RecoilRoot>
-      </HashRouter>
+      </Router>
     );
   }
 }

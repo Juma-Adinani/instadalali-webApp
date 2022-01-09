@@ -144,7 +144,7 @@ class Actions {
     if (w) {
       window = w;
     }
-    window.location.href = "#"+path;
+    window.location.href = path;
     // return window.history.push(path);
   };
 
@@ -278,6 +278,11 @@ class Actions {
     }
     return link;
   };
+
+  scrollTop=()=>{
+    const $ = window.$; 
+    $(window).scrollTop(0);
+  }
 
   getSearchParams = (str,  params={arrayFormat: 'bracket'}) => {
     let data = {};

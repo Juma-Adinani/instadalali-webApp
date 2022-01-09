@@ -8,14 +8,14 @@ export default function Pagination(props) {
   const lastPages = [total_pages - 3, total_pages - 1, total_pages].filter(p=>p<total_pages && p>=0);
   const hasMiddlePages = (!_.isEqual(firstPages, lastPages) && lastPages.length>0 
               && _.intersection(firstPages,lastPages).length !== lastPages.length)
-
+              
   if (!is_paginated) return <div />;
   return (
     <div className="ltn__pagination-area text-center">
       <div className="ltn__pagination">
         <ul>
           {hasMiddlePages && <li>
-            <Link to="#" onClick={() => onClickPage(page)}>
+            <Link to="#" onClick={() => onClickPage(page-2)}>
               <i className="fas fa-angle-double-left" />
             </Link>
           </li>}
@@ -32,11 +32,12 @@ export default function Pagination(props) {
             </li>
           )}
 
-          {hasMiddlePages && lastPages.map((page, j) => (
-            <li key={j}>
-              <Link to="#">{page}</Link>
+          {hasMiddlePages && lastPages.map((_page, j) => (
+            <li key={j} onClick={() => onClickPage(_page)}>
+              <Link to="#">{_page}</Link>
             </li>
           ))}
+
           {hasMiddlePages && 
           <li>
             <Link to="#" onClick={() => onClickPage(page)}>
