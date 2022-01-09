@@ -1,10 +1,11 @@
 import { utils } from "./utils";
+import env from "../.env";
 export const appName = "Instadalali";
 export const config = {
   // API_URL: "http://instadalali.com:8009",
   API_URL: "https://instadalali.hudumabomba.com",
   // API_URL: 'http://192.168.43.16:8000',
-  GOOGLE_MAP_KEY: process.env.GOOGLE_MAP_KEY,
+  GOOGLE_MAP_KEY: env.GOOGLE_MAP_KEY,
 };
 export const priceSliderScale = {
   minFactor: 1e2,

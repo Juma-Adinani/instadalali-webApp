@@ -9,6 +9,8 @@ function Map(props) {
   const { item } = props;
   const location = item?.location;
   const position = [location?.lat, location?.lng];
+
+  console.log("GOOGLE_KEY", GOOGLE_KEY, process.env)
   return !!location ? (
     <div className="google-map mb-120">
       {false ? (

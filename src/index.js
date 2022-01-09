@@ -1,3 +1,4 @@
+import "./loadEnv";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot } from "recoil";
@@ -7,6 +8,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+
 import HomeV1 from "./components/home-v1";
 import HomeV2 from "./components/home-v2";
 import HomeV3 from "./components/home-v3";
@@ -89,7 +91,7 @@ class Root extends Component {
             <Route path="/shop-grid" component={ShopGrid} />
             <Route path="/shop-left-sidebar" component={ShopLeftSidebar} />
             <Route path="/shop-right-sidebar" component={ShopRightSidebar} />
-            
+
             <Route path="/listing/:id" component={ProdductDetails} />
             {/* blog */}
             <Route path="/blog-grid" component={BlogGrid} />

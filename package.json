@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
+    "dotenv": "^10.0.0",
     "google-maps-react": "^2.0.2",
     "html-react-parser": "^0.10.1",
     "human-readable-numbers": "^0.9.5",
