@@ -13,8 +13,7 @@ export default function ExpandItem(props) {
     const link = url.getURL("dalali.listing", {
       type: "detail",
       item: selectedItem,
-    });
-    // dalali/api/v1/listing/id/
+    }, {add_hits_count:1});
     getItem(link);
   }, [selectedItem]);
 

@@ -4,9 +4,9 @@ export default function ProductSlider(props){
   return (!!item?.post?.photos && 
       <div className="ltn__img-slider-area mb-90">
         <div className="container-fluid">
-          <div className={item?.post?.photos?.length>1?"row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all":"text-center"}>
+          <div className={item?.post?.photos?.length>1?"row ltn__image-slider-2-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all":"text-center"}>
             {item?.post?.photos.map((photo, index)=>(
-              <div className="col-lg-12" key={`photo-${index}`}>
+              <div className="col-lg-12 text-center" key={`photo-${index}`}>
               <div className="ltn__img-slide-item-4">
                 <a
                   href={photo.uri}

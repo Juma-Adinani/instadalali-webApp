@@ -1,10 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
-class CopyRight extends Component {
-  render() {
-    let publicUrl = process.env.PUBLIC_URL + "/";
-
+import React from "react";
+export default function CopyRight(props){
     return (
       <div className="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
         <div className="container-fluid ltn__border-top-2">
@@ -12,7 +7,7 @@ class CopyRight extends Component {
             <div className="col-md-12 col-12">
               <div className="ltn__copyright-design clearfix">
                 <p>
-                  All Rights Reserved&nbsp;&copy;&nbsp;instadalali&nbsp;
+                  All Rights Reserved&nbsp;&copy;&nbsp;Instadalali&nbsp;
                   <span className="current-year" />
                 </p>
               </div>
@@ -20,8 +15,6 @@ class CopyRight extends Component {
           </div>
         </div>
       </div>
-    );
-  }
+    )
 }
 
-export default CopyRight;

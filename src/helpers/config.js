@@ -1,10 +1,10 @@
 import { utils } from "./utils";
 export const appName = "Instadalali";
 export const config = {
-  API_URL: "http://instadalali.com:8009",
-  // API_URL: "https://instadalali.hudumabomba.com",
+  // API_URL: "http://instadalali.com:8009",
+  API_URL: "https://instadalali.hudumabomba.com",
   // API_URL: 'http://192.168.43.16:8000',
-  GOOGLE_MAP_KEY: "AIzaSyBeMOXy4foj-vi70g1iHZUCfESvNE1J6sw",
+  GOOGLE_MAP_KEY: process.env.GOOGLE_MAP_KEY,
 };
 export const priceSliderScale = {
   minFactor: 1e2,
@@ -74,19 +74,27 @@ export const url = {
     room: "/chats/api/v1/room/",
     message: "/chats/api/v1/message/",
   },
-  getURL: (path, { item = { id: 0 }, type = "detail" } = {}) => {
+  getURL: (path, { item = { id: 0 }, type = "detail" } = {}, params={}) => {
     const base = utils.getObject(url, path);
     let link = base;
     if (["detail", "delete", "edit", "view"].includes(type)) {
       link = `${base}{id}/`;
     }
-    return utils.replaceVariablesFromString(link, item);
+    return utils.stringify(params, {
+      baseURL:utils.replaceVariablesFromString(link, item)
+    });
+
   },
   routes: {
      shop:"/shop/",
-     product:"/product/{id}",
+     product:"/listing/{id}",
      wishlist:"/wishlist",
      login:"/login",
+     logout:"/logout",
+     contact:"/contact",
+     faq:"/faq",
+     tnc:"/terms",
+     privacy:"/privacy",
      get:(path, item)=>{
        /*
         eg: url.routes.get("product", item:{id:12}) =>"/#/product/12"

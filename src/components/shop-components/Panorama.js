@@ -34,10 +34,10 @@ export default function Panorama(props){
           sceneId="firstScene"
           imageSource= {selectedTour?.file}
           config={{
-              autoRotate: 0.1,
+              // autoRotate: 0.1,
               author: "Instadalali",
               title: "Virtual Tour",
-              description: `A 360 view of listing ID: ${item?.id}`,
+              description: `Listing ID: ${item?.id}`,
               type: "equirectangular",
               preview: selectedTour?.thumbnail||"",
               autoLoad: true,
@@ -46,10 +46,10 @@ export default function Panorama(props){
           }}
           style={{
             width: "100%",
-            height: "80vh",
+            height: "100vw",
           }}
         />}
-        {!!selectedTour?.file &&
+        {!!selectedTour?.file && tours.length>1 &&
           <div className="ltn__list-item-half">
             {tours.map((tour, index)=>(
               <div className="ltn__img-slide-item-4"  key={`tour-${index}`}>

@@ -112,8 +112,10 @@ export default function Shop(props) {
                         <option value={"is_featured"}>Sort By Featured</option>
                         <option value="-hits_count">Sort by popularity</option>
                         <option value="-post__post_date">Sort by new arrivals</option>
-                        <option value="price" >Sort by Most Expensive</option>
-                        <option value="-price">Sort by Cheapest</option>
+                        <option value="-price" >Sort by Most Expensive</option>
+                        <option value="price">Sort by Cheapest</option>
+                        <option value="-bedrooms_count">Sort by Bedroom Count Desc</option>
+                        <option value="bedrooms_count">Sort by Bedroom Count Asc</option>
                       </select>
                     </div>
                   </li>

@@ -1,12 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import parse from "html-react-parser";
 import Map from "components/section-components/map";
 import { requests, url, utils } from "helpers";
 import Panorama from "./Panorama"
 
 export default function ListingDetail(props) {
-  const {item, item:{post}} = props;
+  const { item: selectedItem} = props;
+  // create a new variable for the item here so as to fetch an item with more details
+  const [item, setItem] = useState(selectedItem);
+
+  useEffect(() => {
+    if(!selectedItem) return;
+    const link = url.getURL("dalali.listing", {
+      type: "detail",
+      item: selectedItem,
+    }, {add_hits_count:1});
+    getItem(link);
+  }, [selectedItem]);
+
+  async function getItem(link) {
+    try {
+      const res = await requests.get(link);
+      if (res.id) {
+        setItem(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  const post=item?.post;
   const itemDetails=[
     [
       {title:"Bedrooms", field:'bedrooms_count'},

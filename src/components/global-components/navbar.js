@@ -75,6 +75,7 @@ function Navbar(props) {
               </div>
               <div className="col ltn__header-options ltn__header-options-2 mb-sm-20">
                 {/* header-search-1 */}
+                {false &&
                 <div className="header-search-wrap">
                   <div className="header-search-1">
                     <div className="search-icon">
@@ -97,7 +98,7 @@ function Navbar(props) {
                       </button>
                     </form>
                   </div>
-                </div>
+                </div>}
                 {/* user-menu */}
                 <div className="ltn__drop-menu user-menu">
                   <ul>
@@ -178,11 +179,13 @@ function Navbar(props) {
                 <img
                   src={publicUrl + "assets/img/logo.png"}
                   alt="Logo"
+                  height={40}
                 />
               </Link>
             </div>
             <button className="ltn__utilize-close">×</button>
           </div>
+        {false && 
           <div className="ltn__utilize-menu-search-form">
             <form action={"#"}>
               <input type="text" placeholder="Search..." />
@@ -191,23 +194,25 @@ function Navbar(props) {
               </button>
             </form>
           </div>
+        }
+
           <div className="ltn__utilize-menu">
             {loggedUser ? (
               <ul>
                 <li>
-                  <Link to="/Shop">Listings</Link>
+                  <Link to={url.routes.shop}>Listings</Link>
                 </li>
                 <li>
-                  <Link to="/login">Logout</Link>
+                  <Link to={url.routes.logout}>Logout</Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact</Link>
+                  <Link to={url.routes.contact}>Contact</Link>
                 </li>
               </ul>
             ) : (
               <ul>
                 <li>
-                  <Link to="/login">Login</Link>
+                  <Link to={url.routes.login}>Login</Link>
                 </li>
               </ul>
             )}
