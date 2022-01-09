@@ -116,6 +116,8 @@ export default function Shop(props) {
                         <option value="price">Sort by Cheapest</option>
                         <option value="-bedrooms_count">Sort by Bedroom Count Desc</option>
                         <option value="bedrooms_count">Sort by Bedroom Count Asc</option>
+                        <option value="location__name">Sort by Location</option>
+                        <option value="post__profile__username">Sort by Agent Name</option>
                       </select>
                     </div>
                   </li>
@@ -162,7 +164,7 @@ export default function Shop(props) {
                       {loading && <Loading count={6}/>}
                       {results.map((item, index) => (
                         <ListItem
-                          key={index}
+                          key={item.id}
                           item={item}
                           onExpand={onExpand}
                           onAddWishlist={onAddWishlist}

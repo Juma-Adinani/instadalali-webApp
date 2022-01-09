@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { utils, url } from "helpers";
 import ReadMoreReact from 'read-more-react';
@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 export default function ListItem(props) {
   //   const publicUrl = process.env.PUBLIC_URL + "/";
   const { item, onExpand, onAddWishlist } = props;
+  // const [item, setItem] = useState(_item)
   const history = useHistory();
   const viewItem=()=>{
     //url.routes.get("product", item)
@@ -110,11 +111,11 @@ export default function ListItem(props) {
                   <i className="flaticon-heart-1" />
                 </a>
               </li>
-              {/* <li className="go-top">
-                <Link to="/product-details" title="Product Details">
+              <li className="go-top">
+                <Link to={url.routes.get("product", item)} title="Product Details">
                   <i className="flaticon-add" />
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>

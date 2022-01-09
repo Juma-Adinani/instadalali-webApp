@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
-import { requests, url, config } from "helpers";
+import {config } from "helpers";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 const GOOGLE_KEY =config.GOOGLE_MAP_KEY ;
 
@@ -10,7 +8,6 @@ function Map(props) {
   const location = item?.location;
   const position = [location?.lat, location?.lng];
 
-  console.log("GOOGLE_KEY", GOOGLE_KEY, process.env)
   return !!location ? (
     <div className="google-map mb-120">
       {false ? (
@@ -36,12 +33,12 @@ function Map(props) {
         </MapContainer>
       ) : (
         <iframe
-          width="100%"
-          height="450"
-          loading="lazy"
-          allowFullScreen
-          src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}
-            &q=${position.join(',')}`}
+            title={location.name}
+            width="100%"
+            height="450"
+            loading="lazy"
+            allowFullScreen
+            src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}&q=${position.join(',')}`}
         ></iframe>
       )}
     </div>

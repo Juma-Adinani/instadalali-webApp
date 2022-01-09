@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { requests, setAuthorization, url, utils } from "helpers";
-import parse from "html-react-parser";
 
 export default function Login(props) {
   const [data, setData] = useState({});
@@ -13,10 +12,10 @@ export default function Login(props) {
   async function onSubmit(e) {
     e.preventDefault();
     try {
+      setErrorMessage(null);
       const res = await requests.post(url.login, data);
       setAuthorization(res.key);
       const u = await requests.get(url.user);
-      setErrorMessage(null);
       utils.setUser({ ...u, token: res.key });
       utils.navigate(url.routes.shop);
     } catch (e) {
@@ -32,8 +31,7 @@ export default function Login(props) {
           <div className="col-lg-12">
             <div className="section-title-area text-center">
               <h1 className="section-title">
-                Sign In <br />
-                To Your Account
+                Login
               </h1>
             </div>
           </div>

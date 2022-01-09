@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import parse from "html-react-parser";
 import { requests, url } from "helpers";
 
 function Register() {
   const [data, setInput] = useState({});
-
+  
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -14,10 +13,8 @@ function Register() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    // alert("Name: " + data.username + " " + "Password: " + data.password);
     try {
-      const res = await requests.post(url.register, data);
-      // console.log(res);
+      await requests.post(url.register, data);
       alert("Successfully Registered");
       window.location("/#/login");
     } catch (error) {
@@ -32,8 +29,7 @@ function Register() {
           <div className="col-lg-12">
             <div className="section-title-area text-center mt-30">
               <h1 className="section-title">
-                Create <br />
-                Your Account
+              Create Account
               </h1>
             </div>
           </div>
@@ -91,7 +87,7 @@ function Register() {
                 /> */}
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultValue />
-                  &nbsp; I consent to Herboil processing my personal data in
+                  &nbsp; I consent to Instadalali processing my personal data in
                   order to send personalized marketing material in accordance
                   with the consent form and the privacy policy.
                 </label>
@@ -111,12 +107,12 @@ function Register() {
               <div className="by-agree text-center">
                 <p>By creating an account, you agree to our:</p>
                 <p>
-                  <Link to="./terms">TERMS OF CONDITIONS </Link>&nbsp; &nbsp; |
+                  <Link to={url.routes.tnc}>TERMS OF CONDITIONS </Link>&nbsp; &nbsp; |
                   &nbsp; &nbsp;
-                  <Link to="./privacy">PRIVACY POLICY </Link>
+                  <Link to={url.routes.privacy}>PRIVACY POLICY </Link>
                 </p>
                 <div className="go-to-btn mt-50">
-                  <Link to="./login">ALREADY HAVE AN ACCOUNT ?</Link>
+                  <Link to={url.routes.login}>ALREADY HAVE AN ACCOUNT ?</Link>
                 </div>
               </div>
             </div>

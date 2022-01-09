@@ -5,15 +5,13 @@ import ShogGrid from './shop-components/shop';
 import CallToActionV1 from './section-components/call-to-action-v1';
 import Footer from './global-components/footer';
 
-const Shop_V1 = () => {
+export default function Listings(props){
     return <div>
         <Navbar />
         <PageHeader headertitle="Listings" />
         <ShogGrid />
-        <CallToActionV1 />
         <Footer />
     </div>
 }
 
-export default Shop_V1
 

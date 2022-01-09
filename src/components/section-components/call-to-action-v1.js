@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import parse from 'html-react-parser';
+import { url } from 'helpers';
 
 class CallToActonV1 extends Component {
-
     render() {
-
-        let publicUrl = process.env.PUBLIC_URL+'/'
-        let imagealt = 'image'
-
     return <div className="ltn__call-to-action-area call-to-action-6 before-bg-bottom" >
 			  <div className="container">
 			    <div className="row">
@@ -19,7 +14,7 @@ class CallToActonV1 extends Component {
 			            <p>We can help you realize your dream of a new home</p>
 			          </div>
 			          <div className="btn-wrapper go-top">
-			            <Link className="btn btn-effect-3 btn-white" to="/Shop">Explore Properties <i className="icon-next" /></Link>
+			            <Link className="btn btn-effect-3 btn-white" to={url.routes.shop}>Explore Properties <i className="icon-next" /></Link>
 			          </div>
 			        </div>
 			      </div>

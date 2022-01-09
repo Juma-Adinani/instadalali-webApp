@@ -1,13 +1,15 @@
 import React from "react";
-import Register from "./section-components/register";
+import Footer from "./global-components/footer";
+import Navbar from "./global-components/navbar";
+import RegisterView from "./section-components/register";
 
-
-const RegisterV1 = () => {
+export default function Register(props){
   return (
     <div>
-      <Register />
+      <Navbar/>
+      <RegisterView />
+      <Footer/>
     </div>
   );
 };
 
-export default RegisterV1;

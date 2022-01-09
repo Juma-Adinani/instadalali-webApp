@@ -269,11 +269,12 @@ class Actions {
   };
 
   stringify = (data, params = {}) => {
+    const isEmpty=_.isEmpty(data);
     let link = qs.stringify(data, { arrayFormat: "bracket", ...params });
     if (params.baseURL) {
-      link = `${params.baseURL}${
+      link =!isEmpty? `${params.baseURL}${
         params.baseURL?.includes("?") ? "&" : "?"
-      }${link}`;
+      }${link}`:params.baseURL;
     }
     return link;
   };

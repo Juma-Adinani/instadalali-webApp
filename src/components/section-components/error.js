@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import parse from 'html-react-parser';
-
 class Error extends Component {
-
     render() {
-
         let publicUrl = process.env.PUBLIC_URL+'/'
-
-    return <div className="ltn__404-area ltn__404-area-1 mb-120">
+    	return <div className="ltn__404-area ltn__404-area-1 mb-120">
 				<div className="container">
 				<div className="row">
 					<div className="col-lg-12">

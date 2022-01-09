@@ -33,11 +33,11 @@ import ComingSoon from "./components/coming-soon";
 import Error from "./components/404";
 import Location from "./components/location";
 
-import Shop from "./components/shop-right-sidebar";
+import Listings from "./components/Listings";
 import ShopGrid from "./components/shop-grid";
 import ProdductDetails from "./components/product-details";
 import ShopLeftSidebar from "./components/shop-left-sidebar";
-import ShopRightSidebar from "./components/shop-right-sidebar";
+import ShopRightSidebar from "./components/Listings";
 
 import BlogGrid from "./components/blog-grid";
 import BlogLeftSidebar from "./components/blog-left-sidebar";
@@ -87,7 +87,7 @@ class Root extends Component {
             <Route path="/coming-soon" component={ComingSoon} />
 
             <Route path="/location" component={Location} />
-            <Route path="/shop" component={Shop} />
+            <Route path="/listings" component={Listings} />
             <Route path="/shop-grid" component={ShopGrid} />
             <Route path="/shop-left-sidebar" component={ShopLeftSidebar} />
             <Route path="/shop-right-sidebar" component={ShopRightSidebar} />

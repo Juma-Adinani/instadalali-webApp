@@ -87,7 +87,7 @@ export const url = {
 
   },
   routes: {
-     shop:"/shop/",
+     shop:"/listings/",
      product:"/listing/{id}",
      wishlist:"/wishlist",
      login:"/login",

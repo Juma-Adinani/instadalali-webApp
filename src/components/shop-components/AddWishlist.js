@@ -3,17 +3,9 @@ import { Link } from "react-router-dom";
 import { utils, requests, url } from "helpers";
 
 function Wishlist(props) {
-  // let publicUrl = process.env.PUBLIC_URL + "/";
   const loggedUser = utils.getUser();
   const { item } = props;
-
-  // function Reload(){
-  //   window.location.reload();
-  // }
-  
   if (!loggedUser) return null;
-
-  
   return (
     <div className="ltn__modal-area ltn__add-to-cart-modal-area">
       <div className="modal fade" id="liton_wishlist_modal" tabIndex={-1}>
@@ -48,8 +40,8 @@ function Wishlist(props) {
                           </Link>
                         </h5>
                         <p className="added-cart">
-                          <i className="fa fa-check-circle" /> Successfully
-                          added to your Wishlist
+                          <i className="fa fa-check-circle" /> 
+                          Successfully added to your Wishlist
                         </p>
                         <div className="btn-wrapper">
                           <Link
