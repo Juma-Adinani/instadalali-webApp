@@ -43,7 +43,6 @@ export default function Shop(props) {
 
   useEffect(() => {
       setLoading(true);
-      utils.scrollTop();
       const link = utils.stringify(filters , {
         baseURL: url.dalali.listing,
       });
@@ -182,9 +181,11 @@ export default function Shop(props) {
 				      ************************************** */}
               <Pagination
                 {...meta}
-                onClickPage={(page) =>
-                  setFilters({ ...filters, page: page + 1 })
-                }
+                onClickPage={(page) =>{
+                  setFilters({ ...filters, page: page + 1 });
+                  //then scroll to top
+                  utils.scrollTop();
+                }}
               />
             </div>
             <Sidebar />
