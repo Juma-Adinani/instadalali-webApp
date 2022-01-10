@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from './global-components/topbar';
-import Navbar from './global-components/navbar-v2';
+import Navbar from './global-components/NavbarIntro';
 import Banner from './section-components/banner-v4';
 import SearchForm from './section-components/search-form';
 import Category from './section-components/category-v3';

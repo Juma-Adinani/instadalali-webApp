@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './global-components/navbar';
+import Navbar from './global-components/NavbarShop';
 import PageHeader from './global-components/page-header';
 import AddListing from './section-components/add-listing';
 import CallToActionV1 from './section-components/call-to-action-v1';

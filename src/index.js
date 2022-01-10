@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import HomeV1 from "./components/home-v1";
-import HomeV2 from "./components/home-v2";
+import HomeV2 from "./components/Home";
 import HomeV3 from "./components/home-v3";
 import HomeV4 from "./components/home-v4";
 import HomeV5 from "./components/home-v5";

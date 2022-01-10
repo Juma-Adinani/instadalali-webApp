@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./global-components/navbar";
+import Navbar from "./global-components/NavbarShop";
 import PageHeader from "./global-components/page-header";
 import Privacy from "./section-components/privacy-v1";
 import Footer from "./global-components/footer";

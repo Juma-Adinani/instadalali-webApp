@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from './global-components/topbar';
-import Navbar from './global-components/navbar-v2';
+import Navbar from './global-components/NavbarIntro';
 import BannerV7 from './section-components/banner-v7';
 import ProSlider from './section-components/product-slider-v4';
 import Video from './section-components/video-v2';

@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from './global-components/topbar';
-import Navbar from './global-components/navbar-v2';
+import Navbar from './global-components/NavbarIntro';
 import BannerV7 from './section-components/banner-v8';
 import Aboutv3 from './section-components/about-v3';
 import Video from './section-components/video-v2';

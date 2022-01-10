@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "./global-components/footer";
-import Navbar from "./global-components/navbar";
+import Navbar from "./global-components/NavbarShop";
 import RegisterView from "./section-components/register";
 
 export default function Register(props){

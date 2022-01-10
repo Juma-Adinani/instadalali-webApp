@@ -110,10 +110,10 @@ function Navbar(props) {
                       {loggedUser ? (
                         <ul className="go-top">
                           <li>
-                            <Link to="/">My Account</Link>
+                            <Link to="/">Hello {loggedUser?.first_name},</Link>
                           </li>
                           <li>
-                            <a href=".#" onClick={handleLogOut}>
+                            <a href="/" onClick={handleLogOut}>
                               Logout
                             </a>
                           </li>

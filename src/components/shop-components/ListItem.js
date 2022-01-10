@@ -75,7 +75,9 @@ export default function ListItem(props) {
           </ul>
         </div>
         <div className="product-info-bottom">
-          <div className="real-estate-agent">
+
+
+        <div className="real-estate-agent">
             <div className="ltn__blog-meta">
               <ul>
                 <li className="ltn__blog-author go-top">
@@ -84,9 +86,14 @@ export default function ListItem(props) {
                     {item.post?.owner_profile?.full_name}
                   </p>
                 </li>
+                <li className="ltn__blog-date">
+                  <i className="far fa-calendar-alt" />
+                  {utils.formatDate(item.post?.post_date, 'lll')}
+                </li>
               </ul>
             </div>
           </div>
+
           <div className="product-hover-action">
             <ul>
               <li>
@@ -118,15 +125,12 @@ export default function ListItem(props) {
               </li>
             </ul>
           </div>
+
+
+
+
         </div>
-        <div className="ltn__blog-meta">
-          <ul>
-            <li className="ltn__blog-date">
-              <i className="far fa-calendar-alt" />
-              Posted: {utils.formatDate(item.post?.post_date)}
-            </li>
-          </ul>
-        </div>
+
       </div>
     </div>
   );

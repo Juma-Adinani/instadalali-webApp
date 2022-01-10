@@ -2,8 +2,8 @@ import { url, utils, requests } from "helpers";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function NavbarV2(props){
-  
+export default function NavbarInfo(props){
+
   const publicUrl = process.env.PUBLIC_URL + "/";
   const loggedUser = utils.getUser();
   const [count, setCount] = useState([]);
@@ -18,7 +18,7 @@ export default function NavbarV2(props){
   }
 
   useEffect(() => {
-    getCount();
+    loggedUser && getCount();
   }, []);
   
 
@@ -52,20 +52,19 @@ export default function NavbarV2(props){
                       <ul>
                         <div style={{ width: `100%` }}></div>
                         {!loggedUser && <li>
-                          <Link to="/login">Sign In</Link>
+                          <Link to={url.routes.login}>Sign In</Link>
                         </li>}
                         {!loggedUser && 
                         <li>
-                          <Link to="/register">Sign Up</Link>
+                          <Link to={url.routes.register}>Sign Up</Link>
                         </li>}
                         {!!loggedUser && 
                         <li>
-                          <Link to="/">Hi.. {loggedUser?.username}</Link>
+                          <Link to={url.routes.shop}>Hi {loggedUser?.username}</Link>
                         </li>}
-
-                        <li className="special-link">
+                        {/* <li className="special-link">
                           <Link to={url.routes.shop}>Get Started</Link>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </nav>

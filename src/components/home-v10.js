@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from './global-components/topbar';
-import Navbar from './global-components/navbar-v2';
+import Navbar from './global-components/NavbarIntro';
 import Map from './section-components/map-v2';
 import SearchFormV2 from './section-components/search-form-v2';
 import UpComingProduct from './section-components/upcoming-product-v1';

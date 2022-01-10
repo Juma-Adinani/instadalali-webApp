@@ -6,6 +6,7 @@ import { url, requests, utils } from "helpers";
 import ExpandItem from "./ExpandItem";
 import Pagination from "./Pagination";
 import Wishlist from "./AddWishlist";
+import ListItemVertical from "./Listings/ListItemVertical";
 import Cart from "./add-cart";
 import Loading from "components/Loading"
 
@@ -86,8 +87,7 @@ export default function Shop(props) {
         page:undefined,
        ...dict
     });
-}
-
+ }
   const { page = 1, count = 0 } = meta;
   const pageSize = filters?.size || 12;
   return (

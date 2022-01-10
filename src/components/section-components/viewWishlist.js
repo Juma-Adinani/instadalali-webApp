@@ -7,6 +7,7 @@ function WishList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const loggedUser = utils.getUser()
+  
   async function getData(link) {
     try {
       const res = await requests.get(link);
@@ -18,7 +19,7 @@ function WishList() {
   }
 
   useEffect(() => {
-    const link = url.dalali.wishlist;
+    const link = url.dalali.wishlist+"?src=viewWishlist";
     loggedUser && getData(link);
   }, []);
 
@@ -26,6 +27,7 @@ function WishList() {
     await requests.delete(
       url.getURL("dalali.wishlist", { item: item, type: "delete" })
     );
+    // refresh data
     getData(url.dalali.wishlist);
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './global-components/navbar';
+import Navbar from './global-components/NavbarShop';
 import PageHeader from './global-components/page-header';
 import ContactInfo from './section-components/contact-info';
 import ContactForm from './section-components/contact-form';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './global-components/navbar';
+import Navbar from './global-components/NavbarShop';
 import PageHeader from './global-components/page-header';
 import HistoryV1 from './section-components/history';
 import WhyChooseUs from './section-components/why-choose-us';

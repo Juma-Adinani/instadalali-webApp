@@ -29,6 +29,8 @@ export default function ExpandItem(props) {
     }
   }
 
+  const photos = item?.post?.photos;
+
   return (
     <div className="ltn__modal-area ltn__quick-view-modal-area">
       <div className="modal fade" id="quick_view_modal" tabIndex={-1}>
@@ -40,7 +42,7 @@ export default function ExpandItem(props) {
                 className="close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              >
+                >
                 <span aria-hidden="true">×</span>
                 {/* <i class="fas fa-times"></i> */}
               </button>
@@ -49,13 +51,12 @@ export default function ExpandItem(props) {
               <div className="ltn__quick-view-modal-inner">
                 <div className="modal-product-item">
                   <h3 style={{ color: `#171b2a` }}>Property Details</h3>
-                  <div className="row d-flex justify-content-center w-100">
+                  <div className="row justify-content-center w-100">
                     {/* ltn__blog-item-3-normal */}
-                    <ProductSlider item={item}/>
-                    {false && <div className="row  ltn__blog-slider-one-active slick-arrow-1 ">
-                      {item &&
-                        item.post.photos.map((photo, index) => (
-                          <div className="col-lg-12" key={index}>
+                    {true && <div className="row  ltn__blog-slider-one-active slick-arrow-1 ">
+                      {photos &&
+                        photos.map((photo) => (
+                          <div className="col-lg-12" key={photo.uri}>
                             <div className="ltn__blog-item ltn__blog-item-3">
                               <div className="ltn__blog-img">
                                 <Link to={url.routes.shop}>

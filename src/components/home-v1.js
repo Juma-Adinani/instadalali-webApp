@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './global-components/navbar';
+import Navbar from './global-components/NavbarShop';
 import Banner from './section-components/banner';
 import SearchForm from './section-components/search-form';
 import Aboutv1 from './section-components/about-v1';

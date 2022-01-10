@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { requests, url } from "helpers";
+import { requests, url, utils } from "helpers";
 
 function Register() {
   const [data, setInput] = useState({});
@@ -16,7 +16,7 @@ function Register() {
     try {
       await requests.post(url.register, data);
       alert("Successfully Registered");
-      window.location("/#/login");
+      utils.navigate(url.routes.login);
     } catch (error) {
       alert(JSON.stringify(error));
     }
@@ -50,7 +50,7 @@ function Register() {
             <div className="col-12 col-md-6">
               <input
                 type="text"
-                name="firstname"
+                name="first_name"
                 placeholder="First Name*"
                 onChange={handleChange}
                 required
@@ -61,7 +61,7 @@ function Register() {
             <div className="col-12 col-md-6">
               <input
                 type="text"
-                name="lastname"
+                name="last_name"
                 placeholder="Last Name*"
                 onChange={handleChange}
                 required
@@ -71,9 +71,9 @@ function Register() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email*"
+                placeholder="Email"
                 onChange={handleChange}
-                required
+                // required
               />
             </div>
           </div>
