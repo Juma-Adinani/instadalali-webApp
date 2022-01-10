@@ -4,7 +4,7 @@ import { requests, url } from "helpers";
 
 function Register() {
   const [data, setInput] = useState({});
-  
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -24,98 +24,102 @@ function Register() {
 
   return (
     <div className="ltn__login-area pb-110">
-      <div className="container">
+      <div className="container" style={{ width: `80%` }}>
         <div className="row">
           <div className="col-lg-12">
             <div className="section-title-area text-center mt-30">
-              <h1 className="section-title">
-              Create Account
-              </h1>
+              <h1 className="section-title">Create Account</h1>
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-lg-6 offset-lg-3">
-            <div className="account-login-inner">
-              <form
-                method="POST"
-                className="ltn__form-box contact-form-box"
-                onSubmit={onSubmit}
-              >
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username*"
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="firstname"
-                  placeholder="First Name*"
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="lastname"
-                  placeholder="Last Name*"
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email*"
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password*"
-                  onChange={handleChange}
-                  required
-                />
-                {/* <input
-                  type="password"
-                  name="confirmpassword"
-                  placeholder="Confirm Password*"
-                ssword}
-                  onChange={handleChange}
-                  required
-                /> */}
-                <label className="checkbox-inline">
-                  <input type="checkbox" defaultValue />
-                  &nbsp; I consent to Instadalali processing my personal data in
-                  order to send personalized marketing material in accordance
-                  with the consent form and the privacy policy.
-                </label>
-                <label className="checkbox-inline">
-                  <input type="checkbox" defaultValue /> &nbsp; By clicking
-                  "create account", I consent to the privacy policy.
-                </label>
-                <div className="btn-wrapper">
-                  <button
-                    className="theme-btn-1 btn reverse-color btn-block"
-                    type="submit"
-                  >
-                    CREATE ACCOUNT
-                  </button>
-                </div>
-              </form>
-              <div className="by-agree text-center">
-                <p>By creating an account, you agree to our:</p>
-                <p>
-                  <Link to={url.routes.tnc}>TERMS OF CONDITIONS </Link>&nbsp; &nbsp; |
-                  &nbsp; &nbsp;
-                  <Link to={url.routes.privacy}>PRIVACY POLICY </Link>
-                </p>
-                <div className="go-to-btn mt-50">
-                  <Link to={url.routes.login}>ALREADY HAVE AN ACCOUNT ?</Link>
-                </div>
-              </div>
+        <form
+          method="POST"
+          className="ltn__form-box contact-form-box"
+          onSubmit={onSubmit}
+        >
+          <div className="form-group row">
+            <div className="col-12 col-md-6">
+              <input
+                type="text"
+                name="username"
+                placeholder="Username*"
+                onChange={handleChange}
+                required
+              />
             </div>
+            <div className="col-12 col-md-6">
+              <input
+                type="text"
+                name="firstname"
+                placeholder="First Name*"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="form-group row">
+            <div className="col-12 col-md-6">
+              <input
+                type="text"
+                name="lastname"
+                placeholder="Last Name*"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email*"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="form-group row">
+            <div className="col-12">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password*"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <label className="checkbox-inline">
+            <input type="checkbox" defaultValue />
+            &nbsp; I consent to Instadalali processing my personal data in order
+            to send personalized marketing material in accordance with the
+            consent form and the privacy policy.
+          </label>
+          <label className="checkbox-inline">
+            <input type="checkbox" defaultValue /> &nbsp; By clicking "create
+            account", I consent to the&nbsp;
+            <Link to={url.routes.tnc} style={{ color: `dodgerblue` }}>
+              Terms of conditions
+            </Link>
+            &nbsp;&amp; &nbsp;
+            <Link to={url.routes.privacy} style={{ color: `dodgerblue` }}>
+              Privacy policy
+            </Link>
+          </label>
+          <div className="btn-wrapper">
+            <button
+              className="theme-btn-1 btn reverse-color btn-block"
+              type="submit"
+            >
+              CREATE ACCOUNT
+            </button>
+          </div>
+        </form>
+        <div className="by-agree text-center">
+          <div className="go-to-btn">
+            ALREADY HAVE AN ACCOUNT ?&nbsp;&nbsp;
+            <Link to={url.routes.login} style={{ color: `dodgerblue` }}>
+              LOGIN
+            </Link>
           </div>
         </div>
       </div>

@@ -60,7 +60,7 @@ export default function NavbarV2(props){
                         </li>}
                         {!!loggedUser && 
                         <li>
-                          <Link to="/">Hi {loggedUser?.first_name}</Link>
+                          <Link to="/">Hi.. {loggedUser?.username}</Link>
                         </li>}
 
                         <li className="special-link">

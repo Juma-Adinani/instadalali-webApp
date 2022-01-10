@@ -15,12 +15,12 @@ function Navbar(props) {
     history.push("/");
   }
 
-  
-
   async function getCount() {
     try {
-      if(!loggedUser) return;
-      const response = await requests.get(`${url.dalali.wishlist}?query={id}&size=1`);
+      if (!loggedUser) return;
+      const response = await requests.get(
+        `${url.dalali.wishlist}?query={id}&size=1`
+      );
       setCount(response.count);
     } catch (e) {
       console.log(e);
@@ -75,30 +75,31 @@ function Navbar(props) {
               </div>
               <div className="col ltn__header-options ltn__header-options-2 mb-sm-20">
                 {/* header-search-1 */}
-                {false &&
-                <div className="header-search-wrap">
-                  <div className="header-search-1">
-                    <div className="search-icon">
-                      <i className="icon-search for-search-show" />
-                      <i className="icon-cancel  for-search-close" />
+                {false && (
+                  <div className="header-search-wrap">
+                    <div className="header-search-1">
+                      <div className="search-icon">
+                        <i className="icon-search for-search-show" />
+                        <i className="icon-cancel  for-search-close" />
+                      </div>
+                    </div>
+                    <div className="header-search-1-form">
+                      <form id="#" method="get" action="#">
+                        <input
+                          type="text"
+                          name="search"
+                          defaultValue
+                          placeholder="Search here..."
+                        />
+                        <button type="submit">
+                          <span>
+                            <i className="icon-search" />
+                          </span>
+                        </button>
+                      </form>
                     </div>
                   </div>
-                  <div className="header-search-1-form">
-                    <form id="#" method="get" action="#">
-                      <input
-                        type="text"
-                        name="search"
-                        defaultValue
-                        placeholder="Search here..."
-                      />
-                      <button type="submit">
-                        <span>
-                          <i className="icon-search" />
-                        </span>
-                      </button>
-                    </form>
-                  </div>
-                </div>}
+                )}
                 {/* user-menu */}
                 <div className="ltn__drop-menu user-menu">
                   <ul>
@@ -120,7 +121,7 @@ function Navbar(props) {
                       ) : (
                         <ul className="go-top">
                           <li>
-                            <Link to="/login">Login</Link>
+                            <Link to={url.routes.login}>Login</Link>
                           </li>
                         </ul>
                       )}
@@ -185,16 +186,16 @@ function Navbar(props) {
             </div>
             <button className="ltn__utilize-close">×</button>
           </div>
-        {false && 
-          <div className="ltn__utilize-menu-search-form">
-            <form action={"#"}>
-              <input type="text" placeholder="Search..." />
-              <button>
-                <i className="fas fa-search" />
-              </button>
-            </form>
-          </div>
-        }
+          {false && (
+            <div className="ltn__utilize-menu-search-form">
+              <form action={"#"}>
+                <input type="text" placeholder="Search..." />
+                <button>
+                  <i className="fas fa-search" />
+                </button>
+              </form>
+            </div>
+          )}
 
           <div className="ltn__utilize-menu">
             {loggedUser ? (
@@ -203,7 +204,9 @@ function Navbar(props) {
                   <Link to={url.routes.shop}>Listings</Link>
                 </li>
                 <li>
-                  <Link to={url.routes.logout}>Logout</Link>
+                  <Link to="/" onClick={handleLogOut}>
+                    Logout
+                  </Link>
                 </li>
                 <li>
                   <Link to={url.routes.contact}>Contact</Link>
@@ -221,7 +224,7 @@ function Navbar(props) {
             {loggedUser ? (
               <ul>
                 <li>
-                  <Link to="/my-account" title="My Account">
+                  <Link to={url.routes.account} title="My Account">
                     <span className="utilize-btn-icon">
                       <i className="far fa-user" />
                     </span>

@@ -19,7 +19,11 @@ export default function Login(props) {
       utils.setUser({ ...u, token: res.key });
       utils.navigate(url.routes.shop);
     } catch (e) {
-      setErrorMessage(JSON.stringify(e.data?.non_field_errors?.join("; ")||e.data||e.message))
+      setErrorMessage(
+        JSON.stringify(
+          e.data?.non_field_errors?.join("; ") || e.data || e.message
+        )
+      );
       // alert(JSON.stringify(e.data||e.message));
     }
   }
@@ -30,9 +34,7 @@ export default function Login(props) {
         <div className="row">
           <div className="col-lg-12">
             <div className="section-title-area text-center">
-              <h1 className="section-title">
-                Login
-              </h1>
+              <h1 className="section-title">Login</h1>
             </div>
           </div>
         </div>
@@ -56,9 +58,9 @@ export default function Login(props) {
                   placeholder="Password*"
                   onChange={handleInput}
                 />
-                {!!errorMessage && <div className="alert alert-warning">
-                      {errorMessage}
-                </div>}
+                {!!errorMessage && (
+                  <div className="alert alert-warning">{errorMessage}</div>
+                )}
                 <div className="btn-wrapper mt-0">
                   <button className="theme-btn-1 btn btn-block" type="submit">
                     SIGN IN
@@ -76,7 +78,10 @@ export default function Login(props) {
             <div className="account-create text-center pt-50">
               <h4>DON'T HAVE AN ACCOUNT?</h4>
               <div className="btn-wrapper go-top">
-                <Link to={url.routes.register} className="theme-btn-1 btn black-btn">
+                <Link
+                  to={url.routes.register}
+                  className="theme-btn-1 btn black-btn"
+                >
                   CREATE ACCOUNT
                 </Link>
               </div>

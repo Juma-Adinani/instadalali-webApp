@@ -1,5 +1,6 @@
 import { utils } from "./utils";
-import env from "../.env";
+// import env from "../.env";
+import env from "../loadEnv";
 export const appName = "Instadalali";
 export const config = {
   // API_URL: "http://instadalali.com:8009",
@@ -88,9 +89,11 @@ export const url = {
   },
   routes: {
      shop:"/listings/",
+     account:"/my-account",
      product:"/listing/{id}",
      wishlist:"/wishlist",
      login:"/login",
+     register:"/register",
      logout:"/logout",
      contact:"/contact",
      faq:"/faq",
