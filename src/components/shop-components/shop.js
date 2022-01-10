@@ -36,12 +36,9 @@ export default function Shop(props) {
   }
 
   useEffect(()=>{
-    // get data params and save to state filters
-    const urlData = utils.getSearchParams(window.location.hash)
-    setFilters({
-      // ...filters, 
-      ...urlData,
-    })
+    // get data params and save to state filters if they exist, otherwise keep the previous settings
+    const urlData = utils.getSearchParams(window.location.href);
+    !_.isEmpty(urlData) && setFilters(urlData);
   }, [])
 
   useEffect(() => {
