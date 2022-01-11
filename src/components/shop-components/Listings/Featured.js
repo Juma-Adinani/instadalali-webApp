@@ -23,7 +23,7 @@ export default function FeaturedListings(props){
             </div>
 
             <div className="row  ltn__blog-slider-one-active slick-arrow-1 ltn__blog-item-3-normal">
-            {results.map(item=><ListItemVertical item={item} />)}
+            {results.map(item=><ListItemVertical item={item} key={item.id}/>)}
             </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ export default function Login(props) {
       setAuthorization(res.key);
       const u = await requests.get(url.user);
       utils.setUser({ ...u, token: res.key });
-      utils.navigate(url.routes.shop);
+      utils.navigate(url.routes.listings);
     } catch (e) {
       setErrorMessage(
         JSON.stringify(

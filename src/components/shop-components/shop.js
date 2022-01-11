@@ -51,7 +51,7 @@ export default function Shop(props) {
       .finally(()=>{
         setLoading(false);
       })
-      !_.isEmpty(filters) && history.replace({pathname: `${url.routes.shop}?${utils.stringify(filters)}`})
+      !_.isEmpty(filters) && history.replace({pathname: `${url.routes.listings}?${utils.stringify(filters)}`})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 

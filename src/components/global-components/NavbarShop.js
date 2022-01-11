@@ -201,7 +201,7 @@ function Navbar(props) {
             {loggedUser ? (
               <ul>
                 <li>
-                  <Link to={url.routes.shop}>Listings</Link>
+                  <Link to={url.routes.listings}>Listings</Link>
                 </li>
                 <li>
                   <Link to="/" onClick={handleLogOut}>

@@ -60,11 +60,11 @@ export default function NavbarInfo(props){
                         </li>}
                         {!!loggedUser && 
                         <li>
-                          <Link to={url.routes.shop}>Hi {loggedUser?.username}</Link>
+                          <Link to={url.routes.listings}>Hi {loggedUser?.username}</Link>
                         </li>}
-                        {/* <li className="special-link">
-                          <Link to={url.routes.shop}>Get Started</Link>
-                        </li> */}
+                        <li className="special-link">
+                          <Link to={url.routes.listings}>Find Home</Link>
+                        </li>
                       </ul>
                     </div>
                   </nav>
