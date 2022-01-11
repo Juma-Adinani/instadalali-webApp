@@ -46,7 +46,7 @@ export default function Panorama(props){
           }}
           style={{
             width: "100%",
-            height: "100vw",
+            height: "80vh",
           }}
         />}
         {!!selectedTour?.file && tours.length>1 &&

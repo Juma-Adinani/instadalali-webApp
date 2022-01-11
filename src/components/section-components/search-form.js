@@ -12,9 +12,10 @@ export default function SearchForm(props){
 	const [listingsCount, setListingsCount] = useState(50e3)
 
 	function handleInputChange(e){
+		const name=e.target.name;
 		setFilters({
 			...filters, 
-			[e.target.name]: e.target.value
+			[name]: e.target.value
 		})
 	}
 
@@ -72,7 +73,7 @@ export default function SearchForm(props){
 			                    </select>
 			                  </div> 
 
-			                  {!!filters["location__id"] && <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter---- col-lg-3 col-md-6">
+			                  <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter---- col-lg-3 col-md-6">
 			                    <select 
 									className="nice-select" name="post__owner_profile__id"  
 									onChange={handleInputChange}
@@ -81,7 +82,7 @@ export default function SearchForm(props){
 			                      <option value={""}>Choose Agent ({profiles.count})</option>
 								  {profiles.results?.map((profile, i)=><option key={i} value={profile.id}>{profile.full_name}</option>)}
 			                    </select>
-			                  </div> }
+			                  </div>
 
 			                  <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-calendar---- col-lg-3 col-md-6">
 			                    <select className="nice-select" name="offer_type"  onChange={handleInputChange} value={filters["offer_type"]}>
