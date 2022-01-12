@@ -20,14 +20,18 @@ import Footer from "./global-components/footer";
 import { requests, url, utils } from "helpers";
 
 
-const Home_V2 = () => {
+export default function Home(props){
 
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(true);
 
   async function fetchData(){
-      const res = await requests.get(`${url.dalali.listing}?order_by=id&size=8`)
-      setResults(res.results);
+      try{
+        const res = await requests.get(`${url.dalali.listing}?order_by=-id&size=8`)
+        setResults(res.results);
+      }catch(e){
+
+      }
       setLoading(false);
   }
   useEffect(()=>{
@@ -51,14 +55,12 @@ const Home_V2 = () => {
         <Cateogory />
         <Testimonial />*/}
       <ServiceV1 />
-     
       {/* <Cateogory /> */}
       <Features customClass="ltn__feature-area section-bg-1--- pt-115 pb-90 mb-120---" />
-      <FeaturedListings results={results} />
+      {results?.length>0 && <FeaturedListings results={results} />}
       <CallToActionV1 />
       <Footer />
     </div>
   );
 };
 
-export default Home_V2;

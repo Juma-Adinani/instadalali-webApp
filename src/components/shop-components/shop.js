@@ -51,7 +51,7 @@ export default function Shop(props) {
       .finally(()=>{
         setLoading(false);
       })
-      !_.isEmpty(filters) && history.replace({pathname: `${url.routes.shop}?${utils.stringify(filters)}`})
+      !_.isEmpty(filters) && history.replace({pathname: `${url.routes.listings}?${utils.stringify(filters)}`})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
@@ -146,7 +146,7 @@ export default function Shop(props) {
                       <div className="col-lg-12">
                         {/* Search Widget */}
                         <div className="ltn__search-widget mb-30">
-                          <form action="#">
+                          <form action={url.routes.listings}>
                             <input
                               type="text"
                               name="search"
@@ -170,7 +170,14 @@ export default function Shop(props) {
                           onAddWishlist={onAddWishlist}
                         />
                       ))}
-                      {results.length===0 && !loading && <div>No results found</div>}
+                      {results.length===0 && !loading && (
+                          <div>
+                            <div>No results found</div>
+                            <label className="mb-30" onClick={()=>setFilters({order_by:"-id"})}>
+                              <small>Reset All {Object.keys(filters).length} Filters </small>
+                            </label>
+                          </div>
+                      )}
                       {loading && <Loading count={6}/>}
                     </div>
                   </div>

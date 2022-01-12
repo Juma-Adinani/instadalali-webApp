@@ -59,7 +59,7 @@ export default function ExpandItem(props) {
                           <div className="col-lg-12" key={photo.uri}>
                             <div className="ltn__blog-item ltn__blog-item-3">
                               <div className="ltn__blog-img">
-                                <Link to={url.routes.shop}>
+                                <Link to={url.routes.listings}>
                                   <img src={photo.uri} alt="#" />
                                 </Link>
                               </div>

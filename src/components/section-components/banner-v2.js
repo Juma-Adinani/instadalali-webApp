@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+import SearchForm from 'components/section-components/search-form';
 
-class BannerV2 extends Component {
-  render() {
+export default function BannerInfo(prop){
     let publicUrl = process.env.PUBLIC_URL + "/";
-    let imagealt = "image";
-
     return (
       <div
         className="ltn__slider-area ltn__slider-11  ltn__slider-11-slide-item-count-show--- ltn__slider-11-pagination-count-show--- section-bg-1"
@@ -230,9 +226,9 @@ class BannerV2 extends Component {
             </ul>
           </div>
         </div>
+        <SearchForm />
       </div>
     );
-  }
+  
 }
 
-export default BannerV2;
