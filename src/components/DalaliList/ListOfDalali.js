@@ -1,13 +1,11 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
-// import MOCK_DATA from "./MOCK_DATA.json";
-// import ColumnsDataTable, { COLUMNS } from "./ColumnsDataTable";
 import "./table.css";
 import { SearchFilter } from "./SearchFilter";
 import { Link } from "react-router-dom";
-// import { url, requests, utils } from "helpers";
+import { url, requests, utils } from "helpers";
 
-export default function PaginationTable({ columns, data }) {
+export default function ListOfDalali({ columns, data }) {
   
   const {
     getTableProps,
@@ -65,7 +63,9 @@ export default function PaginationTable({ columns, data }) {
                     {row.cells.map((cell) => {
                       return (
                         <td {...cell.getCellProps()}>
-                          <Link to="/dalali-posts">{cell.render("Cell")}</Link>
+                          <Link to={url.routes.get("dalaliPost", row.listing)}>
+                            {cell.render("Cell")}
+                          </Link>
                         </td>
                       );
                     })}

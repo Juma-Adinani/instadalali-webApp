@@ -95,7 +95,7 @@ export const url = {
 
      product:"/listing/{id}",
      listing:"/listing/{id}",
-     
+     dalaliPost:"/dalali-posts/{id}",
      wishlist:"/wishlist",
      login:"/login",
      register:"/register",

@@ -110,7 +110,15 @@ function Navbar(props) {
                       {loggedUser ? (
                         <ul className="go-top">
                           <li>
-                            <Link to="/">Hello {loggedUser?.first_name},</Link>
+                            <Link
+                              to="/"
+                              style={{ borderBottom: `thin solid #338a5d` }}
+                            >
+                              Hello {loggedUser?.username},
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/dalali-list">List of Dalali</Link>
                           </li>
                           <li>
                             <a href="/" onClick={handleLogOut}>
@@ -200,6 +208,12 @@ function Navbar(props) {
           <div className="ltn__utilize-menu">
             {loggedUser ? (
               <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/dalali-list">List of Dalali</Link>
+                </li>
                 <li>
                   <Link to={url.routes.listings}>Listings</Link>
                 </li>

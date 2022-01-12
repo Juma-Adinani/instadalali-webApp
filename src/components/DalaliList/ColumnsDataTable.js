@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import PaginationTable from "./PaginationTable";
+import ListOfDalali from "./ListOfDalali";
 import { url, requests, utils } from "helpers";
 
 function ColumnsDataTable() {
@@ -75,7 +75,7 @@ function ColumnsDataTable() {
   return (
     <div className="text-center">
       {loading && <span>L o a d i n g...</span>}
-      <PaginationTable columns={columns} data={results} />
+      <ListOfDalali columns={columns} data={results} />
     </div>
   );
 }
