@@ -57,6 +57,7 @@ import OrderTracking from "./components/order-tracking";
 import History from "./components/history";
 import TermsV1 from "./components/terms";
 import PrivacyV1 from "./components/privacy";
+import DalaliListTable from "components/DalaliList/DalaliListTable";
 
 class Root extends Component {
   render() {
@@ -112,6 +113,7 @@ class Root extends Component {
             <Route path="/history" component={History} />
             <Route path="/terms" component={TermsV1} />
             <Route path="/privacy" component={PrivacyV1} />
+            <Route path="/DalaliListTable" component={DalaliListTable} />
             <Route path="/*" component={Error} />
           </Switch>
         </RecoilRoot>
