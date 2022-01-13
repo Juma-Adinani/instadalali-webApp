@@ -57,7 +57,13 @@ class Store{
 
   getUser=()=>{
     const user=this.store.getString("authUser");
-    return user?JSON.parse(user):user;
+    // console.log("user", user)
+    try{
+      return user?JSON.parse(user):user;
+    }catch(error){
+      return user
+    }
+    
   }
 
 

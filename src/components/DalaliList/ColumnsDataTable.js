@@ -23,7 +23,6 @@ function ColumnsDataTable() {
         
       //   photos: detail.post.photos.length,
       // }));
-      console.log("XXXX", res.results);
       setResults(res.results);
     } catch (err) {
       console.log(err);

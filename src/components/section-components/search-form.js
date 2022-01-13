@@ -25,8 +25,9 @@ export default function SearchForm(props){
 	}
 
 	async function fetchProfiles(){
+		const location__id=filters.location__id;
 		const res=await requests.get(
-			`${url.profile}?advanced_search=posts__listings__location:${filters.location__id}&distinct=id`
+			`${url.profile}${location__id?`?advanced_search=posts__listings__location:${location__id}&distinct=id&include=listings_count`:"?include=listings_count"}`
 		)
 		setProfiles(res)
 	}
@@ -80,7 +81,7 @@ export default function SearchForm(props){
 									value={filters["post__owner_profile__id"]}
 								>
 			                      <option value={""}>Choose Agent ({profiles.count})</option>
-								  {profiles.results?.map((profile, i)=><option key={i} value={profile.id}>{profile.full_name}</option>)}
+								  {profiles.results?.map((profile, i)=><option key={i} value={profile.id}>{profile.full_name} ({profile.listings_count})</option>)}
 			                    </select>
 			                  </div>
 

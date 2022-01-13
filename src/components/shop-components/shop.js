@@ -6,7 +6,7 @@ import { url, requests, utils } from "helpers";
 import ExpandItem from "./ExpandItem";
 import Pagination from "./Pagination";
 import Wishlist from "./AddWishlist";
-import ListItemVertical from "./Listings/ListItemVertical";
+// import ListItemVertical from "./Listings/ListItemVertical";
 import Cart from "./add-cart";
 import Loading from "components/Loading"
 
