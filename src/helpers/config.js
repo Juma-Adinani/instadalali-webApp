@@ -76,41 +76,40 @@ export const url = {
     room: "/chats/api/v1/room/",
     message: "/chats/api/v1/message/",
   },
-  getURL: (path, { item = { id: 0 }, type = "detail" } = {}, params={}) => {
+  getURL: (path, { item = { id: 0 }, type = "detail" } = {}, params = {}) => {
     const base = utils.getObject(url, path);
     let link = base;
     if (["detail", "delete", "edit", "view"].includes(type)) {
       link = `${base}{id}/`;
     }
     return utils.stringify(params, {
-      baseURL:utils.replaceVariablesFromString(link, item)
+      baseURL: utils.replaceVariablesFromString(link, item),
     });
-
   },
   routes: {
-     shop:"/listings/",
-     listings:"/listings/",
+    shop: "/listings/",
+    listings: "/listings/",
 
-     account:"/my-account",
-
-     product:"/listing/{id}",
-     listing:"/listing/{id}",
-     dalaliPost:"/dalali-posts/{id}",
-     wishlist:"/wishlist",
-     login:"/login",
-     register:"/register",
-     logout:"/logout",
-     contact:"/contact",
-     faq:"/faq",
-     tnc:"/terms",
-     privacy:"/privacy",
-     reset:"/reset",
-     get:(path, item)=>{
-       /*
+    account: "/my-account",
+    dalaliProfile: "/dalali-profile",
+    product: "/listing/{id}",
+    listing: "/listing/{id}",
+    dalaliPost: "/dalali-posts/{id}",
+    wishlist: "/wishlist",
+    login: "/login",
+    register: "/register",
+    logout: "/logout",
+    contact: "/contact",
+    faq: "/faq",
+    tnc: "/terms",
+    privacy: "/privacy",
+    reset: "/reset",
+    get: (path, item) => {
+      /*
         eg: url.routes.get("product", item:{id:12}) =>"/#/product/12"
        */
       const link = utils.getObject(url.routes, path);
-      return utils.replaceVariablesFromString(link, item)
-     }
-  }
+      return utils.replaceVariablesFromString(link, item);
+    },
+  },
 };

@@ -118,7 +118,12 @@ function Navbar(props) {
                             </Link>
                           </li>
                           <li>
-                            <Link to="/dalali-list">List of Dalali</Link>
+                            <Link to={url.routes.listings}>Listings</Link>
+                          </li>
+                          <li>
+                            <Link to={url.routes.dalaliProfile}>
+                              List of Dalali
+                            </Link>
                           </li>
                           <li>
                             <a href="/" onClick={handleLogOut}>
@@ -212,7 +217,7 @@ function Navbar(props) {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/dalali-list">List of Dalali</Link>
+                  <Link to={url.routes.dalaliProfile}>List of Dalali</Link>
                 </li>
                 <li>
                   <Link to={url.routes.listings}>Listings</Link>
