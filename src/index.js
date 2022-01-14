@@ -57,7 +57,7 @@ import OrderTracking from "./components/order-tracking";
 import History from "./components/history";
 import TermsV1 from "./components/terms";
 import PrivacyV1 from "./components/privacy";
-import Profile from "./components/dalaliProfile/DalaliProfile";
+import Profile from "./components/DalaliProfile/profilePage";
 
 class Root extends Component {
   render() {
