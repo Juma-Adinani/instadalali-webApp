@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./global-components/NavbarIntro";
 import Banner from "./section-components/banner-v2";
-import Aboutv3 from "./section-components/about-v3";
-import Video from "./section-components/video-v2";
 import Features from "./section-components/features-v1";
-import UpComingProduct from "./section-components/upcoming-product-v1";
-import ApartmentV2 from "./section-components/apartment-v2";
-import ProductSlider from "./section-components/product-slider-v2";
-import Availability from "./section-components/availability";
-import Neighbour from "./section-components/neighbour";
-import Cateogory from "./section-components/category-v2";
+
+// import Aboutv3 from "./section-components/about-v3";
+// import Video from "./section-components/video-v2";
+// import UpComingProduct from "./section-components/upcoming-product-v1";
+// import ApartmentV2 from "./section-components/apartment-v2";
+// import ProductSlider from "./section-components/product-slider-v2";
+// import Availability from "./section-components/availability";
+// import Neighbour from "./section-components/neighbour";
+// import Cateogory from "./section-components/category-v2";
 // import Testimonial from "./section-components/testimonial-v2";
-import Testimonial from "./section-components/testimonial-v1";
+// import Testimonial from "./section-components/testimonial-v1";
+
 import FeaturedListings from "./shop-components/Listings/Featured"
 
 import CallToActionV1 from "./section-components/call-to-action-v1";
@@ -27,7 +29,17 @@ export default function Home(props){
 
   async function fetchData(){
       try{
-        const res = await requests.get(`${url.dalali.listing}?order_by=-id&size=8`)
+        const res = await requests.get(
+          utils.stringify(
+          {
+            order_by:"-post__post_date",
+            // is_featured:true,
+            // advanced_search:"posts", //TODO: find a way to only query posts which has photo
+            size:12,
+          }, {
+              baseURL:url.dalali.listing
+          }
+        ))
         setResults(res.results);
       }catch(e){
 

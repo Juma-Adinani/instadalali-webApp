@@ -57,7 +57,6 @@ import OrderTracking from "./components/order-tracking";
 import History from "./components/history";
 import TermsV1 from "./components/terms";
 import PrivacyV1 from "./components/privacy";
-import Profile from "./components/DalaliProfile/profilePage";
 
 class Root extends Component {
   render() {
@@ -113,7 +112,7 @@ class Root extends Component {
             <Route path="/history" component={History} />
             <Route path="/terms" component={TermsV1} />
             <Route path="/privacy" component={PrivacyV1} />
-            <Route path="/dalali-profile" component={Profile}/>
+            {/* <Route path="/dalali-profile" component={Profile}/> */}
             <Route path="/*" component={Error} />
           </Switch>
         </RecoilRoot>
