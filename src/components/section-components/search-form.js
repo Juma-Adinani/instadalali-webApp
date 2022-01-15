@@ -2,7 +2,6 @@ import { requests, url, utils } from 'helpers';
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from "recoil";
 import { filtersState } from "atoms";
-import userEvent from '@testing-library/user-event';
 
 
 export default function SearchForm(props){
@@ -46,7 +45,8 @@ export default function SearchForm(props){
 			post__owner_profile__id:filters.post__owner_profile__id,
 			location__id:filters.location__id,
 			offer_type:filters.offer_type,
-			query:`{id}`
+			query:`{id}`,
+			size:1,
 		}, {baseURL:url.dalali.listing}))
 		.then(res=>setListingsCount(res.count))
 		.catch(console.log)
@@ -69,7 +69,7 @@ export default function SearchForm(props){
 							<form action={url.routes.listings} className="ltn__car-dealer-form-box row">
 			                  <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-car---- col-lg-3 col-md-6">
 			                    <select className="nice-select" name="location__id" onChange={handleInputChange} value={filters["location__id"]}>
-			                      <option>Choose Area ({locations.count})</option>
+			                      <option value="">Choose Area ({locations.count})</option>
 								  {locations.results?.map(loc=><option key={loc.id} value={loc.id}>{loc.name}</option>)}
 			                    </select>
 			                  </div> 
@@ -80,7 +80,7 @@ export default function SearchForm(props){
 									onChange={handleInputChange}
 									value={filters["post__owner_profile__id"]}
 								>
-			                      <option value={""}>Choose Agent ({profiles.count})</option>
+			                      <option value="">Choose Agent ({profiles.count})</option>
 								  {profiles.results?.map((profile, i)=><option key={i} value={profile.id}>{profile.full_name} ({profile.listings_count})</option>)}
 			                    </select>
 			                  </div>
