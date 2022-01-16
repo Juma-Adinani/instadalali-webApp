@@ -57,9 +57,9 @@ export function Select(props) {
     setReloading(false);
   }
 
-  useEffect(() => {
-    setDefaultValue(props.defaultValue);
-  }, [props.defaultValue]);
+//   useEffect(() => {
+//     setDefaultValue(props.defaultValue);
+//   }, [props.defaultValue]);
 
   useEffect(() => {
     //    to help refreshing selections
