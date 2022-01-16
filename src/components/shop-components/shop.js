@@ -92,7 +92,7 @@ export default function Shop(props) {
   const pageSize = filters?.size || 12;
   return (
     <div>
-      <div className="ltn__product-area ltn__product-gutter">
+      <div className="ltn__product-area ltn__product-gutter pt-4">
         <div className="container">
           <div className="row">
             <div className="col-lg-8  mb-100">

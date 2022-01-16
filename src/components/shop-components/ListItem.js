@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { utils, url } from "helpers";
-import ReadMoreReact from 'read-more-react';
+import ReadMoreReact from "read-more-react";
 import { useHistory } from "react-router-dom";
 
 export default function ListItem(props) {
@@ -9,12 +9,12 @@ export default function ListItem(props) {
   const { item, onExpand, onAddWishlist } = props;
   // const [item, setItem] = useState(_item)
   const history = useHistory();
-  const viewItem=()=>{
+  const viewItem = () => {
     //url.routes.get("product", item)
     const pathname = url.routes.get("product", item);
     // console.log("pathname", pathname);
-    history.replace({pathname})
-  }
+    history.replace({ pathname });
+  };
 
   return (
     <div className="col-lg-12">
@@ -39,14 +39,13 @@ export default function ListItem(props) {
             </div>
           </div>
           <div className="go-top">
-            <ReadMoreReact text={item?.post?.caption}
-                min={80}
-                ideal={100}
-                max={200}
-                readMoreText="read more"
-                
-                />
-
+            <ReadMoreReact
+              text={item?.post?.caption}
+              min={80}
+              ideal={100}
+              max={200}
+              readMoreText="read more"
+            />
           </div>
           <div className="product-img-location go-top">
             <ul>
@@ -75,9 +74,7 @@ export default function ListItem(props) {
           </ul>
         </div>
         <div className="product-info-bottom">
-
-
-        <div className="real-estate-agent">
+          <div className="real-estate-agent">
             <div className="ltn__blog-meta">
               <ul>
                 <li className="ltn__blog-author go-top">
@@ -88,7 +85,7 @@ export default function ListItem(props) {
                 </li>
                 <li className="ltn__blog-date">
                   <i className="far fa-calendar-alt" />
-                  {utils.formatDate(item.post?.post_date, 'lll')}
+                  {utils.formatDate(item.post?.post_date, "lll")}
                 </li>
               </ul>
             </div>
@@ -119,18 +116,16 @@ export default function ListItem(props) {
                 </a>
               </li>
               <li className="go-top">
-                <Link to={url.routes.get("product", item)} title="Product Details">
+                <Link
+                  to={url.routes.get("product", item)}
+                  title="Product Details"
+                >
                   <i className="flaticon-add" />
                 </Link>
               </li>
             </ul>
           </div>
-
-
-
-
         </div>
-
       </div>
     </div>
   );

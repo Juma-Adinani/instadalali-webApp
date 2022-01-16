@@ -3,22 +3,19 @@ import { Link } from "react-router-dom";
 // import parse from "html-react-parser";
 import { url, requests } from "helpers";
 
-function TeamV2() {
+export default function Team() {
   let publicUrl = process.env.PUBLIC_URL + "/";
-  let imagealt = "image";
   const [details, setDetails] = useState(null);
 
   // + adding the use
   useEffect(() => {
     const link = url.dalali.listing;
     getData(link);
-
     // we will use async/await to fetch the data
     async function getData(link) {
       await requests
         .get(link)
         .then((response) => {
-          
           console.log(response);
           setDetails(response);
         })
@@ -240,5 +237,3 @@ function TeamV2() {
     </div>
   );
 }
-
-export default TeamV2;

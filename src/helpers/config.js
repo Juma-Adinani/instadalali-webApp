@@ -89,12 +89,12 @@ export const url = {
   routes: {
     shop: "/listings/",
     listings: "/listings/",
-
     account: "/my-account",
-    dalaliProfile: "/dalali-profile",
+    profiles: "/profiles",
+    profile: "/profile/{id}",
     product: "/listing/{id}",
     listing: "/listing/{id}",
-    dalaliPost: "/dalali-posts/{id}",
+    post: "/post/{id}",
     wishlist: "/wishlist",
     login: "/login",
     register: "/register",

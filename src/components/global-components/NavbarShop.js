@@ -100,6 +100,13 @@ function Navbar(props) {
                     </div>
                   </div>
                 )}
+                <div className="mini-cart-icon" title="Dalali(Agents)">
+                    <Link
+                      to={url.routes.profiles}
+                    >
+                      <i className="fa fa-users"></i>
+                    </Link>
+                  </div>
                 {/* user-menu */}
                 <div className="ltn__drop-menu user-menu">
                   <ul>
@@ -121,9 +128,7 @@ function Navbar(props) {
                             <Link to={url.routes.listings}>Listings</Link>
                           </li>
                           <li>
-                            <Link to={url.routes.dalaliProfile}>
-                              List of Dalali
-                            </Link>
+                            <Link to={url.routes.profiles}>Dalali(Agents)</Link>
                           </li>
                           <li>
                             <a href="/" onClick={handleLogOut}>
@@ -217,7 +222,7 @@ function Navbar(props) {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to={url.routes.dalaliProfile}>List of Dalali</Link>
+                  <Link to={url.routes.profile}>List of Dalali</Link>
                 </li>
                 <li>
                   <Link to={url.routes.listings}>Listings</Link>

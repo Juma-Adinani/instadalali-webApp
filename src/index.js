@@ -1,4 +1,3 @@
-import "./loadEnv";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot } from "recoil";
@@ -26,7 +25,6 @@ import ServiceDetails from "./components/service-details";
 import Portfolio from "./components/portfolio";
 import PortfolioV2 from "./components/portfolio-v2";
 import PortfolioDetails from "./components/portfolio-details";
-import Team from "./components/team";
 import TeamDetails from "./components/team-details";
 import Faq from "./components/faq";
 import ComingSoon from "./components/coming-soon";
@@ -58,6 +56,9 @@ import History from "./components/history";
 import TermsV1 from "./components/terms";
 import PrivacyV1 from "./components/privacy";
 
+import Profile from "./components/section-components/Profiles/Profile"
+import Profiles from "./components/section-components/Profiles"
+
 class Root extends Component {
   render() {
     return (
@@ -81,7 +82,6 @@ class Root extends Component {
             <Route path="/portfolio" component={Portfolio} />
             <Route path="/portfolio-v2" component={PortfolioV2} />
             <Route path="/portfolio-details" component={PortfolioDetails} />
-            <Route path="/team" component={Team} />
             <Route path="/team-details" component={TeamDetails} />
             <Route path="/faq" component={Faq} />
             <Route path="/coming-soon" component={ComingSoon} />
@@ -112,7 +112,10 @@ class Root extends Component {
             <Route path="/history" component={History} />
             <Route path="/terms" component={TermsV1} />
             <Route path="/privacy" component={PrivacyV1} />
-            {/* <Route path="/dalali-profile" component={Profile}/> */}
+
+            <Route path="/profile/:id" component={Profile}/>
+            <Route path="/profiles" component={Profiles}/>
+
             <Route path="/*" component={Error} />
           </Switch>
         </RecoilRoot>

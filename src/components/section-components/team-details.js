@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 
-class TeamDetails extends Component {
+export default function Profile(props){
 
-    render() {
-
-        let publicUrl = process.env.PUBLIC_URL+'/'
+    let publicUrl = process.env.PUBLIC_URL+'/'
 
     return <div className="ltn__team-details-area mb-120">
                 <div className="container">
@@ -143,7 +141,4 @@ class TeamDetails extends Component {
                 </div>
                 </div>
             </div>
-        }
 }
-
-export default TeamDetails
