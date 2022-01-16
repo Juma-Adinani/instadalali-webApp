@@ -72,7 +72,7 @@ class ServiceV5 extends Component {
                     {/* <i className="flaticon-mortgage" /> */}
                     <img
                       src={publicUrl + "assets/img/service/imageSearch.png"}
-                      alt="image search"
+                      alt=""
                     />
                   </span>
                 </div>

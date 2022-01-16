@@ -111,7 +111,7 @@ function Navbar(props) {
                 <div className="ltn__drop-menu user-menu">
                   <ul>
                     <li>
-                      <Link to="#">
+                      <Link to={url.routes.listings}>
                         <i className="icon-user" />
                       </Link>
                       {loggedUser ? (

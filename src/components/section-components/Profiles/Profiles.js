@@ -21,7 +21,7 @@ function ListItemProfile(props) {
         </Link>
         <div className="team-info">
           <h4>
-            <Link to={url.routes.get("profile", item)}>{item.full_name}</Link>
+            <Link to={url.routes.get("profile", item)}>{item.full_name} ({utils.formatNumber(item.listings_count)})</Link>
           </h4>
           <h6
             className="ltn__secondary-color"
@@ -80,6 +80,7 @@ export default function Profiles(props) {
     const link = utils.stringify(
       {
         search,
+        include:`listings_count`,
       },
       { baseURL: url.profile }
     );
