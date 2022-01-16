@@ -26,7 +26,7 @@ import Portfolio from "./components/portfolio";
 import PortfolioV2 from "./components/portfolio-v2";
 import PortfolioDetails from "./components/portfolio-details";
 import TeamDetails from "./components/team-details";
-import Faq from "./components/faq";
+import Faq from "./components/FAQ/faq";
 import ComingSoon from "./components/coming-soon";
 import Error from "./components/404";
 import Location from "./components/location";
