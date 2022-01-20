@@ -17,21 +17,21 @@ export function Select(props) {
       { search: search || defaultValue },
       { baseURL }
     );
-	let res={}
+    let res = {}
     setLoading(true);
-	let _options = []
-	try{
-		res = await requests.get(link);
-		onResults && onResults(res);
-		
-		_options = res.results.map((i) => ({
-		  value: i.id,
-		  label: getLabel(i),
-		}));
-	}catch(error){
+    let _options = []
+    try {
+      res = await requests.get(link);
+      onResults && onResults(res);
 
-	}
-	setLoading(false);
+      _options = res.results.map((i) => ({
+        value: i.id,
+        label: getLabel(i),
+      }));
+    } catch (error) {
+
+    }
+    setLoading(false);
     // set default value if exists
     if (defaultValue) {
       setDefaultValue(
@@ -57,9 +57,9 @@ export function Select(props) {
     setReloading(false);
   }
 
-//   useEffect(() => {
-//     setDefaultValue(props.defaultValue);
-//   }, [props.defaultValue]);
+  //   useEffect(() => {
+  //     setDefaultValue(props.defaultValue);
+  //   }, [props.defaultValue]);
 
   useEffect(() => {
     //    to help refreshing selections
@@ -99,10 +99,9 @@ export default function SearchForm(props) {
   function updateProfileURL() {
     const location__id = filters.location__id;
     setProfileURL(
-      `${url.profile}${
-        location__id
-          ? `?advanced_search=posts__listings__location:${location__id}&distinct=id&include=listings_count`
-          : "?include=listings_count"
+      `${url.profile}${location__id
+        ? `?advanced_search=posts__listings__location:${location__id}&distinct=id&include=listings_count`
+        : "?include=listings_count"
       }`
     );
   }
@@ -189,7 +188,7 @@ export default function SearchForm(props) {
 
                       <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-calendar---- col-lg-3 col-md-6">
                         <SimpleSelect
-						placeholder={"Choose Offer Type"}
+                          placeholder={"Choose Offer Type"}
                           name="offer_type"
                           classNamePrefix="select2-selection"
                           onChange={(e) =>
@@ -197,7 +196,7 @@ export default function SearchForm(props) {
                               target: { ...e, name: "offer_type" },
                             })
                           }
-                          defaultValue={filters["offer_type"] && {value:filters["offer_type"], label:filters["offer_type"]?.title()}}
+                          defaultValue={filters["offer_type"] && { value: filters["offer_type"], label:  filters["offer_type"]?.title && filters["offer_type"]?.title() }}
                           options={[
                             { label: "All", value: "" },
                             { label: "Rental Property", value: "rental" },
