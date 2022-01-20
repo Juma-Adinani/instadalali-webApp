@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { filtersState } from "atoms";
 import AsyncSelect from "react-select/async";
+import SimpleSelect from "react-select";
 
 export function Select(props) {
   const { url: baseURL, getLabel, onResults, name } = props;
@@ -50,14 +51,18 @@ export function Select(props) {
       alert("Value changed " + JSON.stringify({ target: { ...e, name } }));
     }
   }
-
   async function reload() {
     setReloading(true);
     await utils.sleep(10);
     setReloading(false);
   }
 
+  //   useEffect(() => {
+  //     setDefaultValue(props.defaultValue);
+  //   }, [props.defaultValue]);
+
   useEffect(() => {
+    //    to help refreshing selections
     setOptions(true);
     reload();
   }, [baseURL]);
@@ -71,7 +76,6 @@ export function Select(props) {
       defaultOptions={options}
       isLoading={loading}
       loadOptions={loadOptions}
-      styles={props.style}
     />
   );
 }
@@ -126,7 +130,10 @@ export default function SearchForm(props) {
   }, [filters]);
 
   return (
-          <div className="col-lg-12" style={{minWidth:"80vw"}}>
+    <div className="ltn__car-dealer-form-area mt--65 mt-120 pb-115---">
+      {/* <div className="container"> */}
+        <div className="row">
+          <div className="col-lg-12">
             <div className="ltn__car-dealer-form-tab">
               <div className="tab-content bg-white box-shadow-1 position-relative pb-10">
                 <div
@@ -138,8 +145,7 @@ export default function SearchForm(props) {
                       action={url.routes.listings}
                       className="ltn__car-dealer-form-box row"
                     >
-                      <div 
-                      className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-car---- col-lg-4 col-md-6">
+                      <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-car---- col-lg-3 col-md-6">
                         <Select
                           url={`${url.location}?order_by=name&size=100`}
                           getLabel={(item) => item.name}
@@ -149,10 +155,15 @@ export default function SearchForm(props) {
                           defaultValue={filters["location__id"]}
                           onResults={setLocations}
                           placeholder={`Choose Area (${locations.count})`}
+                          style={{ height: "10" }}
                         />
+                        {/* <select className="nice-select" name="location__id" onChange={handleInputChange} value={filters["location__id"]}>
+			                      <option value="">Choose Area ({locations.count})</option>
+								  {locations.results?.map(loc=><option key={loc.id} value={loc.id}>{loc.name}</option>)}
+			                </select> */}
                       </div>
 
-                      <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter---- col-lg-4 col-md-6">
+                      <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter---- col-lg-3 col-md-6">
                         <Select
                           name="post__owner_profile__id"
                           url={profileURL}
@@ -165,13 +176,38 @@ export default function SearchForm(props) {
                           onResults={setProfiles}
                           placeholder={`Choose Agent (${profiles.count})`}
                         />
+                        {/* <select 
+									className="nice-select" name="post__owner_profile__id"  
+									onChange={handleInputChange}
+									value={filters["post__owner_profile__id"]}
+								>
+			                      <option value="">Choose Agent ({profiles.count})</option>
+								  {profiles.results?.map((profile, i)=><option key={i} value={profile.id}>{profile.full_name} ({profile.listings_count})</option>)}
+			                    </select> */}
                       </div>
+{/* 
+                      <div className="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-calendar---- col-lg-3 col-md-6">
+                        <SimpleSelect
+                          placeholder={"Choose Offer Type"}
+                          name="offer_type"
+                          classNamePrefix="select2-selection"
+                          onChange={(e) =>
+                            handleInputChange({
+                              target: { ...e, name: "offer_type" },
+                            })
+                          }
+                          defaultValue={filters["offer_type"] && { value: filters["offer_type"], label:  filters["offer_type"]?.title && filters["offer_type"]?.title() }}
+                          options={[
+                            { label: "All", value: "" },
+                            { label: "Rental Property", value: "rental" },
+                            { label: "For Sale", value: "sale" },
+                          ]}
+                        />
+                      </div> */}
 
-
-                      <div className=" mt-2 ltn__car-dealer-form-item ltn__custom-icon ltn__icon-calendar col-lg-4 col-md-6">
+                      <div className=" mt-2 ltn__car-dealer-form-item ltn__custom-icon ltn__icon-calendar col-lg-3 col-md-6">
                         <div className="btn-wrapper text-center mt-0 go-top">
                           <button
-                           style={{zIndex:0}}
                             type="submit"
                             class="btn theme-btn-1 btn-effect-1 text-uppercase"
                           >
@@ -183,7 +219,10 @@ export default function SearchForm(props) {
                   </div>
                 </div>
               </div>
+            </div>
           </div>
+        </div>
+      {/* </div> */}
     </div>
   );
 }

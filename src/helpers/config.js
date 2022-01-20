@@ -5,6 +5,7 @@ export const appName = "Instadalali";
 export const config = {
   // API_URL: "http://instadalali.com:8009",
   API_URL: "https://instadalali.hudumabomba.com",
+  // API_URL:"http://127.0.0.1:8000",
   // API_URL: 'http://192.168.43.16:8000',
   GOOGLE_MAP_KEY: env.GOOGLE_MAP_KEY,
 };

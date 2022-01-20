@@ -12,6 +12,10 @@ export default function Profile(props) {
   const [item, setItem] = useState({});
   const [listings, setListings] = useState([]);
 
+  useEffect(()=>{
+    utils.scrollTop()
+  },[])
+
   async function fetchData() {
     const link = utils.stringify(
       {

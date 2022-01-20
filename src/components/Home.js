@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./global-components/NavbarIntro";
-import Banner from "./section-components/banner-v2";
+import BannerV2 from "./section-components/banner-v2";
+import Banner from './section-components/banner-v6';
 import Features from "./section-components/features-v1";
 
 // import Aboutv3 from "./section-components/about-v3";
@@ -56,6 +57,7 @@ export default function Home(props){
     <div>
       <Navbar />
       <Banner />
+      <BannerV2 />
       {/* <Aboutv3 />
         <Video />
         <Features customClass="ltn__feature-area section-bg-1--- pt-115 pb-90 mb-120---"/>

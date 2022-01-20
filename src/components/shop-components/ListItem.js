@@ -78,10 +78,10 @@ export default function ListItem(props) {
             <div className="ltn__blog-meta">
               <ul>
                 <li className="ltn__blog-author go-top">
-                  <p>
+                  <Link to={url.routes.get("profile", item.post?.owner_profile)}>
                     <i className="far fa-user" />
                     {item.post?.owner_profile?.full_name}
-                  </p>
+                  </Link>
                 </li>
                 <li className="ltn__blog-date">
                   <i className="far fa-calendar-alt" />
@@ -115,14 +115,14 @@ export default function ListItem(props) {
                   <i className="flaticon-heart-1" />
                 </a>
               </li>
-              <li className="go-top">
+              {/* <li className="go-top">
                 <Link
                   to={url.routes.get("product", item)}
                   title="Product Details"
                 >
                   <i className="flaticon-add" />
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchForm from 'components/section-components/search-form';
+
 
 export default function BannerInfo(prop){
     let publicUrl = process.env.PUBLIC_URL + "/";
@@ -226,7 +226,7 @@ export default function BannerInfo(prop){
             </ul>
           </div>
         </div>
-        <SearchForm />
+       
       </div>
     );
   
