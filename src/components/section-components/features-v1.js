@@ -10,7 +10,7 @@ class FeaturesV1 extends Component {
 
     return (
       <div className={customClass}>
-        <div className="container mb-50">
+        <div className="container mb-50"z>
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title-area ltn__section-title-2--- text-center">
