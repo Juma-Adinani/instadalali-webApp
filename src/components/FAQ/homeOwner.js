@@ -5,7 +5,7 @@ function HomeOwner() {
   return (
     <div className="container">
       <h4>HOME OWNERS</h4>
-      <div className="ltn__faq-area mb-100">
+      <div className="ltn__faq-area mb-50">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

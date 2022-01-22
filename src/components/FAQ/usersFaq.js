@@ -3,9 +3,9 @@ import FaqData from "./faqData";
 
 function UsersFaq() {
   return (
-    <div className="container">
+    <div className="container mt-50">
       <h4>USERS</h4>
-      <div className="ltn__faq-area mb-100">
+      <div className="ltn__faq-area mb-50">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
