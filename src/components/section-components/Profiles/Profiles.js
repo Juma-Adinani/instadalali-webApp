@@ -15,13 +15,15 @@ function ListItemProfile(props) {
   const { item } = props;
   return (
     <div className="col-lg-4 col-sm-6" key={item.id}>
-      <div className="ltn__team-item ltn__team-item-3---">
+      <div className="bg-white ltn__team-item ltn__team-item-3---">
         <Link className="team-img" to={url.routes.get("profile", item)}>
           <img src={item.profile_pic_url || userPlaceholder} alt="" />
         </Link>
         <div className="team-info">
           <h4>
-            <Link to={url.routes.get("profile", item)}>{item.full_name} ({utils.formatNumber(item.listings_count)})</Link>
+            <Link to={url.routes.get("profile", item)}>
+              {item.full_name} ({utils.formatNumber(item.listings_count)})
+            </Link>
           </h4>
           <h6
             className="ltn__secondary-color"
@@ -48,13 +50,12 @@ function ListItemProfile(props) {
 }
 
 export default function Profiles(props) {
-  const params = utils.getSearchParams(window.location.href)
+  const params = utils.getSearchParams(window.location.href);
   const [results, setResults] = useState([]);
   const [resMeta, setResMeta] = useState({});
-  const [search, setSearch] = useState(params.search||"");
+  const [search, setSearch] = useState(params.search || "");
   const [loading, setLoading] = useState(true);
-  const history = useHistory()
-  
+  const history = useHistory();
 
   async function _fetchData(link) {
     try {
@@ -80,7 +81,7 @@ export default function Profiles(props) {
     const link = utils.stringify(
       {
         search,
-        include:`listings_count`,
+        include: `listings_count`,
       },
       { baseURL: url.profile }
     );
@@ -94,11 +95,15 @@ export default function Profiles(props) {
     resMeta?.next && _fetchData(resMeta?.next);
   }
 
-  const _setURL=(search)=>{
-    history.replace({pathname: `${url.routes.profiles}/${search?`?${utils.stringify({search})}`:""}`})
-  }
+  const _setURL = (search) => {
+    history.replace({
+      pathname: `${url.routes.profiles}/${
+        search ? `?${utils.stringify({ search })}` : ""
+      }`,
+    });
+  };
 
-  const setURL=useCallback(_.debounce(_setURL, 800), [])
+  const setURL = useCallback(_.debounce(_setURL, 800), []);
 
   function handleSearchInputChange(e) {
     setSearch(e.target.value);
@@ -110,7 +115,7 @@ export default function Profiles(props) {
         headertitle={`Property Agents (${resMeta?.count || 0})`}
         subheader="Agent"
       />
-      <div className="ltn__team-area pb-90 go-top">
+      <div className="ltn__team-area pb-90 go-top section-bg-1">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -125,6 +130,7 @@ export default function Profiles(props) {
           <div className="row ltn__search-widget mb-30">
             <form action={url.routes.profiles}>
               <input
+                className="bg-white"
                 type="text"
                 name="search"
                 value={search}

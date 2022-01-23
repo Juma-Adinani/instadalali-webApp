@@ -7,7 +7,7 @@ class TermsV1 extends Component {
     let publicUrl = process.env.PUBLIC_URL + "/";
 
     return (
-      <div className="ltn__faq-area mb-100">
+      <div className="ltn__faq-area mb-100 mt-50">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

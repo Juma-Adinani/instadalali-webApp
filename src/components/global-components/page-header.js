@@ -13,9 +13,9 @@ export default function PageHeader(props) {
     <div
       //ltn__breadcrumb-area
       className={"text-left bg-overlay-white-30 bg-image " + CustomClass}
-      data-bs-bg={publicUrl + "assets/img/bg/14.jpg"}
+      data-bs-bg={publicUrl + "assets/img/bg/2020.jpg"}
     >
-      <div className="container">
+      <div className="container p-30">
         <div className="row">
           <div className="col-lg-12">
             <div className="ltn__breadcrumb-inner">
@@ -23,7 +23,7 @@ export default function PageHeader(props) {
               <div className="ltn__breadcrumb-list">
                 <ul>
                   <li>
-                    <Link to={parentPage.to}>
+                    <Link to={parentPage.to} style={{ color: `#444` }}>
                       <span className="ltn__secondary-color">
                         <i className="fas fa-home" />
                       </span>{" "}

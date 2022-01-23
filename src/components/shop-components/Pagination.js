@@ -15,32 +15,32 @@ export default function Pagination(props) {
       <div className="ltn__pagination">
         <ul>
           {hasMiddlePages && <li>
-            <Link to="#" onClick={() => onClickPage(page-2)}>
+            <Link to="#" className="bg-white" onClick={() => onClickPage(page-2)}>
               <i className="fas fa-angle-double-left" />
             </Link>
           </li>}
 
           {firstPages.map((_page, i) => (
             <li key={i} onClick={() => onClickPage(_page + page-1)}>
-              <Link to="#">{_page + page}</Link>
+              <Link to="#" className="bg-white">{_page + page}</Link>
             </li>
           ))}
 
           {hasMiddlePages && (
             <li>
-              <Link to="#">...</Link>
+              <Link to="#" className="bg-white">...</Link>
             </li>
           )}
 
           {hasMiddlePages && lastPages.map((_page, j) => (
             <li key={j} onClick={() => onClickPage(_page)}>
-              <Link to="#">{_page}</Link>
+              <Link to="#" className="bg-white">{_page}</Link>
             </li>
           ))}
 
           {hasMiddlePages && 
           <li>
-            <Link to="#" onClick={() => onClickPage(page)}>
+            <Link to="#" className="bg-white" onClick={() => onClickPage(page)}>
               <i className="fas fa-angle-double-right" />
             </Link>
           </li>}

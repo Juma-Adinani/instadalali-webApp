@@ -210,33 +210,39 @@ export default function Sidebar(props) {
 
   return (
     <div className="col-lg-4  mb-100">
-      <aside className="sidebar ltn__shop-sidebar">
-        <h3 className="mb-10">Preferences</h3>
+      <aside className="sidebar ltn__shop-sidebar p-100 bg-white" style={{borderRadius:`10px`}}>
+        <h3 className="mb-10 pt-30 ml-30">Preferences</h3>
         {filtersCount > 1 && (
           <label
             className="mb-30"
             onClick={() => setFilters({ order_by: "-id" })}
           >
-            <small>Reset All {filtersCount} Filters </small>
+            <small className=" ml-30">Reset All {filtersCount} Filters </small>
           </label>
         )}
         {/* Advance Information widget */}
         <div className="widget ltn__menu-widget">
-          {!!profile && <div>
-            <h4 className="ltn__widget-title">Agent</h4>
-            <div className="ltn__team-details-member-info text-center mb-40">
-             <Link to = {url.routes.get("profile", profile)}>
-              <div className="team-details-img">
-                <img height={100} src={profile?.profile_pic_url} alt={profile?.full_name || ""} />
+          {!!profile && (
+            <div>
+              <h4 className="ltn__widget-title">Agent</h4>
+              <div className="ltn__team-details-member-info text-center mb-40">
+                <Link to={url.routes.get("profile", profile)}>
+                  <div className="team-details-img">
+                    <img
+                      height={100}
+                      src={profile?.profile_pic_url}
+                      alt={profile?.full_name || ""}
+                    />
+                  </div>
+                  <h4>{profile?.full_name}</h4>
+                  <h6 className="text-uppercase ltn__secondary-color">
+                    {profile?.business_category_name}
+                  </h6>
+                </Link>
+                <hr />
               </div>
-              <h4>{profile?.full_name}</h4>
-              <h6 className="text-uppercase ltn__secondary-color">
-                {profile?.business_category_name}
-              </h6>
-              </Link>
-              <hr/>
             </div>
-          </div>}
+          )}
 
           {filtersSections.map((section, i) => (
             <Section

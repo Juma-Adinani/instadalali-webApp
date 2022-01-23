@@ -8,10 +8,10 @@ import Pagination from "./Pagination";
 import Wishlist from "./AddWishlist";
 // import ListItemVertical from "./Listings/ListItemVertical";
 import Cart from "./add-cart";
-import Loading from "components/Loading"
+import Loading from "components/Loading";
 
-import { useRecoilState} from "recoil";
-import { filtersState} from "atoms";
+import { useRecoilState } from "recoil";
+import { filtersState } from "atoms";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
@@ -22,7 +22,7 @@ export default function Shop(props) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [meta, setMeta] = useState({});
   const loggedUser = utils.getUser();
-  const history =useHistory();
+  const history = useHistory();
 
   async function fetchData(link) {
     try {
@@ -36,35 +36,37 @@ export default function Shop(props) {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     // get data params and save to state filters if they exist, otherwise keep the previous settings
     const urlData = utils.getSearchParams(window.location.href);
     !_.isEmpty(urlData) && setFilters(urlData);
-  }, [])
+  }, []);
 
   useEffect(() => {
-      setLoading(true);
-      const link = utils.stringify(filters , {
-        baseURL: url.dalali.listing,
+    setLoading(true);
+    const link = utils.stringify(filters, {
+      baseURL: url.dalali.listing,
+    });
+    fetchData(link).finally(() => {
+      setLoading(false);
+    });
+    !_.isEmpty(filters) &&
+      history.replace({
+        pathname: `${url.routes.listings}?${utils.stringify(filters)}`,
       });
-      fetchData(link)
-      .finally(()=>{
-        setLoading(false);
-      })
-      !_.isEmpty(filters) && history.replace({pathname: `${url.routes.listings}?${utils.stringify(filters)}`})
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   const onExpand = (item) => {
     setSelectedItem(item);
   };
 
-    async function addWishlist(item) {
-      return await requests.post(url.dalali.wishlist, {
-        user: loggedUser?.pk,
-        listing: item.id,
-      });
-    }
+  async function addWishlist(item) {
+    return await requests.post(url.dalali.wishlist, {
+      user: loggedUser?.pk,
+      listing: item.id,
+    });
+  }
 
   const onAddWishlist = (item) => {
     setSelectedItem(item);
@@ -76,67 +78,84 @@ export default function Shop(props) {
     }
   };
 
-
   function handleInputChange(e) {
     // console.log("selected ",e.target.name, e.target.value)
-    let dict={
-      [e.target.name]: e.target.value
-    }
+    let dict = {
+      [e.target.name]: e.target.value,
+    };
     setFilters({
-        ...filters,
-        page:undefined,
-       ...dict
+      ...filters,
+      page: undefined,
+      ...dict,
     });
- }
+  }
   const { page = 1, count = 0 } = meta;
   const pageSize = filters?.size || 12;
   return (
     <div>
-      <div className="ltn__product-area ltn__product-gutter pt-4">
+      <div className="ltn__product-area ltn__product-gutter pt-4 section-bg-1">
         <div className="container">
           <div className="row">
             <div className="col-lg-8  mb-100">
               <div className="ltn__shop-options">
                 <ul className="justify-content-start">
-                  {count>0 && <li className="d-nones">
-                    <div className="showing-product-number text-right">
-                      <span>
-                        Showing {(page - 1) * pageSize} – {page * pageSize} of{" "}
-                        {utils.formatNumber(count || 0)} results
-                      </span>
-                    </div>
-                  </li>}
+                  {count > 0 && (
+                    <li className="d-nones">
+                      <div className="showing-product-number text-right">
+                        <span>
+                          Showing {(page - 1) * pageSize} – {page * pageSize} of{" "}
+                          {utils.formatNumber(count || 0)} results
+                        </span>
+                      </div>
+                    </li>
+                  )}
                   <li>
                     <div className="short-by text-center">
-                      <select className="nice-select" onChange={handleInputChange} value={filters.order_by}  id="order_by"  name="order_by">
+                      <select
+                        className="nice-select"
+                        onChange={handleInputChange}
+                        value={filters.order_by}
+                        id="order_by"
+                        name="order_by"
+                      >
                         <option value={"is_featured"}>Sort By Featured</option>
                         <option value="-hits_count">Sort by popularity</option>
-                        <option value="-post__post_date">Sort by new arrivals</option>
-                        <option value="-price" >Sort by Most Expensive</option>
+                        <option value="-post__post_date">
+                          Sort by new arrivals
+                        </option>
+                        <option value="-price">Sort by Most Expensive</option>
                         <option value="price">Sort by Cheapest</option>
-                        <option value="-bedrooms_count">Sort by Bedroom Count Desc</option>
-                        <option value="bedrooms_count">Sort by Bedroom Count Asc</option>
+                        <option value="-bedrooms_count">
+                          Sort by Bedroom Count Desc
+                        </option>
+                        <option value="bedrooms_count">
+                          Sort by Bedroom Count Asc
+                        </option>
                         <option value="location__name">Sort by Location</option>
-                        <option value="post__profile__username">Sort by Agent Name</option>
+                        <option value="post__profile__username">
+                          Sort by Agent Name
+                        </option>
                       </select>
                     </div>
                   </li>
                   <li>
                     <div className="short-by text-center">
-                      <select  value={filters.size} className="nice-select" id="size" name="size" onChange={handleInputChange}>
+                      <select
+                        value={filters.size}
+                        className="nice-select"
+                        id="size"
+                        name="size"
+                        onChange={handleInputChange}
+                      >
                         <option value={"12"}>Size: 12</option>
-                        <option  value={"50"}>Size: 50</option>
-                        <option  value={"100"}>Size: 100</option>
+                        <option value={"50"}>Size: 50</option>
+                        <option value={"100"}>Size: 100</option>
                       </select>
                     </div>
                   </li>
                 </ul>
               </div>
               <div className="tab-content">
-                {/* **************************************
-                    House for rent and for sale (House details)
-                  ************************************** */}
-                {/* <div className="tab-pane fade" id="liton_product_list"> */}
                 <div
                   className="tab-pane fade active show"
                   id="liton_product_grid"
@@ -145,9 +164,10 @@ export default function Shop(props) {
                     <div className="row">
                       <div className="col-lg-12">
                         {/* Search Widget */}
-                        <div className="ltn__search-widget mb-30">
+                        <div className="ltn__search-widget mb-30 bg-white">
                           <form action={url.routes.listings}>
                             <input
+                              className="bg-white"
                               type="text"
                               name="search"
                               placeholder="Search your keyword..."
@@ -160,8 +180,7 @@ export default function Shop(props) {
                           </form>
                         </div>
                       </div>
-                      {/* ltn__product-item  in horizontal view (House details at large)*/}
-                      {loading && <Loading count={6}/>}
+                      {loading && <Loading count={6} />}
                       {results.map((item, index) => (
                         <ListItem
                           key={item.id}
@@ -170,25 +189,27 @@ export default function Shop(props) {
                           onAddWishlist={onAddWishlist}
                         />
                       ))}
-                      {results.length===0 && !loading && (
-                          <div>
-                            <div>No results found</div>
-                            <label className="mb-30" onClick={()=>setFilters({order_by:"-id"})}>
-                              <small>Reset All {Object.keys(filters).length} Filters </small>
-                            </label>
-                          </div>
+                      {results.length === 0 && !loading && (
+                        <div>
+                          <div>No results found</div>
+                          <label
+                            className="mb-30"
+                            onClick={() => setFilters({ order_by: "-id" })}
+                          >
+                            <small>
+                              Reset All {Object.keys(filters).length} Filters{" "}
+                            </small>
+                          </label>
+                        </div>
                       )}
-                      {loading && <Loading count={6}/>}
+                      {loading && <Loading count={6} />}
                     </div>
                   </div>
                 </div>
               </div>
-              {/* **************************************
-					       House for rent and for sale
-				      ************************************** */}
               <Pagination
                 {...meta}
-                onClickPage={(page) =>{
+                onClickPage={(page) => {
                   setFilters({ ...filters, page: page + 1 });
                   //then scroll to top
                   utils.scrollTop();
@@ -200,12 +221,13 @@ export default function Shop(props) {
         </div>
       </div>
       <Wishlist item={selectedItem} /> {/* that's love icon */}
-      <ExpandItem 
-        item={selectedItem}   
+      <ExpandItem
+        item={selectedItem}
         onExpand={onExpand}
-        onAddWishlist={onAddWishlist} /> {/* that's expand icon */}
-      <Cart  item={selectedItem} /> {/*after expand it, then onclick*/}
+        onAddWishlist={onAddWishlist}
+      />{" "}
+      {/* that's expand icon */}
+      <Cart item={selectedItem} /> {/*after expand it, then onclick*/}
     </div>
   );
 }
-
