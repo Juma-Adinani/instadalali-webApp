@@ -222,7 +222,7 @@ function Navbar(props) {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to={url.routes.profile}>List of Dalali</Link>
+                  <Link to={url.routes.profiles}>Dalali (Agents)</Link>
                 </li>
                 <li>
                   <Link to={url.routes.listings}>Listings</Link>
