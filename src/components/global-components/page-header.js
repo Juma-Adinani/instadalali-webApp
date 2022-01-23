@@ -12,16 +12,16 @@ export default function PageHeader(props) {
   return (
     <div
       //ltn__breadcrumb-area
-      className={"text-left bg-overlay-white-30 bg-image " + CustomClass}
-      data-bs-bg={publicUrl + "assets/img/bg/2020.jpg"}
+      className={"text-left bg-overlay-white-60 bg-image " + CustomClass}
+      data-bs-bg={publicUrl + "assets/img/bg/2021.jpg"}
     >
       <div className="container p-30">
         <div className="row">
           <div className="col-lg-12">
             <div className="ltn__breadcrumb-inner">
-              <h1 className="page-title">{HeaderTitle}</h1>
+              <h1 className="page-title pt-10">{HeaderTitle}</h1>
               <div className="ltn__breadcrumb-list">
-                <ul>
+                <ul className="pb-2">
                   <li>
                     <Link to={parentPage.to} style={{ color: `#444` }}>
                       <span className="ltn__secondary-color">
