@@ -208,6 +208,7 @@ export default function Shop(props) {
                 </div>
               </div>
               <Pagination
+                pageSize={pageSize}
                 {...meta}
                 onClickPage={(page) => {
                   setFilters({ ...filters, page: page + 1 });

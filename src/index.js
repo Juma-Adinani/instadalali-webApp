@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { RecoilRoot } from "recoil";
 import {
   BrowserRouter as Router,
-  HashRouter,
+  // HashRouter,
   Route,
   Switch,
 } from "react-router-dom";
@@ -98,7 +98,6 @@ class Root extends Component {
             <Route path="/blog-left-sidebar" component={BlogLeftSidebar} />
             <Route path="/blog-right-sidebar" component={BlogRightSidebar} />
             <Route path="/blog" component={Blog} />
-
             <Route path="/blog-details" component={BlogDetails} />
             <Route path="/contact" component={Contact} />
             <Route path="/cart" component={Cart} />
@@ -112,10 +111,8 @@ class Root extends Component {
             <Route path="/history" component={History} />
             <Route path="/terms" component={TermsV1} />
             <Route path="/privacy" component={PrivacyV1} />
-
             <Route path="/profile/:id" component={Profile}/>
             <Route path="/profiles" component={Profiles}/>
-
             <Route path="/*" component={Error} />
           </Switch>
         </RecoilRoot>

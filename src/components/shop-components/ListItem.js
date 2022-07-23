@@ -40,7 +40,7 @@ export default function ListItem(props) {
           </div>
           <div className="go-top">
             <ReadMoreReact
-              text={item?.post?.caption}
+              text={item?.post?.caption || 'No caption'}
               min={80}
               ideal={100}
               max={200}
@@ -60,11 +60,11 @@ export default function ListItem(props) {
           <ul className="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
             <li>
               <span>{item.bedrooms_count || 1} </span>
-              {} Bedrooms
+              { } Bedrooms
             </li>
             <li>
               <span>{item.master_bedrooms_count || 0}</span>
-              {} Master bedrooms
+              { } Master bedrooms
             </li>
 
             <li>
